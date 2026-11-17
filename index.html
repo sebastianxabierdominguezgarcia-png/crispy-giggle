@@ -24,10 +24,14 @@
     body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
     .fade-in { animation: fadeIn 0.25s ease-out forwards; }
     @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
 
+  <!-- BARRA SUPERIOR -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3 select-none">
@@ -48,9 +52,10 @@
     </div>
   </header>
 
+  <!-- CONTENEDOR PRINCIPAL -->
   <main class="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
 
-    <!-- VISTA INICIO -->
+    <!-- 1. VISTA INICIO -->
     <section id="viewStart" class="fade-in max-w-2xl mx-auto">
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="bg-gradient-to-r from-indigo-600 via-indigo-700 to-blue-700 px-6 py-8 text-white">
@@ -117,7 +122,7 @@
       </div>
     </section>
 
-    <!-- VISTA EXAMEN -->
+    <!-- 2. VISTA EXAMEN -->
     <section id="viewExam" class="hidden fade-in space-y-5">
       <div class="bg-white rounded-2xl p-4 sm:px-6 shadow-sm border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -152,7 +157,7 @@
       </div>
     </section>
 
-    <!-- VISTA FINAL -->
+    <!-- 3. VISTA FINAL -->
     <section id="viewSubmitted" class="hidden fade-in max-w-xl mx-auto">
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-10 text-center space-y-6">
         <h2 class="text-2xl font-extrabold text-slate-900">¡Examen enviado exitosamente!</h2>
@@ -166,18 +171,18 @@
       </div>
     </section>
 
-    <!-- PANEL DOCENTE -->
+    <!-- 4. PANEL DOCENTE -->
     <section id="viewAdmin" class="hidden fade-in space-y-6">
       <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-md flex justify-between items-center">
         <div>
-          <span id="syncStatusPill" class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300">Panel Docente</span>
+          <span id="syncStatusPill" class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300">Almacenamiento Local</span>
           <h2 class="text-2xl font-extrabold mt-2">Resultados y Clasificación ICFES</h2>
         </div>
         <button type="button" id="btnExitAdmin" class="px-4 py-2.5 rounded-xl bg-rose-600 text-white text-xs font-semibold cursor-pointer">Cerrar Panel</button>
       </div>
 
-      <div class="bg-white rounded-2xl p-6 border border-indigo-200 shadow-sm space-y-4">
-        <h3 class="text-base font-bold text-slate-900">Configuración de Nube (Firebase)</h3>
+      <div id="firebaseConfigPanel" class="hidden bg-white rounded-2xl p-6 border border-indigo-200 shadow-sm space-y-4">
+        <h3 class="text-base font-bold text-slate-900">Sincronización en Tiempo Real (Firebase)</h3>
         <div class="flex flex-col sm:flex-row gap-3">
           <input type="url" id="firebaseUrlInput" placeholder="https://tu-proyecto-default-rtdb.firebaseio.com" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-sm" />
           <button type="button" id="btnSaveFirebaseUrl" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold cursor-pointer">Conectar y Sincronizar</button>
@@ -189,6 +194,7 @@
           <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white cursor-pointer">Todos (<span id="countAll">0</span>)</button>
         </div>
         <div class="flex gap-2">
+          <button type="button" id="btnToggleFirebaseConfig" class="px-3 py-2 border rounded-xl text-xs font-semibold cursor-pointer">Configurar Nube (Firebase)</button>
           <button type="button" id="btnLoadDemoData" class="px-3 py-2 border rounded-xl text-xs font-semibold cursor-pointer">+ Datos Demo</button>
           <button type="button" id="btnClearAllData" class="px-3 py-2 bg-rose-50 text-rose-700 border border-rose-200 rounded-xl text-xs font-semibold cursor-pointer">Limpiar Todo</button>
         </div>
@@ -215,18 +221,33 @@
     <button type="button" id="secretAdminTrigger" class="underline cursor-pointer">Acceso Panel Docente</button>
   </footer>
 
+  <!-- MODAL ACCESO DOCENTE -->
+  <div id="adminLoginModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 space-y-5">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold text-slate-900">Acceso Reservado Docente</h3>
+        <button type="button" id="closeAdminLoginBtn" class="text-slate-400 hover:text-slate-600 font-bold cursor-pointer">✕</button>
+      </div>
+      <form id="adminLoginForm" class="space-y-4">
+        <input type="password" id="adminPasswordInput" required placeholder="Clave docente" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm" />
+        <p id="adminLoginError" class="hidden text-xs font-semibold text-rose-600">Clave incorrecta.</p>
+        <button type="submit" class="w-full py-3 rounded-xl bg-slate-900 text-white font-bold text-sm cursor-pointer">Ingresar</button>
+      </form>
+    </div>
+  </div>
+
   <script>
     (function () {
       'use strict';
       const DEFAULT_ADMIN_KEY = 'PROFESOR2026';
-      const STORAGE_KEYS = { RESULTS: 'icfes_results', FIREBASE_URL: 'icfes_fb_url' };
+      const STORAGE_KEYS = { RESULTS: 'icfes_math_simulacro_results_v1', ADMIN_PIN: 'icfes_math_admin_pin_v1', FIREBASE_URL: 'icfes_math_firebase_url_v1' };
 
-      const SVG_REGIONES_AUTOS = `<div class="w-full max-w-lg bg-white border rounded-xl p-3"><svg viewBox="0 0 520 270" class="w-full h-auto"><rect width="520" height="270" rx="12" fill="#f8fafc" /><path d="M 25 25 L 250 25 L 240 130 L 35 125 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/><text x="59" y="53" fill="#2563eb" font-size="13" font-weight="800">R1: 15.000 hab (12 autos)</text><path d="M 260 25 L 495 30 L 485 135 L 250 130 Z" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="291" y="53" fill="#16a34a" font-size="13" font-weight="800">R2: 20.000 hab (20 autos)</text><path d="M 35 135 L 240 140 L 235 245 L 28 240 Z" fill="#fefce8" stroke="#ca8a04" stroke-width="2.5"/><text x="64" y="165" fill="#ca8a04" font-size="13" font-weight="800">R3: 10.000 hab (30 autos)</text><path d="M 250 140 L 485 145 L 492 245 L 245 245 Z" fill="#fdf2f8" stroke="#db2777" stroke-width="2.5"/><text x="289" y="165" fill="#db2777" font-size="13" font-weight="800">R4: 10.000 hab (44 autos)</text></svg></div>`;
-      const SVG_CAJA_REGALO = `<div class="w-full max-w-md bg-white border rounded-xl p-4 text-center text-xs font-bold">[Esquema Caja de Regalo: Base cuadrada 30x30 cm, Altura 20 cm]</div>`;
-      const TABLE_DETERGENTE = `<div class="w-full max-w-xl bg-white border rounded-xl p-3 text-center text-xs">[Tabla Modo de Empleo - Detergente Z]</div>`;
-      const TABLE_PLANTAS = `<div class="w-full max-w-xl bg-white border rounded-xl p-3 text-center text-xs">[Tabla Crecimiento de Plantas]</div>`;
-      const TABLE_TRABAJADORES = `<div class="w-full max-w-lg bg-white border rounded-xl p-3 text-center text-xs">[Tabla Descarga de Camión]</div>`;
-      const TABLE_NEUMATICOS = `<div class="w-full max-w-xl bg-white border rounded-xl p-3 text-center text-xs">[Tabla Utilidad Neumáticos]</div>`;
+      const SVG_REGIONES_AUTOS = `<div class="w-full max-w-lg bg-white border border-slate-200 rounded-xl p-3"><svg viewBox="0 0 520 270" class="w-full h-auto"><rect width="520" height="270" rx="12" fill="#f8fafc" /><path d="M 25 25 L 250 25 L 240 130 L 35 125 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/><text x="59" y="53" fill="#2563eb" font-size="13" font-weight="800">R1: 15.000 hab (12 autos)</text><path d="M 260 25 L 495 30 L 485 135 L 250 130 Z" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="291" y="53" fill="#16a34a" font-size="13" font-weight="800">R2: 20.000 hab (20 autos)</text><path d="M 35 135 L 240 140 L 235 245 L 28 240 Z" fill="#fefce8" stroke="#ca8a04" stroke-width="2.5"/><text x="64" y="165" fill="#ca8a04" font-size="13" font-weight="800">R3: 10.000 hab (30 autos)</text><path d="M 250 140 L 485 145 L 492 245 L 245 245 Z" fill="#fdf2f8" stroke="#db2777" stroke-width="2.5"/><text x="289" y="165" fill="#db2777" font-size="13" font-weight="800">R4: 10.000 hab (44 autos)</text></svg></div>`;
+      const SVG_CAJA_REGALO = `<div class="w-full max-w-md bg-white border border-slate-200 rounded-xl p-4"><svg viewBox="0 0 420 260" class="w-full h-auto"><polygon points="95,115 205,155 205,220 95,180" fill="#fde68a" stroke="#b45309" stroke-width="2"/><polygon points="205,155 315,115 315,180 205,220" fill="#fcd34d" stroke="#b45309" stroke-width="2"/><polygon points="205,75 315,115 205,155 95,115" fill="#fef3c7" stroke="#b45309" stroke-width="2"/></svg></div>`;
+      const TABLE_DETERGENTE = `<div class="w-full max-w-xl overflow-hidden rounded-xl border border-slate-300 bg-white"><table class="w-full text-sm text-center"><thead><tr class="bg-indigo-700 text-white"><th>Tipo de ropa</th><th>Lavado a mano</th><th>Lavado en lavadora</th></tr></thead><tbody><tr><td>Ropa sucia</td><td>1 taza</td><td>1 taza y 1/2 taza</td></tr><tr><td>Ropa muy sucia</td><td>1 taza y 1/2 taza</td><td>2 tazas</td></tr></tbody></table></div>`;
+      const TABLE_PLANTAS = `<div class="w-full max-w-xl overflow-x-auto rounded-xl border border-slate-300 bg-white"><table class="w-full text-sm text-center"><thead><tr class="bg-emerald-700 text-white"><th>Momento</th><th>Al inicio</th><th>Semana 1</th><th>Semana 2</th><th>Semana 3</th><th>Semana 4</th></tr></thead><tbody><tr><td>Altura</td><td>10 cm</td><td>12 cm</td><td>15 cm</td><td>16 cm</td><td>17 cm</td></tr></tbody></table></div>`;
+      const TABLE_TRABAJADORES = `<div class="w-full max-w-lg overflow-hidden rounded-xl border border-slate-300 bg-white"><table class="w-full text-sm text-center"><thead><tr class="bg-slate-800 text-white"><th>Trabajadores</th><th>Horas</th><th>Costo</th></tr></thead><tbody><tr><td>1</td><td>4 horas</td><td>$40.000</td></tr><tr><td>2</td><td>2 horas</td><td>$80.000</td></tr><tr><td>4</td><td>1 hora</td><td>$160.000</td></tr></tbody></table></div>`;
+      const TABLE_NEUMATICOS = `<div class="w-full max-w-xl overflow-x-auto rounded-xl border border-slate-300 bg-white"><table class="w-full text-sm text-center"><thead><tr class="bg-indigo-800 text-white"><th>Vendidos</th><th>100</th><th>200</th><th>400</th><th>500</th><th>700</th></tr></thead><tbody><tr><td>Utilidad</td><td>-200.000</td><td>0</td><td>400.000</td><td>600.000</td><td>1.000.000</td></tr></tbody></table></div>`;
       const SVG_TRAPECIO_CERCA = `<div class="w-full max-w-lg bg-white border rounded-xl p-4 text-center text-xs font-bold">[Esquema Trapecio Isósceles]</div>`;
       const SVG_CAMION_RAMPA = `<div class="w-full max-w-2xl bg-white border rounded-xl p-4 text-center text-xs font-bold">[Esquema Rampa de Camión]</div>`;
 
@@ -368,11 +389,19 @@
       };
 
       document.getElementById('btnNewAttempt').onclick = () => switchView('viewStart');
-      document.getElementById('secretAdminTrigger').onclick = () => {
+      
+      // Accesos Panel Docente
+      const openAdmin = () => {
         const pin = prompt('Ingrese clave docente:');
         if (pin === DEFAULT_ADMIN_KEY) { switchView('viewAdmin'); cargarPanel(); }
       };
+      document.getElementById('secretAdminTrigger').onclick = openAdmin;
+      document.getElementById('appLogoTrigger').onclick = openAdmin;
+
       document.getElementById('btnExitAdmin').onclick = () => switchView('viewStart');
+      document.getElementById('btnToggleFirebaseConfig').onclick = () => {
+        document.getElementById('firebaseConfigPanel').classList.toggle('hidden');
+      };
 
       document.getElementById('btnSaveFirebaseUrl').onclick = async () => {
         const u = document.getElementById('firebaseUrlInput').value.trim().replace(/\/+$/, '');
