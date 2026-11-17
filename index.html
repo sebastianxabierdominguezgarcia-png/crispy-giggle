@@ -4,7 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minisistema de Simulacro Matemático ICFES</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -12,21 +14,52 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
           colors: {
-            brand: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' }
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+            }
           }
         }
       }
     };
   </script>
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; }
-    .fade-in { animation: fadeIn 0.25s ease-out forwards; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: #f1f5f9; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .fade-in {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
   </style>
 </head>
 <body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
@@ -43,6 +76,7 @@
           <p class="text-xs text-slate-500 hidden sm:block">Plataforma de Evaluación Estandarizada por Competencias</p>
         </div>
       </div>
+
       <div id="headerStatusArea" class="flex items-center gap-2">
         <span id="headerBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
@@ -55,7 +89,7 @@
   <!-- CONTENEDOR PRINCIPAL -->
   <main class="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
 
-    <!-- 1. VISTA INICIO -->
+    <!-- 1. VISTA INICIO (ESTUDIANTE) -->
     <section id="viewStart" class="fade-in max-w-2xl mx-auto">
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="bg-gradient-to-r from-indigo-600 via-indigo-700 to-blue-700 px-6 py-8 text-white">
@@ -64,7 +98,7 @@
           </span>
           <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Bienvenido al Simulacro ICFES</h2>
           <p class="mt-2 text-indigo-100 text-sm sm:text-base leading-relaxed">
-            Completa tus datos y selecciona tu nivel escolar para iniciar la prueba de 7 preguntas.
+            Completa tus datos y selecciona tu nivel escolar para iniciar la prueba de 7 preguntas. Lee cuidadosamente cada enunciado, tabla o gráfica antes de responder.
           </p>
         </div>
 
@@ -79,7 +113,7 @@
               required
               autocomplete="off"
               placeholder="Ej. María Fernanda Gómez Pérez"
-              class="w-full px-4 py-3.5 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition text-base"
+              class="w-full px-4 py-3.5 rounded-xl border border-slate-300 text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-base"
             />
           </div>
 
@@ -92,9 +126,13 @@
                 <input type="radio" name="gradeLevel" value="nivel1" class="peer sr-only" required />
                 <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50/50 hover:bg-white hover:border-indigo-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/60 transition-all h-full flex flex-col justify-between">
                   <div>
-                    <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-100 text-indigo-700">NIVEL 1</span>
-                    <h3 class="text-lg font-bold text-slate-900 mt-2">Sexto a Octavo</h3>
-                    <p class="text-xs text-slate-600 mt-1.5">Grados 6°, 7° y 8° • 7 preguntas.</p>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-100 text-indigo-700">NIVEL 1</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Sexto a Octavo</h3>
+                    <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                      Grados 6°, 7° y 8° • 7 preguntas adaptadas de razonamiento cuantitativo, geometría y estadística.
+                    </p>
                   </div>
                 </div>
               </label>
@@ -103,9 +141,13 @@
                 <input type="radio" name="gradeLevel" value="nivel2" class="peer sr-only" required />
                 <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50/50 hover:bg-white hover:border-indigo-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/60 transition-all h-full flex flex-col justify-between">
                   <div>
-                    <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-100 text-blue-700">NIVEL 2</span>
-                    <h3 class="text-lg font-bold text-slate-900 mt-2">Noveno a Décimo</h3>
-                    <p class="text-xs text-slate-600 mt-1.5">Grados 9° y 10° • 7 preguntas.</p>
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-100 text-blue-700">NIVEL 2</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900">Noveno a Décimo</h3>
+                    <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                      Grados 9° y 10° • 7 preguntas tipo Saber 11° con álgebra, trigonometría, Pitágoras y análisis de datos.
+                    </p>
                   </div>
                 </div>
               </label>
@@ -114,9 +156,9 @@
 
           <button
             type="submit"
-            class="w-full py-4 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-md transition-all cursor-pointer"
+            class="w-full py-4 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
-            Iniciar Examen
+            <span>Iniciar Examen</span>
           </button>
         </form>
       </div>
@@ -131,7 +173,9 @@
             <span class="text-xs text-slate-400">•</span>
             <span id="examStudentNameDisplay" class="text-sm font-bold text-slate-800">Estudiante</span>
           </div>
-          <p class="text-xs text-slate-500 mt-1">Respondidas: <strong id="answeredCountDisplay" class="text-indigo-600">0</strong> de <strong>7</strong></p>
+          <p class="text-xs text-slate-500 mt-1">
+            Respondidas: <strong id="answeredCountDisplay" class="text-indigo-600">0</strong> de <strong>7</strong> preguntas
+          </p>
         </div>
         <div id="questionNavPills" class="flex items-center gap-1.5"></div>
       </div>
@@ -141,12 +185,14 @@
           <span id="questionNumberHeader" class="text-sm font-extrabold text-indigo-700 uppercase tracking-wider">Pregunta 1 de 7</span>
           <span id="questionSelectionStatus" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-200/70 text-slate-600">Sin responder</span>
         </div>
+
         <div class="p-5 sm:p-8 space-y-6">
-          <div id="questionContext" class="text-slate-800 text-base leading-relaxed whitespace-pre-line"></div>
+          <div id="questionContext" class="text-slate-800 text-base sm:text-[17px] leading-relaxed whitespace-pre-line"></div>
           <div id="questionVisualContainer" class="hidden my-4 flex justify-center"></div>
-          <div id="questionPrompt" class="text-slate-900 font-semibold text-base bg-slate-50/80 p-4 rounded-xl border border-slate-200"></div>
+          <div id="questionPrompt" class="text-slate-900 font-semibold text-base sm:text-[17px] leading-relaxed whitespace-pre-line bg-slate-50/80 p-4 rounded-xl border border-slate-200/80"></div>
           <div id="optionsContainer" class="space-y-3 pt-1"></div>
         </div>
+
         <div class="px-5 sm:px-8 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-3">
           <button type="button" id="btnPrevQuestion" class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-sm cursor-pointer">Anterior</button>
           <div class="flex items-center gap-2.5">
@@ -160,12 +206,12 @@
     <!-- 3. VISTA FINAL -->
     <section id="viewSubmitted" class="hidden fade-in max-w-xl mx-auto">
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-10 text-center space-y-6">
-        <h2 class="text-2xl font-extrabold text-slate-900">¡Examen enviado exitosamente!</h2>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">¡Examen enviado exitosamente!</h2>
         <p class="text-slate-500 text-sm">Tus respuestas han sido registradas correctamente.</p>
-        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 text-left space-y-2">
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 text-left space-y-3">
           <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Estudiante</span><span id="finalStudentName" class="font-bold text-sm">—</span></div>
           <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Nivel</span><span id="finalStudentLevel" class="font-bold text-indigo-700 text-sm">—</span></div>
-          <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Tiempo</span><span id="finalTotalTime" class="font-bold font-mono text-sm">—</span></div>
+          <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Tiempo Total</span><span id="finalTotalTime" class="font-bold font-mono text-sm">—</span></div>
         </div>
         <button type="button" id="btnNewAttempt" class="px-6 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm cursor-pointer">Volver al inicio</button>
       </div>
@@ -178,36 +224,49 @@
           <span id="syncStatusPill" class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300">Almacenamiento Local</span>
           <h2 class="text-2xl font-extrabold mt-2">Resultados y Clasificación ICFES</h2>
         </div>
-        <button type="button" id="btnExitAdmin" class="px-4 py-2.5 rounded-xl bg-rose-600 text-white text-xs font-semibold cursor-pointer">Cerrar Panel</button>
+        <div class="flex gap-2">
+          <button type="button" id="btnToggleFirebaseConfig" class="px-4 py-2 rounded-xl bg-slate-800 text-white text-xs font-semibold cursor-pointer">Configurar Nube</button>
+          <button type="button" id="btnExitAdmin" class="px-4 py-2 rounded-xl bg-rose-600 text-white text-xs font-semibold cursor-pointer">Cerrar Panel</button>
+        </div>
       </div>
 
       <div id="firebaseConfigPanel" class="hidden bg-white rounded-2xl p-6 border border-indigo-200 shadow-sm space-y-4">
         <h3 class="text-base font-bold text-slate-900">Sincronización en Tiempo Real (Firebase)</h3>
-        <div class="flex flex-col sm:flex-row gap-3">
-          <input type="url" id="firebaseUrlInput" placeholder="https://tu-proyecto-default-rtdb.firebaseio.com" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-sm" />
-          <button type="button" id="btnSaveFirebaseUrl" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold cursor-pointer">Conectar y Sincronizar</button>
+        <div class="flex gap-3">
+          <input type="url" id="firebaseUrlInput" placeholder="https://tu-proyecto-default-rtdb.firebaseio.com" class="flex-1 px-4 py-2 rounded-xl border border-slate-300 text-sm" />
+          <button type="button" id="btnSaveFirebaseUrl" class="px-5 py-2 rounded-xl bg-indigo-600 text-white text-sm font-semibold cursor-pointer">Conectar</button>
         </div>
       </div>
 
       <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex justify-between items-center">
         <div class="flex gap-2">
           <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white cursor-pointer">Todos (<span id="countAll">0</span>)</button>
+          <button type="button" data-filter="nivel1" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer">Nivel 1 (<span id="countN1">0</span>)</button>
+          <button type="button" data-filter="nivel2" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer">Nivel 2 (<span id="countN2">0</span>)</button>
         </div>
         <div class="flex gap-2">
-          <button type="button" id="btnToggleFirebaseConfig" class="px-3 py-2 border rounded-xl text-xs font-semibold cursor-pointer">Configurar Nube (Firebase)</button>
           <button type="button" id="btnLoadDemoData" class="px-3 py-2 border rounded-xl text-xs font-semibold cursor-pointer">+ Datos Demo</button>
-          <button type="button" id="btnClearAllData" class="px-3 py-2 bg-rose-50 text-rose-700 border border-rose-200 rounded-xl text-xs font-semibold cursor-pointer">Limpiar Todo</button>
+          <button type="button" id="btnExportCsv" class="px-3 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold cursor-pointer">Exportar CSV</button>
+          <button type="button" id="btnClearAllData" class="px-3 py-2 bg-rose-50 text-rose-700 border border-rose-200 rounded-xl text-xs font-semibold cursor-pointer">Limpiar</button>
         </div>
+      </div>
+
+      <div id="podiumSection" class="space-y-3">
+        <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">Podio de Honor</h3>
+        <div id="podiumGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
       </div>
 
       <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase text-slate-500">
+              <th class="py-3 px-4 text-center">Pos.</th>
               <th class="py-3 px-4">Estudiante</th>
               <th class="py-3 px-4">Nivel</th>
               <th class="py-3 px-4 text-center">Aciertos</th>
+              <th class="py-3 px-4 text-center">Puntaje</th>
               <th class="py-3 px-4 text-right">Tiempo Total</th>
+              <th class="py-3 px-4 text-center">Detalle</th>
             </tr>
           </thead>
           <tbody id="leaderboardBody" class="divide-y divide-slate-100 text-sm"></tbody>
@@ -217,22 +276,52 @@
 
   </main>
 
-  <footer class="mt-auto border-t border-slate-200 bg-white py-4 px-4 text-center text-xs text-slate-400">
-    <button type="button" id="secretAdminTrigger" class="underline cursor-pointer">Acceso Panel Docente</button>
+  <footer class="mt-auto border-t border-slate-200 bg-white py-4 px-4 flex justify-between items-center text-xs text-slate-400">
+    <span>Simulacro ICFES</span>
+    <button type="button" id="secretAdminTrigger" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 cursor-pointer" title="Panel Docente">🔒</button>
   </footer>
 
-  <!-- MODAL ACCESO DOCENTE -->
-  <div id="adminLoginModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 space-y-5">
-      <div class="flex items-center justify-between">
-        <h3 class="text-lg font-bold text-slate-900">Acceso Reservado Docente</h3>
-        <button type="button" id="closeAdminLoginBtn" class="text-slate-400 hover:text-slate-600 font-bold cursor-pointer">✕</button>
+  <!-- MODAL DIÁLOGO -->
+  <div id="customDialogModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4">
+      <h3 id="dialogTitle" class="text-lg font-bold text-slate-900">Aviso</h3>
+      <p id="dialogMessage" class="text-sm text-slate-600"></p>
+      <div class="flex justify-end gap-2">
+        <button type="button" id="dialogCancelBtn" class="px-4 py-2 rounded-xl border text-sm">Cancelar</button>
+        <button type="button" id="dialogConfirmBtn" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL LOGIN DOCENTE -->
+  <div id="adminLoginModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-5">
+      <div class="flex justify-between items-center">
+        <h3 class="text-lg font-bold">Acceso Docente</h3>
+        <button type="button" id="closeAdminLoginBtn" class="font-bold">✕</button>
       </div>
       <form id="adminLoginForm" class="space-y-4">
-        <input type="password" id="adminPasswordInput" required placeholder="Clave docente" class="w-full px-4 py-3 rounded-xl border border-slate-300 text-sm" />
+        <input type="password" id="adminPasswordInput" required placeholder="Clave docente" class="w-full px-4 py-3 rounded-xl border text-sm" />
         <p id="adminLoginError" class="hidden text-xs font-semibold text-rose-600">Clave incorrecta.</p>
-        <button type="submit" class="w-full py-3 rounded-xl bg-slate-900 text-white font-bold text-sm cursor-pointer">Ingresar</button>
+        <button type="submit" class="w-full py-3 rounded-xl bg-slate-900 text-white font-bold text-sm">Ingresar</button>
       </form>
+    </div>
+  </div>
+
+  <!-- MODAL DETALLE ESTUDIANTE -->
+  <div id="studentDetailModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 bg-slate-900 text-white flex justify-between items-center">
+        <div>
+          <h3 id="detailStudentName" class="text-lg font-bold">Estudiante</h3>
+          <p id="detailStudentMeta" class="text-xs text-slate-300"></p>
+        </div>
+        <button type="button" id="closeDetailModalBtn" class="text-white font-bold text-lg">✕</button>
+      </div>
+      <div id="detailQuestionsList" class="p-4 overflow-y-auto space-y-3 bg-slate-50 flex-1"></div>
+      <div class="px-6 py-3 bg-white border-t flex justify-end">
+        <button type="button" id="closeDetailModalFooterBtn" class="px-5 py-2 bg-slate-800 text-white text-sm font-semibold rounded-xl">Cerrar</button>
+      </div>
     </div>
   </div>
 
@@ -272,7 +361,12 @@
         ]
       };
 
-      let state = { studentName: '', gradeLevel: 'nivel1', currentIdx: 0, answers: Array(7).fill(null), startTime: null, resultsCache: [] };
+      let state = { studentName: '', gradeLevel: 'nivel1', currentIdx: 0, answers: Array(7).fill(null), startTime: null, resultsCache: [], adminFilter: 'all' };
+
+      function formatDuration(ms) {
+        const secs = Math.max(0, Math.round(ms / 1000));
+        return `${Math.floor(secs/60).toString().padStart(2,'0')}:${(secs%60).toString().padStart(2,'0')}`;
+      }
 
       function getLocal() { try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.RESULTS) || '[]'); } catch(e){ return []; } }
       function saveLocal(d) { localStorage.setItem(STORAGE_KEYS.RESULTS, JSON.stringify(d)); }
@@ -365,7 +459,7 @@
           const chosen = state.answers[i];
           const isCorrect = chosen === q.correct;
           if(isCorrect) correctCount++;
-          return { questionNumber: i+1, chosenOption: chosen, isCorrect };
+          return { questionNumber: i+1, shortTitle: q.shortTitle, chosenOption: chosen, correctOption: q.correct, isCorrect };
         });
 
         const record = {
@@ -373,6 +467,8 @@
           studentName: state.studentName,
           gradeLevel: state.gradeLevel,
           correctCount,
+          wrongCount: 7 - correctCount,
+          scorePercent: Math.round((correctCount / 7) * 100),
           totalTimeMs: Date.now() - state.startTime,
           breakdown
         };
@@ -384,19 +480,22 @@
 
         document.getElementById('finalStudentName').textContent = record.studentName;
         document.getElementById('finalStudentLevel').textContent = record.gradeLevel.toUpperCase();
-        document.getElementById('finalTotalTime').textContent = Math.round(record.totalTimeMs/1000) + 's';
+        document.getElementById('finalTotalTime').textContent = formatDuration(record.totalTimeMs);
         switchView('viewSubmitted');
       };
 
       document.getElementById('btnNewAttempt').onclick = () => switchView('viewStart');
       
-      // Accesos Panel Docente
       const openAdmin = () => {
         const pin = prompt('Ingrese clave docente:');
         if (pin === DEFAULT_ADMIN_KEY) { switchView('viewAdmin'); cargarPanel(); }
       };
       document.getElementById('secretAdminTrigger').onclick = openAdmin;
       document.getElementById('appLogoTrigger').onclick = openAdmin;
+
+      if (new URLSearchParams(window.location.search).get('admin') === '1') {
+        setTimeout(openAdmin, 300);
+      }
 
       document.getElementById('btnExitAdmin').onclick = () => switchView('viewStart');
       document.getElementById('btnToggleFirebaseConfig').onclick = () => {
@@ -415,24 +514,79 @@
         document.getElementById('firebaseUrlInput').value = getFb();
         const data = await fetchAll();
         document.getElementById('countAll').textContent = data.length;
+        document.getElementById('countN1').textContent = data.filter(r => r.gradeLevel === 'nivel1').length;
+        document.getElementById('countN2').textContent = data.filter(r => r.gradeLevel === 'nivel2').length;
+
+        const filtered = state.adminFilter === 'all' ? data : data.filter(r => r.gradeLevel === state.adminFilter);
+        const ranked = filtered.sort((a, b) => b.correctCount !== a.correctCount ? b.correctCount - a.correctCount : a.totalTimeMs - b.totalTimeMs);
+
+        // Podio Top 3
+        const podiumGrid = document.getElementById('podiumGrid');
+        const medals = ['🥇 Oro', '🥈 Plata', '🥉 Bronce'];
+        podiumGrid.innerHTML = medals.map((m, idx) => {
+          const s = ranked[idx];
+          if(!s) return `<div class="rounded-xl border border-dashed p-4 text-center text-xs text-slate-400">${m}: Vacante</div>`;
+          return `<div class="rounded-xl border bg-white p-4 shadow-xs"><span class="text-xs font-bold">${m}</span><h4 class="font-extrabold text-slate-900 mt-1">${s.studentName}</h4><p class="text-xs text-emerald-600 font-bold mt-2">Aciertos: ${s.correctCount}/7 (${s.scorePercent}%)</p><p class="text-xs font-mono text-slate-500">Tiempo: ${formatDuration(s.totalTimeMs)}</p></div>`;
+        }).join('');
+
         const tbody = document.getElementById('leaderboardBody');
-        tbody.innerHTML = data.length ? data.map(s => `
-          <tr class="hover:bg-slate-50">
+        tbody.innerHTML = ranked.length ? ranked.map((s, i) => `
+          <tr class="hover:bg-slate-50 cursor-pointer" onclick="window.__verDetalle('${s.id}')">
+            <td class="py-3 px-4 text-center font-bold">#${i+1}</td>
             <td class="py-3 px-4 font-bold">${s.studentName}</td>
             <td class="py-3 px-4">${s.gradeLevel}</td>
             <td class="py-3 px-4 text-center font-bold text-emerald-600">${s.correctCount}/7</td>
-            <td class="py-3 px-4 text-right font-mono">${Math.round(s.totalTimeMs/1000)}s</td>
+            <td class="py-3 px-4 text-center font-semibold">${s.scorePercent}%</td>
+            <td class="py-3 px-4 text-right font-mono">${formatDuration(s.totalTimeMs)}</td>
+            <td class="py-3 px-4 text-center"><button type="button" class="px-2.5 py-1 bg-slate-100 rounded text-xs font-semibold">Ver</button></td>
           </tr>
-        `).join('') : `<tr><td colspan="4" class="py-6 text-center text-slate-400">Sin resultados todavía.</td></tr>`;
+        `).join('') : `<tr><td colspan="7" class="py-6 text-center text-slate-400">Sin resultados todavía.</td></tr>`;
       }
 
+      window.__verDetalle = function(id) {
+        const s = state.resultsCache.find(x => x.id === id);
+        if(!s) return;
+        document.getElementById('detailStudentName').textContent = s.studentName;
+        document.getElementById('detailStudentMeta').textContent = `Nivel: ${s.gradeLevel.toUpperCase()} • Aciertos: ${s.correctCount}/7 • Tiempo: ${formatDuration(s.totalTimeMs)}`;
+        const list = document.getElementById('detailQuestionsList');
+        const qs = QUESTION_BANK[s.gradeLevel];
+        list.innerHTML = (s.breakdown || []).map((b, i) => {
+          const q = qs[i] || {};
+          return `<div class="bg-white p-3 rounded-xl border ${b.isCorrect ? 'border-emerald-200' : 'border-rose-200'} text-xs space-y-1"><div class="font-bold">Pregunta ${b.questionNumber}: ${b.shortTitle}</div><div>Respuesta estudiante: <strong class="${b.isCorrect ? 'text-emerald-600':'text-rose-600'}">${b.chosenOption || 'Ninguna'}</strong> | Correcta: <strong>${b.correctOption}</strong></div></div>`;
+        }).join('');
+        document.getElementById('studentDetailModal').classList.remove('hidden');
+      };
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.onclick = () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.className = 'filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer');
+          btn.className = 'filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white cursor-pointer';
+          state.adminFilter = btn.dataset.filter;
+          cargarPanel();
+        };
+      });
+
+      document.getElementById('closeDetailModalBtn').onclick = () => document.getElementById('studentDetailModal').classList.add('hidden');
+      document.getElementById('closeDetailModalFooterBtn').onclick = () => document.getElementById('studentDetailModal').classList.add('hidden');
+
       document.getElementById('btnLoadDemoData').onclick = async () => {
-        const demo = { id:'demo_'+Date.now(), studentName:'Estudiante Demo', gradeLevel:'nivel1', correctCount:7, totalTimeMs:30000 };
+        const demo = { id:'demo_'+Date.now(), studentName:'Estudiante Demo', gradeLevel:'nivel1', correctCount:7, wrongCount:0, scorePercent:100, totalTimeMs:30000, breakdown: QUESTION_BANK.nivel1.map((q,i)=>({questionNumber:i+1, shortTitle:q.shortTitle, chosenOption:q.correct, correctOption:q.correct, isCorrect:true})) };
         const d = getLocal(); d.push(demo); saveLocal(d); await pushCloud(demo); cargarPanel();
       };
 
       document.getElementById('btnClearAllData').onclick = async () => {
         if(confirm('¿Borrar todo?')) { saveLocal([]); cargarPanel(); }
+      };
+
+      document.getElementById('btnExportCsv').onclick = () => {
+        const data = state.resultsCache;
+        if(!data.length) return alert('Sin datos');
+        let csv = '\uFEFFNombre,Nivel,Aciertos,Puntaje,Tiempo\n' + data.map(s => `"${s.studentName}","${s.gradeLevel}",${s.correctCount},${s.scorePercent}%,${formatDuration(s.totalTimeMs)}`).join('\n');
+        const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'resultados_icfes.csv';
+        link.click();
       };
     })();
   </script>
