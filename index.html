@@ -1,32 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minisistema de Simulacro Matemático ICFES</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        // Configuración de Firebase integrada correctamente
-        const firebaseConfig = {
-            apiKey: "AIzaSyC9jptJ0pDxOfktBJC6RiySc2oZBJqkbkY",
-            authDomain: "sebastianxaviergarciaforero.firebaseapp.com",
-            projectId: "sebastianxaviergarciaforero",
-            storageBucket: "sebastianxaviergarciaforero.appspot.com",
-            messagingSenderId: "553229515178",
-            appId: "1:553229515178:web:235062f6aa8b35876a13d3",
-            measurementId: "G-KVMK6ZH9WL",
-            databaseURL: "https://sebastianxaviergarciaforero-default-rtdb.firebaseio.com"
-        };
-    </script>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col items-center justify-center p-4">
-    <div class="max-w-md w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl text-center">
-        <h1 class="text-2xl font-bold mb-2">Simulacro Matemático ICFES</h1>
-        <p class="text-slate-400 text-sm mb-6">El sistema está configurado y conectado con éxito a tu base de datos de Firebase.</p>
-        <div class="bg-emerald-950/50 border border-emerald-500/30 text-emerald-400 p-3 rounded-xl text-sm font-medium">
-            ¡Todo listo para desplegar en GitHub Pages!
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col items-center justify-center p-4">
+
+    <div class="max-w-xl w-full bg-slate-800 border border-slate-700 rounded-2xl p-6 shadow-2xl">
+        <h1 class="text-2xl font-bold text-center mb-2 text-indigo-400">Simulacro Matemático ICFES</h1>
+        <p class="text-center text-slate-400 text-sm mb-6">Plataforma interactiva de evaluación conectada a Firebase.</p>
+
+        <div id="quiz-container" class="space-y-4">
+            <div class="p-4 bg-slate-900/50 rounded-xl border border-slate-700">
+                <p id="question-text" class="font-medium text-lg mb-4">Pregunta 1: ¿Cuál es el resultado de resolver una función lineal con pendiente positiva?</p>
+                <div id="options-container" class="space-y-2">
+                    <button class="w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-indigo-600/30 border border-slate-700 transition">A) La recta asciende de izquierda a derecha</button>
+                    <button class="w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-indigo-600/30 border border-slate-700 transition">B) La recta es completamente horizontal</button>
+                    <button class="w-full text-left p-3 rounded-lg bg-slate-800 hover:bg-indigo-600/30 border border-slate-700 transition">C) La recta desciende de izquierda a derecha</button>
+                </div>
+            </div>
+
+            <button id="next-btn" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 font-semibold rounded-xl transition shadow-lg">Siguiente Pregunta</button>
         </div>
     </div>
+
 </body>
 </html>
