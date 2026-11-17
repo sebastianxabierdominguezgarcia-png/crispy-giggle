@@ -39,6 +39,7 @@
       background-color: #f8fafc;
       color: #0f172a;
     }
+    /* Animaciones suaves */
     .fade-in {
       animation: fadeIn 0.25s ease-out forwards;
     }
@@ -46,6 +47,7 @@
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    /* Scrollbar limpio */
     ::-webkit-scrollbar {
       width: 6px;
       height: 6px;
@@ -77,6 +79,7 @@
         </div>
       </div>
 
+      <!-- Indicador dinámico en cabecera (Cronómetro durante el examen o estado) -->
       <div id="headerStatusArea" class="flex items-center gap-2">
         <span id="headerBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
@@ -89,7 +92,9 @@
   <!-- CONTENEDOR PRINCIPAL -->
   <main class="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
 
-    <!-- 1. VISTA INICIO (ESTUDIANTE) -->
+    <!-- =====================================================================
+         1. VISTA INICIO (ESTUDIANTE)
+    ===================================================================== -->
     <section id="viewStart" class="fade-in max-w-2xl mx-auto">
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="bg-gradient-to-r from-indigo-600 via-indigo-700 to-blue-700 px-6 py-8 text-white">
@@ -103,6 +108,7 @@
         </div>
 
         <form id="startForm" class="p-6 sm:p-8 space-y-6">
+          <!-- Nombre Completo -->
           <div>
             <label for="studentNameInput" class="block text-sm font-semibold text-slate-700 mb-2">
               Nombre Completo del Estudiante <span class="text-rose-500">*</span>
@@ -117,477 +123,2165 @@
             />
           </div>
 
+          <!-- Selección de Nivel / Grado Escolar -->
           <div>
             <label class="block text-sm font-semibold text-slate-700 mb-3">
               Selecciona tu Nivel / Grado Escolar <span class="text-rose-500">*</span>
             </label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Tarjeta Nivel 1 -->
               <label class="relative cursor-pointer group">
                 <input type="radio" name="gradeLevel" value="nivel1" class="peer sr-only" required />
                 <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50/50 hover:bg-white hover:border-indigo-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/60 transition-all h-full flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between mb-2">
                       <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-100 text-indigo-700">NIVEL 1</span>
+                      <span class="w-5 h-5 rounded-full border-2 border-slate-300 peer-checked:border-indigo-600 flex items-center justify-center">
+                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 opacity-0 group-has-[:checked]:opacity-100 transition-opacity"></span>
+                      </span>
                     </div>
                     <h3 class="text-lg font-bold text-slate-900">Sexto a Octavo</h3>
                     <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
                       Grados 6°, 7° y 8° • 7 preguntas adaptadas de razonamiento cuantitativo, geometría y estadística.
                     </p>
                   </div>
+                  <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs font-medium text-slate-500">
+                    <span>7 Preguntas</span>
+                    <span>Selección única</span>
+                  </div>
                 </div>
               </label>
 
+              <!-- Tarjeta Nivel 2 -->
               <label class="relative cursor-pointer group">
                 <input type="radio" name="gradeLevel" value="nivel2" class="peer sr-only" required />
                 <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50/50 hover:bg-white hover:border-indigo-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/60 transition-all h-full flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between mb-2">
                       <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-100 text-blue-700">NIVEL 2</span>
+                      <span class="w-5 h-5 rounded-full border-2 border-slate-300 flex items-center justify-center">
+                        <span class="w-2.5 h-2.5 rounded-full bg-indigo-600 opacity-0 group-has-[:checked]:opacity-100 transition-opacity"></span>
+                      </span>
                     </div>
                     <h3 class="text-lg font-bold text-slate-900">Noveno a Décimo</h3>
                     <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">
                       Grados 9° y 10° • 7 preguntas tipo Saber 11° con álgebra, trigonometría, Pitágoras y análisis de datos.
                     </p>
                   </div>
+                  <div class="mt-4 pt-3 border-t border-slate-200/80 flex items-center justify-between text-xs font-medium text-slate-500">
+                    <span>7 Preguntas</span>
+                    <span>Tipo ICFES</span>
+                  </div>
                 </div>
               </label>
             </div>
           </div>
 
+          <!-- Instrucciones breves -->
+          <div class="bg-amber-50/80 border border-amber-200/80 rounded-xl p-4 flex gap-3 items-start">
+            <svg class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="text-xs text-amber-900 space-y-1">
+              <p class="font-semibold">Indicaciones importantes:</p>
+              <p>Al presionar <strong>Iniciar Examen</strong> comenzará el cronómetro. Podrás desplazarte libremente entre las 7 preguntas y modificar tus respuestas antes de enviar definitivamente la prueba.</p>
+            </div>
+          </div>
+
           <button
             type="submit"
-            class="w-full py-4 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-base shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+            class="w-full py-4 px-6 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-bold text-base shadow-md shadow-indigo-200 transition-all flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>Iniciar Examen</span>
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
           </button>
         </form>
       </div>
     </section>
 
-    <!-- 2. VISTA EXAMEN -->
+    <!-- =====================================================================
+         2. VISTA EXAMEN CIEGO (ESTUDIANTE)
+    ===================================================================== -->
     <section id="viewExam" class="hidden fade-in space-y-5">
+      <!-- Barra de info del estudiante y progreso -->
       <div class="bg-white rounded-2xl p-4 sm:px-6 shadow-sm border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div class="flex items-center gap-2">
             <span id="examLevelBadge" class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-indigo-100 text-indigo-700">NIVEL 1</span>
             <span class="text-xs text-slate-400">•</span>
-            <span id="examStudentNameDisplay" class="text-sm font-bold text-slate-800">Estudiante</span>
+            <span id="examStudentNameDisplay" class="text-sm font-bold text-slate-800 truncate max-w-[220px] sm:max-w-xs">Estudiante</span>
           </div>
           <p class="text-xs text-slate-500 mt-1">
             Respondidas: <strong id="answeredCountDisplay" class="text-indigo-600">0</strong> de <strong>7</strong> preguntas
           </p>
         </div>
-        <div id="questionNavPills" class="flex items-center gap-1.5"></div>
+
+        <!-- Navegador numérico 1-7 -->
+        <div class="flex items-center justify-between sm:justify-end gap-1.5 sm:gap-2">
+          <div id="questionNavPills" class="flex items-center gap-1.5">
+            <!-- Botones 1..7 generados por JS -->
+          </div>
+        </div>
       </div>
 
+      <!-- Tarjeta de Pregunta Actual -->
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="px-5 sm:px-8 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-          <span id="questionNumberHeader" class="text-sm font-extrabold text-indigo-700 uppercase tracking-wider">Pregunta 1 de 7</span>
-          <span id="questionSelectionStatus" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-200/70 text-slate-600">Sin responder</span>
+          <span id="questionNumberHeader" class="text-sm font-extrabold text-indigo-700 uppercase tracking-wider">
+            Pregunta 1 de 7
+          </span>
+          <span id="questionSelectionStatus" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-200/70 text-slate-600">
+            Sin responder
+          </span>
         </div>
 
         <div class="p-5 sm:p-8 space-y-6">
+          <!-- Contexto inicial de la pregunta -->
           <div id="questionContext" class="text-slate-800 text-base sm:text-[17px] leading-relaxed whitespace-pre-line"></div>
+
+          <!-- Recurso visual (Tabla HTML o Gráfico SVG) -->
           <div id="questionVisualContainer" class="hidden my-4 flex justify-center"></div>
+
+          <!-- Enunciado / Pregunta específica -->
           <div id="questionPrompt" class="text-slate-900 font-semibold text-base sm:text-[17px] leading-relaxed whitespace-pre-line bg-slate-50/80 p-4 rounded-xl border border-slate-200/80"></div>
-          <div id="optionsContainer" class="space-y-3 pt-1"></div>
+
+          <!-- Opciones A, B, C, D (Sin feedback visual de acierto/error) -->
+          <div id="optionsContainer" class="space-y-3 pt-1">
+            <!-- Opciones generadas dinámicamente -->
+          </div>
         </div>
 
+        <!-- Barra de Navegación Inferior -->
         <div class="px-5 sm:px-8 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-3">
-          <button type="button" id="btnPrevQuestion" class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-sm cursor-pointer">Anterior</button>
+          <button
+            type="button"
+            id="btnPrevQuestion"
+            class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 disabled:opacity-40 disabled:pointer-events-none text-slate-700 font-semibold text-sm transition flex items-center gap-1.5 cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span>Anterior</span>
+          </button>
+
           <div class="flex items-center gap-2.5">
-            <button type="button" id="btnNextQuestion" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm cursor-pointer">Siguiente</button>
-            <button type="button" id="btnSubmitExam" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm cursor-pointer">Enviar Examen</button>
+            <button
+              type="button"
+              id="btnNextQuestion"
+              class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm transition flex items-center gap-1.5 cursor-pointer"
+            >
+              <span>Siguiente</span>
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              id="btnSubmitExam"
+              class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-sm transition flex items-center gap-1.5 cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+              </svg>
+              <span>Enviar Examen</span>
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 3. VISTA FINAL -->
+    <!-- =====================================================================
+         3. VISTA FINAL ESTUDIANTE (ESTRICTO: SIN ACIERTOS NI ERRORES)
+    ===================================================================== -->
     <section id="viewSubmitted" class="hidden fade-in max-w-xl mx-auto">
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-10 text-center space-y-6">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">¡Examen enviado exitosamente!</h2>
-        <p class="text-slate-500 text-sm">Tus respuestas han sido registradas correctamente.</p>
-        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 text-left space-y-3">
-          <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Estudiante</span><span id="finalStudentName" class="font-bold text-sm">—</span></div>
-          <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Nivel</span><span id="finalStudentLevel" class="font-bold text-indigo-700 text-sm">—</span></div>
-          <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Tiempo Total</span><span id="finalTotalTime" class="font-bold font-mono text-sm">—</span></div>
+        <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto shadow-inner">
+          <svg class="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+          </svg>
         </div>
-        <button type="button" id="btnNewAttempt" class="px-6 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm cursor-pointer">Volver al inicio</button>
+
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">¡Examen enviado exitosamente!</h2>
+          <p class="text-slate-500 text-sm sm:text-base mt-2">
+            Tus respuestas han sido registradas correctamente en el sistema de evaluación.
+          </p>
+        </div>
+
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200/90 text-left space-y-3">
+          <div class="flex justify-between items-center py-1.5 border-b border-slate-200/70">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Estudiante</span>
+            <span id="finalStudentName" class="text-sm font-bold text-slate-900">—</span>
+          </div>
+          <div class="flex justify-between items-center py-1.5 border-b border-slate-200/70">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Nivel / Grado</span>
+            <span id="finalStudentLevel" class="text-sm font-bold text-indigo-700">—</span>
+          </div>
+          <div class="flex justify-between items-center py-1.5">
+            <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Tiempo Total Empleado</span>
+            <span id="finalTotalTime" class="text-base font-extrabold text-slate-900 font-mono">00:00</span>
+          </div>
+        </div>
+
+        <p class="text-xs text-slate-400">
+          Los resultados detallados y la retroalimentación serán socializados por el docente encargado.
+        </p>
+
+        <div class="pt-2">
+          <button
+            type="button"
+            id="btnNewAttempt"
+            class="px-6 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm transition cursor-pointer"
+          >
+            Volver a la pantalla principal
+          </button>
+        </div>
       </div>
     </section>
 
-    <!-- 4. PANEL DOCENTE -->
+    <!-- =====================================================================
+         4. PANEL DOCENTE PRIVADO (ACCESO RESTRINGIDO)
+    ===================================================================== -->
     <section id="viewAdmin" class="hidden fade-in space-y-6">
-      <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-md flex justify-between items-center">
+      <!-- Encabezado Panel Docente -->
+      <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-md flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span id="syncStatusPill" class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300">Almacenamiento Local</span>
-          <h2 class="text-2xl font-extrabold mt-2">Resultados y Clasificación ICFES</h2>
+          <div class="flex items-center gap-2.5">
+            <span class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-indigo-500 text-white uppercase tracking-wider">Panel Docente</span>
+            <span id="syncStatusPill" class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700">
+              Almacenamiento Local
+            </span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Resultados y Clasificación ICFES</h2>
+          <p class="text-slate-400 text-sm mt-1">
+            Ordenado por mayor número de aciertos y desempate estricto por menor tiempo total.
+          </p>
         </div>
-        <div class="flex gap-2">
-          <button type="button" id="btnToggleFirebaseConfig" class="px-4 py-2 rounded-xl bg-slate-800 text-white text-xs font-semibold cursor-pointer">Configurar Nube</button>
-          <button type="button" id="btnExitAdmin" class="px-4 py-2 rounded-xl bg-rose-600 text-white text-xs font-semibold cursor-pointer">Cerrar Panel</button>
+
+        <div class="flex flex-wrap items-center gap-2.5">
+          <button
+            type="button"
+            id="btnToggleFirebaseConfig"
+            class="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs sm:text-sm font-semibold transition flex items-center gap-2 cursor-pointer"
+          >
+            <svg class="w-4 h-4 text-amber-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+            </svg>
+            <span>Configurar Nube (Firebase)</span>
+          </button>
+
+          <button
+            type="button"
+            id="btnExitAdmin"
+            class="px-4 py-2.5 rounded-xl bg-rose-600/90 hover:bg-rose-600 text-white text-xs sm:text-sm font-semibold transition cursor-pointer"
+          >
+            Cerrar Panel
+          </button>
         </div>
       </div>
 
+      <!-- Configuración de Firebase (Plegable) -->
       <div id="firebaseConfigPanel" class="hidden bg-white rounded-2xl p-6 border border-indigo-200 shadow-sm space-y-4">
-        <h3 class="text-base font-bold text-slate-900">Sincronización en Tiempo Real (Firebase)</h3>
-        <div class="flex gap-3">
-          <input type="url" id="firebaseUrlInput" placeholder="https://tu-proyecto-default-rtdb.firebaseio.com" class="flex-1 px-4 py-2 rounded-xl border border-slate-300 text-sm" />
-          <button type="button" id="btnSaveFirebaseUrl" class="px-5 py-2 rounded-xl bg-indigo-600 text-white text-sm font-semibold cursor-pointer">Conectar</button>
+        <div class="flex items-start justify-between gap-4">
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Sincronización en Tiempo Real (Firebase Realtime Database)</h3>
+            <p class="text-xs text-slate-600 mt-1">
+              Opcional: Pega la URL de tu base de datos Firebase (ej. <code class="bg-slate-100 px-1.5 py-0.5 rounded text-indigo-700">https://tu-proyecto-default-rtdb.firebaseio.com</code>) para recibir resultados en vivo desde los celulares de tus estudiantes.
+            </p>
+          </div>
+          <button type="button" id="btnCloseFirebasePanel" class="text-slate-400 hover:text-slate-600 text-sm font-bold cursor-pointer">✕</button>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input
+            type="url"
+            id="firebaseUrlInput"
+            placeholder="https://tu-proyecto-default-rtdb.firebaseio.com"
+            class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          />
+          <button
+            type="button"
+            id="btnSaveFirebaseUrl"
+            class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold transition cursor-pointer"
+          >
+            Conectar y Sincronizar
+          </button>
+          <button
+            type="button"
+            id="btnDisconnectFirebase"
+            class="px-4 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 text-sm font-semibold transition cursor-pointer"
+          >
+            Usar Solo Local
+          </button>
+        </div>
+
+        <!-- Cambiar clave docente -->
+        <div class="pt-4 border-t border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="text-xs text-slate-600">
+            <strong>Seguridad Docente:</strong> Puedes actualizar la clave de acceso a este panel en este navegador.
+          </div>
+          <div class="flex gap-2">
+            <input
+              type="password"
+              id="newAdminPinInput"
+              placeholder="Nueva clave docente"
+              class="px-3 py-2 rounded-xl border border-slate-300 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+            <button
+              type="button"
+              id="btnUpdateAdminPin"
+              class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold transition cursor-pointer"
+            >
+              Guardar Clave
+            </button>
+          </div>
         </div>
       </div>
 
-      <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex justify-between items-center">
-        <div class="flex gap-2">
-          <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white cursor-pointer">Todos (<span id="countAll">0</span>)</button>
-          <button type="button" data-filter="nivel1" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer">Nivel 1 (<span id="countN1">0</span>)</button>
-          <button type="button" data-filter="nivel2" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer">Nivel 2 (<span id="countN2">0</span>)</button>
+      <!-- Filtros y Acciones Rápidas -->
+      <div class="bg-white rounded-2xl p-4 sm:px-6 border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs font-bold uppercase text-slate-500 mr-1">Filtrar Nivel:</span>
+          <button type="button" data-filter="all" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white transition cursor-pointer">
+            Todos (<span id="countAll">0</span>)
+          </button>
+          <button type="button" data-filter="nivel1" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">
+            Nivel 1: 6° a 8° (<span id="countN1">0</span>)
+          </button>
+          <button type="button" data-filter="nivel2" class="filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer">
+            Nivel 2: 9° a 10° (<span id="countN2">0</span>)
+          </button>
         </div>
-        <div class="flex gap-2">
-          <button type="button" id="btnLoadDemoData" class="px-3 py-2 border rounded-xl text-xs font-semibold cursor-pointer">+ Datos Demo</button>
-          <button type="button" id="btnExportCsv" class="px-3 py-2 bg-emerald-600 text-white rounded-xl text-xs font-semibold cursor-pointer">Exportar CSV</button>
-          <button type="button" id="btnClearAllData" class="px-3 py-2 bg-rose-50 text-rose-700 border border-rose-200 rounded-xl text-xs font-semibold cursor-pointer">Limpiar</button>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            id="btnLoadDemoData"
+            class="px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 text-xs font-semibold transition cursor-pointer"
+          >
+            + Datos Demo
+          </button>
+          <button
+            type="button"
+            id="btnExportCsv"
+            class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold transition flex items-center gap-1.5 cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span>Exportar CSV / Excel</span>
+          </button>
+          <button
+            type="button"
+            id="btnClearAllData"
+            class="px-3.5 py-2 rounded-xl border border-rose-200 bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-semibold transition cursor-pointer"
+          >
+            Limpiar Todo
+          </button>
         </div>
       </div>
 
+      <!-- PODIO TOP 3 (ORO, PLATA, BRONCE) -->
       <div id="podiumSection" class="space-y-3">
-        <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500">Podio de Honor</h3>
-        <div id="podiumGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+        <h3 class="text-sm font-extrabold uppercase tracking-wider text-slate-500 px-1">Podio de Honor (Desempate por Menor Tiempo)</h3>
+        <div id="podiumGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Tarjetas de Podio generadas por JS -->
+        </div>
       </div>
 
+      <!-- TABLA DE CLASIFICACIÓN COMPLETA -->
       <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase text-slate-500">
-              <th class="py-3 px-4 text-center">Pos.</th>
-              <th class="py-3 px-4">Estudiante</th>
-              <th class="py-3 px-4">Nivel</th>
-              <th class="py-3 px-4 text-center">Aciertos</th>
-              <th class="py-3 px-4 text-center">Puntaje</th>
-              <th class="py-3 px-4 text-right">Tiempo Total</th>
-              <th class="py-3 px-4 text-center">Detalle</th>
-            </tr>
-          </thead>
-          <tbody id="leaderboardBody" class="divide-y divide-slate-100 text-sm"></tbody>
-        </table>
+        <div class="px-6 py-4 border-b border-slate-200 flex items-center justify-between">
+          <div>
+            <h3 class="text-base font-bold text-slate-900">Tabla General de Resultados</h3>
+            <p class="text-xs text-slate-500">Haz clic sobre cualquier estudiante para ver su desglose pregunta por pregunta.</p>
+          </div>
+          <button type="button" id="btnRefreshAdmin" class="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1 cursor-pointer">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span>Actualizar</span>
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                <th class="py-3.5 px-4 text-center w-14">Pos.</th>
+                <th class="py-3.5 px-4">Estudiante</th>
+                <th class="py-3.5 px-4">Nivel / Grado</th>
+                <th class="py-3.5 px-4 text-center">Aciertos</th>
+                <th class="py-3.5 px-4 text-center">Errores</th>
+                <th class="py-3.5 px-4 text-center">Puntaje</th>
+                <th class="py-3.5 px-4 text-right">Tiempo Total</th>
+                <th class="py-3.5 px-4 text-right">Prom./Preg.</th>
+                <th class="py-3.5 px-4 text-center">Detalle</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboardBody" class="divide-y divide-slate-100 text-sm">
+              <!-- Filas generadas por JS -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 
   </main>
 
-  <footer class="mt-auto border-t border-slate-200 bg-white py-4 px-4 flex justify-between items-center text-xs text-slate-400">
-    <span>Simulacro ICFES</span>
-    <button type="button" id="secretAdminTrigger" class="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 cursor-pointer" title="Panel Docente">🔒</button>
+  <!-- PIE DE PÁGINA DISCRETO (CON ACCESO RESERVADO DOCENTE) -->
+  <footer class="mt-auto border-t border-slate-200 bg-white py-4 px-4">
+    <div class="max-w-5xl mx-auto flex items-center justify-between text-xs text-slate-400">
+      <span>Evaluación Diagnóstica de Matemáticas • Estándares ICFES</span>
+      <button
+        type="button"
+        id="secretAdminTrigger"
+        aria-label="Administración"
+        class="p-1.5 rounded-lg text-slate-300 hover:text-slate-500 transition cursor-pointer"
+        title="Gestión Académica"
+      >
+        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      </button>
+    </div>
   </footer>
 
-  <!-- MODAL DIÁLOGO -->
-  <div id="customDialogModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4">
-      <h3 id="dialogTitle" class="text-lg font-bold text-slate-900">Aviso</h3>
-      <p id="dialogMessage" class="text-sm text-slate-600"></p>
-      <div class="flex justify-end gap-2">
-        <button type="button" id="dialogCancelBtn" class="px-4 py-2 rounded-xl border text-sm">Cancelar</button>
-        <button type="button" id="dialogConfirmBtn" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm">Aceptar</button>
+  <!-- =====================================================================
+       MODALES PERSONALIZADOS (SIN alert() NI confirm())
+  ===================================================================== -->
+
+  <!-- Modal 1: Confirmación / Alerta General -->
+  <div id="customDialogModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-xl border border-slate-200 space-y-4 fade-in">
+      <div class="flex items-start gap-3">
+        <div id="dialogIcon" class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0">
+          <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <h3 id="dialogTitle" class="text-lg font-bold text-slate-900">Confirmación</h3>
+          <p id="dialogMessage" class="text-sm text-slate-600 mt-1 leading-relaxed">¿Deseas continuar?</p>
+        </div>
+      </div>
+      <div id="dialogActions" class="flex justify-end gap-2.5 pt-2">
+        <button type="button" id="dialogCancelBtn" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-700 text-sm font-semibold hover:bg-slate-50 cursor-pointer">
+          Cancelar
+        </button>
+        <button type="button" id="dialogConfirmBtn" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 cursor-pointer">
+          Confirmar
+        </button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL LOGIN DOCENTE -->
-  <div id="adminLoginModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-5">
-      <div class="flex justify-between items-center">
-        <h3 class="text-lg font-bold">Acceso Docente</h3>
-        <button type="button" id="closeAdminLoginBtn" class="font-bold">✕</button>
+  <!-- Modal 2: Acceso Docente Privado (Sin pistas de clave en pantalla) -->
+  <div id="adminLoginModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-6 shadow-2xl border border-slate-200 space-y-5 fade-in">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-slate-900 text-white flex items-center justify-center">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900">Acceso Reservado</h3>
+        </div>
+        <button type="button" id="closeAdminLoginBtn" class="text-slate-400 hover:text-slate-600 font-bold cursor-pointer">✕</button>
       </div>
+
       <form id="adminLoginForm" class="space-y-4">
-        <input type="password" id="adminPasswordInput" required placeholder="Clave docente" class="w-full px-4 py-3 rounded-xl border text-sm" />
-        <p id="adminLoginError" class="hidden text-xs font-semibold text-rose-600">Clave incorrecta.</p>
-        <button type="submit" class="w-full py-3 rounded-xl bg-slate-900 text-white font-bold text-sm">Ingresar</button>
+        <div>
+          <label for="adminPasswordInput" class="block text-xs font-semibold uppercase tracking-wider text-slate-600 mb-1.5">
+            Clave de Autorización Docente
+          </label>
+          <input
+            type="password"
+            id="adminPasswordInput"
+            required
+            autocomplete="off"
+            placeholder="••••••••••••"
+            class="w-full px-4 py-3 rounded-xl border border-slate-300 text-slate-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm"
+          />
+          <p id="adminLoginError" class="hidden text-xs font-semibold text-rose-600 mt-1.5">
+            Clave incorrecta. Acceso denegado.
+          </p>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition cursor-pointer"
+        >
+          Verificar e Ingresar
+        </button>
       </form>
     </div>
   </div>
 
-  <!-- MODAL DETALLE ESTUDIANTE -->
-  <div id="studentDetailModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
-      <div class="px-6 py-4 bg-slate-900 text-white flex justify-between items-center">
+  <!-- Modal 3: Desglose Detallado por Estudiante (Panel Docente) -->
+  <div id="studentDetailModal" class="hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-3 sm:p-6">
+    <div class="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden fade-in">
+      <!-- Cabecera Modal -->
+      <div class="px-6 py-4 bg-slate-900 text-white flex items-center justify-between shrink-0">
         <div>
-          <h3 id="detailStudentName" class="text-lg font-bold">Estudiante</h3>
-          <p id="detailStudentMeta" class="text-xs text-slate-300"></p>
+          <span id="detailLevelBadge" class="px-2 py-0.5 rounded text-[11px] font-bold bg-indigo-500 text-white">NIVEL</span>
+          <h3 id="detailStudentName" class="text-lg sm:text-xl font-bold mt-1">Nombre del Estudiante</h3>
+          <p id="detailStudentMeta" class="text-xs text-slate-300 mt-0.5">Resumen de desempeño</p>
         </div>
-        <button type="button" id="closeDetailModalBtn" class="text-white font-bold text-lg">✕</button>
+        <button type="button" id="closeDetailModalBtn" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 flex items-center justify-center font-bold cursor-pointer">
+          ✕
+        </button>
       </div>
-      <div id="detailQuestionsList" class="p-4 overflow-y-auto space-y-3 bg-slate-50 flex-1"></div>
-      <div class="px-6 py-3 bg-white border-t flex justify-end">
-        <button type="button" id="closeDetailModalFooterBtn" class="px-5 py-2 bg-slate-800 text-white text-sm font-semibold rounded-xl">Cerrar</button>
+
+      <!-- Cuerpo scrollable -->
+      <div id="detailQuestionsList" class="p-4 sm:p-6 overflow-y-auto space-y-3 bg-slate-50 flex-1">
+        <!-- Ítems 1 a 7 generados por JS -->
+      </div>
+
+      <!-- Pie Modal -->
+      <div class="px-6 py-3.5 bg-white border-t border-slate-200 flex justify-end shrink-0">
+        <button type="button" id="closeDetailModalFooterBtn" class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white text-sm font-semibold cursor-pointer">
+          Cerrar Desglose
+        </button>
       </div>
     </div>
   </div>
 
+  <!-- =====================================================================
+       LÓGICA COMPLETA DE LA APLICACIÓN (BANCO DE PREGUNTAS, SVG Y ESTADO)
+  ===================================================================== -->
   <script>
     (function () {
       'use strict';
+
+      // Clave maestra por defecto (sin pistas visibles en la interfaz)
       const DEFAULT_ADMIN_KEY = 'PROFESOR2026';
-      const STORAGE_KEYS = { RESULTS: 'icfes_math_simulacro_results_v1', ADMIN_PIN: 'icfes_math_admin_pin_v1', FIREBASE_URL: 'icfes_math_firebase_url_v1' };
+      // Base compartida de Firebase: todos los dispositivos apuntan a la misma base.
+      const DEFAULT_FIREBASE_URL = 'https://sebastianxaviergarciaforero-default-rtdb.firebaseio.com';
+      let firebaseRealtimeStream = null;
+      let firebaseRefreshQueued = false;
+      const STORAGE_KEYS = {
+        RESULTS: 'icfes_math_simulacro_results_v1',
+        ADMIN_PIN: 'icfes_math_admin_pin_v1',
+        FIREBASE_URL: 'icfes_math_firebase_url_v1'
+      };
 
-      const SVG_REGIONES_AUTOS = `<div class="w-full max-w-lg bg-white border border-slate-200 rounded-xl p-3"><svg viewBox="0 0 520 270" class="w-full h-auto"><rect width="520" height="270" rx="12" fill="#f8fafc" /><path d="M 25 25 L 250 25 L 240 130 L 35 125 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/><text x="59" y="53" fill="#2563eb" font-size="13" font-weight="800">R1: 15.000 hab (12 autos)</text><path d="M 260 25 L 495 30 L 485 135 L 250 130 Z" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="291" y="53" fill="#16a34a" font-size="13" font-weight="800">R2: 20.000 hab (20 autos)</text><path d="M 35 135 L 240 140 L 235 245 L 28 240 Z" fill="#fefce8" stroke="#ca8a04" stroke-width="2.5"/><text x="64" y="165" fill="#ca8a04" font-size="13" font-weight="800">R3: 10.000 hab (30 autos)</text><path d="M 250 140 L 485 145 L 492 245 L 245 245 Z" fill="#fdf2f8" stroke="#db2777" stroke-width="2.5"/><text x="289" y="165" fill="#db2777" font-size="13" font-weight="800">R4: 10.000 hab (44 autos)</text></svg></div>`;
-      const SVG_CAJA_REGALO = `<div class="w-full max-w-md bg-white border border-slate-200 rounded-xl p-4"><svg viewBox="0 0 420 260" class="w-full h-auto"><polygon points="95,115 205,155 205,220 95,180" fill="#fde68a" stroke="#b45309" stroke-width="2"/><polygon points="205,155 315,115 315,180 205,220" fill="#fcd34d" stroke="#b45309" stroke-width="2"/><polygon points="205,75 315,115 205,155 95,115" fill="#fef3c7" stroke="#b45309" stroke-width="2"/></svg></div>`;
-      const TABLE_DETERGENTE = `<div class="w-full max-w-xl overflow-hidden rounded-xl border border-slate-300 bg-white"><table class="w-full text-sm text-center"><thead><tr class="bg-indigo-700 text-white"><th>Tipo de ropa</th><th>Lavado a mano</th><th>Lavado en lavadora</th></tr></thead><tbody><tr><td>Ropa sucia</td><td>1 taza</td><td>1 taza y 1/2 taza</td></tr><tr><td>Ropa muy sucia</td><td>1 taza y 1/2 taza</td><td>2 tazas</td></tr></tbody></table></div>`;
-      const TABLE_PLANTAS = `<div class="w-full max-w-xl overflow-x-auto rounded-xl border border-slate-300 bg-white"><table class="w-full text-sm text-center"><thead><tr class="bg-emerald-700 text-white"><th>Momento</th><th>Al inicio</th><th>Semana 1</th><th>Semana 2</th><th>Semana 3</th><th>Semana 4</th></tr></thead><tbody><tr><td>Altura</td><td>10 cm</td><td>12 cm</td><td>15 cm</td><td>16 cm</td><td>17 cm</td></tr></tbody></table></div>`;
-      const TABLE_TRABAJADORES = `<div class="w-full max-w-lg overflow-hidden rounded-xl border border-slate-300 bg-white"><table class="w-full text-sm text-center"><thead><tr class="bg-slate-800 text-white"><th>Trabajadores</th><th>Horas</th><th>Costo</th></tr></thead><tbody><tr><td>1</td><td>4 horas</td><td>$40.000</td></tr><tr><td>2</td><td>2 horas</td><td>$80.000</td></tr><tr><td>4</td><td>1 hora</td><td>$160.000</td></tr></tbody></table></div>`;
-      const TABLE_NEUMATICOS = `<div class="w-full max-w-xl overflow-x-auto rounded-xl border border-slate-300 bg-white"><table class="w-full text-sm text-center"><thead><tr class="bg-indigo-800 text-white"><th>Vendidos</th><th>100</th><th>200</th><th>400</th><th>500</th><th>700</th></tr></thead><tbody><tr><td>Utilidad</td><td>-200.000</td><td>0</td><td>400.000</td><td>600.000</td><td>1.000.000</td></tr></tbody></table></div>`;
-      const SVG_TRAPECIO_CERCA = `<div class="w-full max-w-lg bg-white border rounded-xl p-4 text-center text-xs font-bold">[Esquema Trapecio Isósceles]</div>`;
-      const SVG_CAMION_RAMPA = `<div class="w-full max-w-2xl bg-white border rounded-xl p-4 text-center text-xs font-bold">[Esquema Rampa de Camión]</div>`;
+      // Canal de sincronización entre pestañas del mismo navegador
+      const syncChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('icfes_simulacro_channel') : null;
 
+      // =========================================================================
+      // GRÁFICOS SVG RECREATIVOS FIDEDIGNOS Y TABLAS HTML
+      // =========================================================================
+
+      // SVG 1: Mapa esquemático 4 Regiones (Nivel 1 - P1 / Original P34)
+      const SVG_REGIONES_AUTOS = `
+        <div class="w-full max-w-lg bg-white border border-slate-200 rounded-xl p-3 sm:p-4 shadow-2xs">
+          <svg viewBox="0 0 520 270" class="w-full h-auto" role="img" aria-label="Mapa de cuatro regiones con habitantes y autos deportivos">
+            <defs>
+              <pattern id="gridPattern" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+              </pattern>
+            </defs>
+            <rect width="520" height="270" rx="12" fill="url(#gridPattern)" />
+
+            <!-- Región R1 (Superior Izquierda) -->
+            <path d="M 25 25 L 250 25 L 240 130 L 35 125 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5" stroke-linejoin="round"/>
+            <rect x="40" y="36" width="38" height="24" rx="6" fill="#2563eb"/>
+            <text x="59" y="53" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">R1</text>
+            <text x="88" y="52" fill="#1e3a8a" font-size="12.5" font-weight="700">15.000 habitantes</text>
+            <rect x="40" y="70" width="188" height="38" rx="8" fill="#ffffff" stroke="#bfdbfe" stroke-width="1.5"/>
+            <text x="134" y="93" text-anchor="middle" fill="#0f172a" font-size="12.5" font-weight="600">12 tienen auto deportivo</text>
+
+            <!-- Región R2 (Superior Derecha) -->
+            <path d="M 260 25 L 495 30 L 485 135 L 250 130 Z" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5" stroke-linejoin="round"/>
+            <rect x="272" y="36" width="38" height="24" rx="6" fill="#16a34a"/>
+            <text x="291" y="53" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">R2</text>
+            <text x="320" y="52" fill="#14532d" font-size="12.5" font-weight="700">20.000 habitantes</text>
+            <rect x="272" y="70" width="198" height="38" rx="8" fill="#ffffff" stroke="#bbf7d0" stroke-width="1.5"/>
+            <text x="371" y="93" text-anchor="middle" fill="#0f172a" font-size="12.5" font-weight="600">20 tienen auto deportivo</text>
+
+            <!-- Región R3 (Inferior Izquierda) -->
+            <path d="M 35 135 L 240 140 L 235 245 L 28 240 Z" fill="#fefce8" stroke="#ca8a04" stroke-width="2.5" stroke-linejoin="round"/>
+            <rect x="45" y="148" width="38" height="24" rx="6" fill="#ca8a04"/>
+            <text x="64" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">R3</text>
+            <text x="93" y="164" fill="#713f12" font-size="12.5" font-weight="700">10.000 habitantes</text>
+            <rect x="45" y="182" width="182" height="38" rx="8" fill="#ffffff" stroke="#fde047" stroke-width="1.5"/>
+            <text x="136" y="205" text-anchor="middle" fill="#0f172a" font-size="12.5" font-weight="600">30 tienen auto deportivo</text>
+
+            <!-- Región R4 (Inferior Derecha) -->
+            <path d="M 250 140 L 485 145 L 492 245 L 245 245 Z" fill="#fdf2f8" stroke="#db2777" stroke-width="2.5" stroke-linejoin="round"/>
+            <rect x="270" y="148" width="38" height="24" rx="6" fill="#db2777"/>
+            <text x="289" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800">R4</text>
+            <text x="318" y="164" fill="#831843" font-size="12.5" font-weight="700">10.000 habitantes</text>
+            <rect x="270" y="182" width="198" height="38" rx="8" fill="#ffffff" stroke="#fbcfe8" stroke-width="1.5"/>
+            <text x="369" y="205" text-anchor="middle" fill="#0f172a" font-size="12.5" font-weight="600">44 tienen auto deportivo</text>
+          </svg>
+        </div>
+      `;
+
+      // SVG 2: Caja rectangular 3D con moño (Nivel 1 - P2 / Nivel 2 - P1 / Original P26)
+      const SVG_CAJA_REGALO = `
+        <div class="w-full max-w-md bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
+          <svg viewBox="0 0 420 260" class="w-full h-auto" role="img" aria-label="Caja de regalo de base cuadrada de 30 cm por 30 cm y altura 20 cm">
+            <!-- Sombra base -->
+            <ellipse cx="210" cy="222" rx="135" ry="18" fill="#e2e8f0" opacity="0.7"/>
+
+            <!-- Cara Frontal Izquierda (30 cm) -->
+            <polygon points="95,115 205,155 205,220 95,180" fill="#fde68a" stroke="#b45309" stroke-width="2" stroke-linejoin="round"/>
+            <!-- Cara Frontal Derecha (30 cm) -->
+            <polygon points="205,155 315,115 315,180 205,220" fill="#fcd34d" stroke="#b45309" stroke-width="2" stroke-linejoin="round"/>
+            <!-- Tapa Superior -->
+            <polygon points="205,75 315,115 205,155 95,115" fill="#fef3c7" stroke="#b45309" stroke-width="2" stroke-linejoin="round"/>
+
+            <!-- Cintas decorativas en la caja -->
+            <polygon points="145,97 155,93 265,133 255,137" fill="#ef4444" opacity="0.85"/>
+            <polygon points="255,93 265,97 155,137 145,133" fill="#ef4444" opacity="0.85"/>
+            <polygon points="145,133 155,137 155,202 145,198" fill="#dc2626" opacity="0.85"/>
+            <polygon points="255,137 265,133 265,198 255,202" fill="#dc2626" opacity="0.85"/>
+
+            <!-- Moño superior -->
+            <path d="M 205 113 C 175 82, 152 102, 185 115 Z" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+            <path d="M 205 113 C 235 82, 258 102, 225 115 Z" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
+            <circle cx="205" cy="113" r="6" fill="#b91c1c"/>
+
+            <!-- Cotas de dimensiones -->
+            <!-- Ancho izquierdo: 30 cm -->
+            <line x1="88" y1="190" x2="198" y2="230" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <rect x="103" y="205" width="54" height="22" rx="5" fill="#1e293b"/>
+            <text x="130" y="220" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">30 cm</text>
+
+            <!-- Profundidad derecha: 30 cm -->
+            <line x1="212" y1="230" x2="322" y2="190" stroke="#334155" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <rect x="253" y="205" width="54" height="22" rx="5" fill="#1e293b"/>
+            <text x="280" y="220" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">30 cm</text>
+
+            <!-- Altura derecha: 20 cm -->
+            <line x1="330" y1="115" x2="330" y2="180" stroke="#334155" stroke-width="1.8"/>
+            <line x1="324" y1="115" x2="336" y2="115" stroke="#334155" stroke-width="1.8"/>
+            <line x1="324" y1="180" x2="336" y2="180" stroke="#334155" stroke-width="1.8"/>
+            <rect x="342" y="136" width="56" height="22" rx="5" fill="#4f46e5"/>
+            <text x="370" y="151" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">20 cm</text>
+          </svg>
+        </div>
+      `;
+
+      // Tabla HTML 1: Detergente Z (Nivel 1 - P4 / Original P33)
+      const TABLE_DETERGENTE = `
+        <div class="w-full max-w-xl overflow-hidden rounded-xl border border-slate-300 bg-white shadow-2xs">
+          <div class="bg-indigo-700 text-white text-xs font-bold uppercase tracking-wider px-4 py-2.5 text-center">
+            Modo de empleo del detergente Z
+          </div>
+          <table class="w-full text-sm text-center border-collapse">
+            <thead>
+              <tr class="bg-slate-100 border-b border-slate-300 text-slate-800 font-bold">
+                <th class="py-2.5 px-3 border-r border-slate-300">Tipo de ropa</th>
+                <th class="py-2.5 px-3 border-r border-slate-300">Lavado a mano</th>
+                <th class="py-2.5 px-3">Lavado en lavadora</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr>
+                <td class="py-3 px-3 font-semibold bg-slate-50 border-r border-slate-300">Ropa sucia</td>
+                <td class="py-3 px-3 border-r border-slate-300">1 taza</td>
+                <td class="py-3 px-3">1 taza y 1/2 taza</td>
+              </tr>
+              <tr>
+                <td class="py-3 px-3 font-semibold bg-slate-50 border-r border-slate-300">Ropa muy sucia</td>
+                <td class="py-3 px-3 border-r border-slate-300">1 taza y 1/2 taza</td>
+                <td class="py-3 px-3">2 tazas</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="bg-amber-50 border-t border-slate-300 px-4 py-2 text-xs font-semibold text-amber-900 text-center">
+            Nota: 1 taza equivale a 200 mL de detergente.
+          </div>
+        </div>
+      `;
+
+      // Tabla HTML 2: Crecimiento de Plantas (Nivel 1 - P5 / Nivel 2 - P3 / Original P36)
+      const TABLE_PLANTAS = `
+        <div class="w-full max-w-xl overflow-x-auto rounded-xl border border-slate-300 bg-white shadow-2xs">
+          <table class="w-full text-sm text-center border-collapse">
+            <thead>
+              <tr class="bg-emerald-700 text-white font-bold text-xs uppercase">
+                <th class="py-2.5 px-3 border-r border-emerald-600">Momento</th>
+                <th class="py-2.5 px-3 border-r border-emerald-600">Al inicio</th>
+                <th class="py-2.5 px-3 border-r border-emerald-600">Semana 1</th>
+                <th class="py-2.5 px-3 border-r border-emerald-600">Semana 2</th>
+                <th class="py-2.5 px-3 border-r border-emerald-600">Semana 3</th>
+                <th class="py-2.5 px-3">Semana 4</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-slate-800 font-semibold">
+                <td class="py-3 px-3 bg-slate-100 border-r border-slate-300 font-bold">Altura (cm)</td>
+                <td class="py-3 px-3 border-r border-slate-200">10 cm</td>
+                <td class="py-3 px-3 border-r border-slate-200">12 cm</td>
+                <td class="py-3 px-3 border-r border-slate-200">15 cm</td>
+                <td class="py-3 px-3 border-r border-slate-200">16 cm</td>
+                <td class="py-3 px-3">17 cm</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      // Tabla HTML 3: Descarga de camión (Nivel 1 - P6 / Original P43)
+      const TABLE_TRABAJADORES = `
+        <div class="w-full max-w-lg overflow-hidden rounded-xl border border-slate-300 bg-white shadow-2xs">
+          <table class="w-full text-sm text-center border-collapse">
+            <thead>
+              <tr class="bg-slate-800 text-white text-xs uppercase font-bold">
+                <th class="py-3 px-3 border-r border-slate-700">Número de trabajadores</th>
+                <th class="py-3 px-3 border-r border-slate-700">Cantidad de horas</th>
+                <th class="py-3 px-3">Costo de implementos</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-800 font-medium">
+              <tr>
+                <td class="py-2.5 px-3 border-r border-slate-200 font-bold">1</td>
+                <td class="py-2.5 px-3 border-r border-slate-200">4 horas</td>
+                <td class="py-2.5 px-3">$40.000</td>
+              </tr>
+              <tr class="bg-slate-50">
+                <td class="py-2.5 px-3 border-r border-slate-200 font-bold">2</td>
+                <td class="py-2.5 px-3 border-r border-slate-200">2 horas</td>
+                <td class="py-2.5 px-3">$80.000</td>
+              </tr>
+              <tr>
+                <td class="py-2.5 px-3 border-r border-slate-200 font-bold">4</td>
+                <td class="py-2.5 px-3 border-r border-slate-200">1 hora</td>
+                <td class="py-2.5 px-3">$160.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      // Tabla HTML 4: Utilidad neumáticos (Nivel 1 - P7 / Original P42)
+      const TABLE_NEUMATICOS = `
+        <div class="w-full max-w-xl overflow-x-auto rounded-xl border border-slate-300 bg-white shadow-2xs">
+          <table class="w-full text-sm text-center border-collapse">
+            <thead>
+              <tr class="bg-indigo-800 text-white text-xs uppercase font-bold">
+                <th class="py-2.5 px-3 border-r border-indigo-700 text-left">Neumáticos vendidos</th>
+                <th class="py-2.5 px-3 border-r border-indigo-700">100</th>
+                <th class="py-2.5 px-3 border-r border-indigo-700">200</th>
+                <th class="py-2.5 px-3 border-r border-indigo-700">400</th>
+                <th class="py-2.5 px-3 border-r border-indigo-700">500</th>
+                <th class="py-2.5 px-3">700</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="text-slate-800 font-semibold">
+                <td class="py-3 px-3 bg-slate-100 border-r border-slate-300 text-left font-bold">Utilidad ($)</td>
+                <td class="py-3 px-3 border-r border-slate-200 text-rose-600">-200.000</td>
+                <td class="py-3 px-3 border-r border-slate-200">0</td>
+                <td class="py-3 px-3 border-r border-slate-200">400.000</td>
+                <td class="py-3 px-3 border-r border-slate-200">600.000</td>
+                <td class="py-3 px-3">1.000.000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      // SVG 3: Trapecio isósceles cercado con 3 hileras de alambre (Nivel 2 - P6 / Original P32)
+      const SVG_TRAPECIO_CERCA = `
+        <div class="w-full max-w-lg bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
+          <svg viewBox="0 0 480 265" class="w-full h-auto" role="img" aria-label="Lote en forma de trapecio isósceles cercado con tres hileras de alambre">
+            <!-- Terreno -->
+            <polygon points="120,65 340,65 405,195 55,195" fill="#ecfdf5" stroke="#059669" stroke-width="2.5" stroke-linejoin="round"/>
+
+            <!-- 3 Hileras de alambre de púas (representadas alrededor) -->
+            <polygon points="120,57 340,57 405,187 55,187" fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="5,3"/>
+            <polygon points="120,49 340,49 405,179 55,179" fill="none" stroke="#64748b" stroke-width="1.2" stroke-dasharray="5,3"/>
+
+            <!-- Postes en esquinas -->
+            <line x1="120" y1="44" x2="120" y2="68" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+            <line x1="340" y1="44" x2="340" y2="68" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+            <line x1="55" y1="174" x2="55" y2="198" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+            <line x1="405" y1="174" x2="405" y2="198" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+
+            <!-- Altura punteada derecha: 6 m -->
+            <line x1="340" y1="65" x2="340" y2="195" stroke="#dc2626" stroke-width="2" stroke-dasharray="5,4"/>
+            <rect x="330" y="185" width="10" height="10" fill="none" stroke="#dc2626" stroke-width="1.5"/>
+            <rect x="303" y="118" width="33" height="20" rx="4" fill="#fee2e2"/>
+            <text x="319" y="132" text-anchor="middle" fill="#b91c1c" font-size="12" font-weight="800">6 m</text>
+
+            <!-- Base superior: 21,6 m -->
+            <rect x="196" y="22" width="68" height="22" rx="5" fill="#1e293b"/>
+            <text x="230" y="37" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">21,6 m</text>
+
+            <!-- Lados oblicuos: x y x -->
+            <circle cx="75" cy="122" r="13" fill="#4f46e5"/>
+            <text x="75" y="126" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800" font-style="italic">x</text>
+
+            <circle cx="386" cy="122" r="13" fill="#4f46e5"/>
+            <text x="386" y="126" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="800" font-style="italic">x</text>
+
+            <!-- Cotas Base Inferior dividida en 26,6 m y 5 m -->
+            <line x1="55" y1="212" x2="340" y2="212" stroke="#334155" stroke-width="1.6"/>
+            <line x1="55" y1="206" x2="55" y2="218" stroke="#334155" stroke-width="1.6"/>
+            <line x1="340" y1="206" x2="340" y2="218" stroke="#334155" stroke-width="1.6"/>
+            <rect x="163" y="220" width="68" height="22" rx="5" fill="#0f172a"/>
+            <text x="197" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">26,6 m</text>
+
+            <line x1="340" y1="212" x2="405" y2="212" stroke="#0284c7" stroke-width="1.8"/>
+            <line x1="405" y1="206" x2="405" y2="218" stroke="#0284c7" stroke-width="1.8"/>
+            <rect x="352" y="220" width="42" height="22" rx="5" fill="#0284c7"/>
+            <text x="373" y="235" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="700">5 m</text>
+          </svg>
+        </div>
+      `;
+
+      // SVG 4 + Tabla Trigonométrica: Camión con rampa de 4 m (Nivel 2 - P7 / Original P48)
+      const SVG_CAMION_RAMPA = `
+        <div class="w-full max-w-2xl space-y-4">
+          <!-- Tabla de razones trigonométricas -->
+          <div class="max-w-sm mx-auto overflow-hidden rounded-xl border border-slate-300 bg-white shadow-2xs">
+            <table class="w-full text-xs sm:text-sm text-center border-collapse">
+              <thead>
+                <tr class="bg-slate-800 text-white font-bold">
+                  <th class="py-2 px-3 border-r border-slate-700 italic">x</th>
+                  <th class="py-2 px-3 border-r border-slate-700">sen(x)</th>
+                  <th class="py-2 px-3">cos(x)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 font-semibold text-slate-800">
+                <tr>
+                  <td class="py-2 px-3 bg-slate-50 border-r border-slate-200">30°</td>
+                  <td class="py-2 px-3 border-r border-slate-200">1/2</td>
+                  <td class="py-2 px-3">√3/2</td>
+                </tr>
+                <tr>
+                  <td class="py-2 px-3 bg-slate-50 border-r border-slate-200">60°</td>
+                  <td class="py-2 px-3 border-r border-slate-200">√3/2</td>
+                  <td class="py-2 px-3">1/2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Gráfico SVG Camión y Rampa -->
+          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-2xs">
+            <svg viewBox="0 0 500 230" class="w-full h-auto" role="img" aria-label="Camión desplegando una rampa de 4 metros con ángulo de 30 grados respecto al suelo">
+              <!-- Suelo -->
+              <line x1="20" y1="185" x2="480" y2="185" stroke="#475569" stroke-width="3"/>
+
+              <!-- Cabina y furgón del camión -->
+              <rect x="45" y="110" width="55" height="55" rx="6" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2"/>
+              <rect x="52" y="118" width="26" height="22" rx="3" fill="#dbeafe"/>
+              <rect x="100" y="75" width="120" height="90" rx="4" fill="#e2e8f0" stroke="#475569" stroke-width="2"/>
+              <!-- Llantas -->
+              <circle cx="75" cy="172" r="13" fill="#1e293b"/>
+              <circle cx="75" cy="172" r="5" fill="#94a3b8"/>
+              <circle cx="195" cy="172" r="13" fill="#1e293b"/>
+              <circle cx="195" cy="172" r="5" fill="#94a3b8"/>
+
+              <!-- Línea vertical punteada desde el borde trasero del camión -->
+              <line x1="220" y1="115" x2="220" y2="185" stroke="#64748b" stroke-width="1.8" stroke-dasharray="4,4"/>
+
+              <!-- Rampa de 4 m -->
+              <line x1="220" y1="115" x2="365" y2="185" stroke="#ea580c" stroke-width="5" stroke-linecap="round"/>
+
+              <!-- Etiqueta 4 m sobre la rampa -->
+              <rect x="282" y="118" width="44" height="22" rx="5" fill="#ea580c"/>
+              <text x="304" y="133" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800">4 m</text>
+
+              <!-- Arco ángulo 60° superior -->
+              <path d="M 220 142 A 27 27 0 0 0 244 127" fill="none" stroke="#4f46e5" stroke-width="2"/>
+              <text x="239" y="152" fill="#4338ca" font-size="12" font-weight="800">60°</text>
+
+              <!-- Arco ángulo 30° en el suelo -->
+              <path d="M 328 185 A 37 37 0 0 1 334 170" fill="none" stroke="#059669" stroke-width="2"/>
+              <text x="302" y="178" fill="#047857" font-size="12" font-weight="800">30°</text>
+
+              <!-- Bandera en el extremo de la rampa -->
+              <line x1="365" y1="140" x2="365" y2="185" stroke="#0f172a" stroke-width="2.5"/>
+              <polygon points="365,140 398,148 365,156" fill="#dc2626"/>
+
+              <!-- Cota distancia horizontal L -->
+              <line x1="220" y1="202" x2="365" y2="202" stroke="#0f172a" stroke-width="1.8"/>
+              <line x1="220" y1="196" x2="220" y2="208" stroke="#0f172a" stroke-width="1.8"/>
+              <line x1="365" y1="196" x2="365" y2="208" stroke="#0f172a" stroke-width="1.8"/>
+              <rect x="280" y="206" width="26" height="20" rx="4" fill="#0f172a"/>
+              <text x="293" y="220" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="800" font-style="italic">L</text>
+            </svg>
+          </div>
+        </div>
+      `;
+
+      // =========================================================================
+      // BANCO EXACTO DE PREGUNTAS POR NIVEL
+      // =========================================================================
       const QUESTION_BANK = {
         nivel1: [
-          { id: 'N1_Q1', shortTitle: 'Mediana autos', context: 'La figura muestra el número de habitantes y la cantidad de personas que tienen un auto deportivo en cuatro regiones.', visual: SVG_REGIONES_AUTOS, prompt: 'Sobre la mediana de esos 4 números, ¿cuál de las siguientes afirmaciones es correcta?', options: { A: 'La mediana está más cerca de R1 que de R4.', B: 'La mediana está más lejos de R2 que de R3.', C: 'La mediana está más lejos de R3 que de R4.', D: 'La mediana está más cerca de R1 que de R2.' }, correct: 'A' },
-          { id: 'N1_Q2', shortTitle: 'Caja cartón', context: 'Isabel vende cajas de cartón con base cuadrada de 30 cm de lado y altura de 20 cm.', visual: SVG_CAJA_REGALO, prompt: '¿Cuáles procedimientos permiten hallar el área superficial?', options: { A: '1 y 2', B: '3 y 4', C: '2 y 3', D: '1 y 4' }, correct: 'D' },
-          { id: 'N1_Q3', shortTitle: 'Ingresos ropa', context: 'Un empleado vendió camisas a $40.000 y pantalones a $80.000.', visual: null, prompt: '¿Con cuál expresión calcula los ingresos?', options: { A: 'Suma y suma', B: '$40.000 × camisas + $80.000 × pantalones', C: 'Multiplicación total', D: 'Inversa' }, correct: 'B' },
-          { id: 'N1_Q4', shortTitle: 'Detergente Z', context: 'Tabla de instrucciones de uso de detergente Z.', visual: TABLE_DETERGENTE, prompt: '¿Qué valor se puede hallar tras 15 días?', options: { A: 'Volumen total', B: 'Peso total', C: 'Los mililitros que contiene una bolsa', D: 'Los gramos' }, correct: 'C' },
-          { id: 'N1_Q5', shortTitle: 'Plantas', context: 'Estudio de crecimiento de plantas medido semanalmente.', visual: TABLE_PLANTAS, prompt: '¿En qué momento se observó el mayor incremento?', options: { A: 'Entre semana 1 y semana 2', B: 'Entre inicio y semana 1', C: 'Entre semana 2 y semana 3', D: 'Entre semana 3 y semana 4' }, correct: 'A' },
-          { id: 'N1_Q6', shortTitle: 'Camión', context: 'Tabla de horas y costos según número de trabajadores.', visual: TABLE_TRABAJADORES, prompt: '¿Cuál afirmación es verdadera?', options: { A: 'Directa y directa', B: 'Inversa e inversa', C: 'Directa e inversa', D: 'La cantidad de horas es inversamente proporcional y el costo directamente proporcional' }, correct: 'D' },
-          { id: 'N1_Q7', shortTitle: 'Neumáticos', context: 'Tabla de utilidad según neumáticos vendidos.', visual: TABLE_NEUMATICOS, prompt: '¿Es correcto afirmar que la relación es creciente?', options: { A: 'No', B: 'Sí, porque la pendiente es positiva y equivalente a 2.000', C: 'No, negativa', D: 'Sí' }, correct: 'B' }
+          {
+            id: 'N1_Q1',
+            shortTitle: 'Mediana de autos deportivos en 4 regiones',
+            context: 'La figura muestra el número de habitantes y la cantidad de personas que tienen un auto deportivo, en cuatro regiones de un mismo país.',
+            visual: SVG_REGIONES_AUTOS,
+            prompt: 'Un estudiante hizo una lista con los 4 números correspondientes a la cantidad de personas con un auto deportivo. Sobre la mediana de esos 4 números, ¿cuál de las siguientes afirmaciones es correcta?',
+            options: {
+              A: 'La mediana está más cerca del número de personas que tienen auto deportivo en la región R1 que del número de personas que tienen auto deportivo en la región R4.',
+              B: 'La mediana está más lejos del número de personas que tienen auto deportivo en la región R2 que del número de personas que tienen auto deportivo en la región R3.',
+              C: 'La mediana está más lejos del número de personas que tienen auto deportivo en la región R3 que del número de personas que tienen auto deportivo en la región R4.',
+              D: 'La mediana está más cerca del número de personas que tienen auto deportivo en la región R1 que del número de personas que tienen auto deportivo en la región R2.'
+            },
+            correct: 'A'
+          },
+          {
+            id: 'N1_Q2',
+            shortTitle: 'Área superficial de caja de cartón (30×30×20 cm)',
+            context: 'Isabel vende cajas de cartón para regalo, que tienen una base cuadrada de 30 cm de lado y una altura de 20 cm. Para su elaboración, ella corta todas las tapas a medida, sin dejar pestañas, ya que une todas las caras con una cinta adhesiva.',
+            visual: SVG_CAJA_REGALO,
+            prompt: 'Isabel está considerando los siguientes procedimientos para calcular el área superficial del cartón antes de iniciar la construcción de una caja:\n\n• Procedimiento 1: 2 × (30 × 30) + 4 × (30 × 20)\n• Procedimiento 2: (30²) + 4 × (30 × 20)\n• Procedimiento 3: 2 × (30 × 30) + [(4 × 30) × (4 × 20)]\n• Procedimiento 4: [(30²) × 2] + 30 × 20 × 4\n\nDe los procedimientos que considera Isabel, ¿cuáles le permiten hallar el área que necesita para la construcción de la caja?',
+            options: {
+              A: 'Procedimientos 1 y 2.',
+              B: 'Procedimientos 3 y 4.',
+              C: 'Procedimientos 2 y 3.',
+              D: 'Procedimientos 1 y 4.'
+            },
+            correct: 'D'
+          },
+          {
+            id: 'N1_Q3',
+            shortTitle: 'Expresión de ingresos por venta de camisas y pantalones',
+            context: 'Un empleado de una tienda de ropa, durante un día, vendió cierta cantidad de camisas, con un precio de $40.000 cada una, y cierta cantidad de pantalones, con un precio de $80.000 cada uno.',
+            visual: null,
+            prompt: 'Si el vendedor quiere calcular los ingresos de dichas ventas, ¿con cuál de las siguientes expresiones debe hacerlo?',
+            options: {
+              A: '($40.000 + $80.000) × (número de camisas vendidas + número de pantalones vendidos).',
+              B: '$40.000 × número de camisas vendidas + $80.000 × número de pantalones vendidos.',
+              C: '($40.000 × $80.000) × (número de camisas vendidas × número de pantalones vendidos).',
+              D: '$40.000 × número de pantalones vendidos + $80.000 × número de camisas vendidas.'
+            },
+            correct: 'B'
+          },
+          {
+            id: 'N1_Q4',
+            shortTitle: 'Modo de empleo y volumen de bolsa de detergente Z',
+            context: 'La siguiente tabla muestra el modo de empleo del detergente Z.',
+            visual: TABLE_DETERGENTE,
+            prompt: 'Una señora compra en el supermercado varias bolsas de detergente Z y, para su uso, sigue las instrucciones de la tabla, de tal manera que, al cabo de 15 días, ha utilizado la primera bolsa, tras haber realizado 1 lavado de ropa sucia a mano y 3 lavados de ropa muy sucia en la lavadora. ¿Cuál de los siguientes valores se puede hallar con la información dada?',
+            options: {
+              A: 'El volumen total de las bolsas de detergente Z que compró la señora.',
+              B: 'El peso total de las bolsas de detergente Z que compró la señora.',
+              C: 'Los mililitros de detergente Z que contiene una bolsa.',
+              D: 'Los gramos de detergente Z que contiene una bolsa.'
+            },
+            correct: 'C'
+          },
+          {
+            id: 'N1_Q5',
+            shortTitle: 'Mayor incremento de altura en crecimiento de plantas',
+            context: 'En un estudio sobre el crecimiento de plantas en condiciones de luz natural, se recopilaron datos de su altura en cinco momentos diferentes: al inicio del experimento, en la semana 1, en la semana 2, en la semana 3 y en la semana 4, como se indica en la siguiente tabla.',
+            visual: TABLE_PLANTAS,
+            prompt: 'Con base en los valores registrados, ¿en qué momento se observó el mayor incremento de altura en las plantas?',
+            options: {
+              A: 'Entre la semana 1 y la semana 2.',
+              B: 'Entre el inicio del experimento y la semana 1.',
+              C: 'Entre la semana 2 y la semana 3.',
+              D: 'Entre la semana 3 y la semana 4.'
+            },
+            correct: 'A'
+          },
+          {
+            id: 'N1_Q6',
+            shortTitle: 'Proporcionalidad directa e inversa en descarga de camión',
+            context: 'El supervisor de una empresa transportadora de carga registró en una tabla la cantidad de horas y el costo de los implementos de seguridad que se utilizan para descargar un camión, dependiendo del número de trabajadores que lo descarguen.',
+            visual: TABLE_TRABAJADORES,
+            prompt: 'Respecto a la información de la tabla, ¿cuál de las siguientes afirmaciones es verdadera?',
+            options: {
+              A: 'La cantidad de horas y el costo son directamente proporcionales al número de trabajadores.',
+              B: 'La cantidad de horas y el costo son inversamente proporcionales al número de trabajadores.',
+              C: 'La cantidad de horas es directamente proporcional al número de trabajadores y el costo es inversamente proporcional al número de trabajadores.',
+              D: 'La cantidad de horas es inversamente proporcional al número de trabajadores y el costo es directamente proporcional al número de trabajadores.'
+            },
+            correct: 'D'
+          },
+          {
+            id: 'N1_Q7',
+            shortTitle: 'Pendiente y crecimiento de utilidad de neumáticos',
+            context: 'En una empresa de neumáticos se usa la siguiente tabla para establecer la relación entre la utilidad y el número de neumáticos vendidos:',
+            visual: TABLE_NEUMATICOS,
+            prompt: 'Teniendo en cuenta la información presentada en la tabla, ¿es correcto afirmar que la relación entre la utilidad y el número de neumáticos vendidos es creciente?',
+            options: {
+              A: 'No, porque la pendiente es positiva y es equivalente a 400/3.',
+              B: 'Sí, porque la pendiente es positiva y es equivalente a 2.000.',
+              C: 'No, porque la pendiente es negativa y es equivalente a -2.000.',
+              D: 'Sí, porque la pendiente es negativa y es equivalente a 400/3.'
+            },
+            correct: 'B'
+          }
         ],
+
         nivel2: [
-          { id: 'N2_Q1', shortTitle: 'Caja cartón', context: 'Isabel vende cajas de cartón con base cuadrada de 30 cm de lado y altura de 20 cm.', visual: SVG_CAJA_REGALO, prompt: '¿Cuáles procedimientos permiten hallar el área superficial?', options: { A: '1 y 2', B: '3 y 4', C: '2 y 3', D: '1 y 4' }, correct: 'D' },
-          { id: 'N2_Q2', shortTitle: 'Promedio edades', context: 'Edades: 19, 28, 32, 19, 17, 28, 23, 28, 24, 15, 17. Norma: promedio > 25.', visual: null, prompt: '¿Cuál procedimiento permite establecer si participan?', options: { A: 'Sumar edades, dividir entre número de integrantes y comparar con 25', B: 'Multiplicar', C: 'Mediana', D: 'Moda' }, correct: 'A' },
-          { id: 'N2_Q3', shortTitle: 'Plantas', context: 'Estudio de crecimiento de plantas medido semanalmente.', visual: TABLE_PLANTAS, prompt: '¿En qué momento se observó el mayor incremento?', options: { A: 'Entre semana 1 y semana 2', B: 'Inicio', C: 'Semana 3', D: 'Semana 4' }, correct: 'A' },
-          { id: 'N2_Q4', shortTitle: 'Funciones', context: 'Verificar raíces reales de f(x) = x² + bx + c.', visual: null, prompt: '¿Cuáles opciones responden afirmativamente?', options: { A: '1 y 2', B: 'Solo 1', C: '1 y 3', D: 'Solo 3' }, correct: 'C' },
-          { id: 'N2_Q5', shortTitle: 'Ingresos ropa', context: 'Venta de camisas a $40.000 y pantalones a $80.000.', visual: null, prompt: '¿Con cuál expresión se calculan?', options: { A: 'Suma', B: '$40.000 × camisas + $80.000 × pantalones', C: 'Multiplicación', D: 'Inversa' }, correct: 'B' },
-          { id: 'N2_Q6', shortTitle: 'Trapecio', context: 'Cercar lote con trapecio isósceles con 3 hileras de alambre.', visual: SVG_TRAPECIO_CERCA, prompt: '¿Cuántos metros de alambre se necesitan?', options: { A: '196 m', B: '202 m', C: '208 m', D: '226 m' }, correct: 'C' },
-          { id: 'N2_Q7', shortTitle: 'Trigonometría', context: 'Rampa de camión de 4 m con ángulo de 30°.', visual: SVG_CAMION_RAMPA, prompt: '¿Cuál es la distancia horizontal L?', options: { A: '2 m', B: '1/8 m', C: '2√3 m', D: '√3/8 m' }, correct: 'C' }
+          {
+            id: 'N2_Q1',
+            shortTitle: 'Área superficial de caja de cartón (30×30×20 cm)',
+            context: 'Isabel vende cajas de cartón para regalo, que tienen una base cuadrada de 30 cm de lado y una altura de 20 cm. Para su elaboración, ella corta todas las tapas a medida, sin dejar pestañas, ya que une todas las caras con una cinta adhesiva.',
+            visual: SVG_CAJA_REGALO,
+            prompt: 'Isabel está considerando los siguientes procedimientos para calcular el área superficial del cartón antes de iniciar la construcción de una caja:\n\n• Procedimiento 1: 2 × (30 × 30) + 4 × (30 × 20)\n• Procedimiento 2: (30²) + 4 × (30 × 20)\n• Procedimiento 3: 2 × (30 × 30) + [(4 × 30) × (4 × 20)]\n• Procedimiento 4: [(30²) × 2] + 30 × 20 × 4\n\nDe los procedimientos que considera Isabel, ¿cuáles le permiten hallar el área que necesita para la construcción de la caja?',
+            options: {
+              A: 'Procedimientos 1 y 2.',
+              B: 'Procedimientos 3 y 4.',
+              C: 'Procedimientos 2 y 3.',
+              D: 'Procedimientos 1 y 4.'
+            },
+            correct: 'D'
+          },
+          {
+            id: 'N2_Q2',
+            shortTitle: 'Cálculo de edad promedio del equipo para torneo',
+            context: 'Las edades en años de los integrantes de un equipo que quiere participar en un torneo se muestran a continuación:\n\n19, 28, 32, 19, 17, 28, 23, 28, 24, 15, 17\n\nEl torneo tiene una norma que indica que para que un equipo pueda participar, la edad promedio debe ser mayor a 25 años.',
+            visual: null,
+            prompt: 'Al respecto, ¿cuál de los siguientes procedimientos permite establecer si el equipo puede o no participar?',
+            options: {
+              A: 'Paso 1. Sumar todas las edades de los integrantes. Paso 2. Dividir el valor obtenido en el paso 1 entre el número de integrantes. Paso 3. Comparar el valor obtenido en el paso 2 con respecto al número 25.',
+              B: 'Paso 1. Sumar todas las edades de los integrantes. Paso 2. Multiplicar el valor obtenido en el paso 1 entre el número de integrantes. Paso 3. Comparar el valor obtenido en el paso 2 con respecto al número 25.',
+              C: 'Paso 1. Ordenar las edades de menor a mayor. Paso 2. Identificar el dato que está en la posición central. Paso 3. Comparar el dato identificado en el paso anterior con el número 25.',
+              D: 'Paso 1. Contar el número de veces que aparece cada edad. Paso 2. Identificar el dato que más veces se repite. Paso 3. Comparar el dato identificado en el paso anterior con el número 25.'
+            },
+            correct: 'A'
+          },
+          {
+            id: 'N2_Q3',
+            shortTitle: 'Mayor incremento de altura en crecimiento de plantas',
+            context: 'En un estudio sobre el crecimiento de plantas en condiciones de luz natural, se recopilaron datos de su altura en cinco momentos diferentes: al inicio del experimento, en la semana 1, en la semana 2, en la semana 3 y en la semana 4, como se indica en la siguiente tabla.',
+            visual: TABLE_PLANTAS,
+            prompt: 'Con base en los valores registrados, ¿en qué momento se observó el mayor incremento de altura en las plantas?',
+            options: {
+              A: 'Entre la semana 1 y la semana 2.',
+              B: 'Entre el inicio del experimento y la semana 1.',
+              C: 'Entre la semana 2 y la semana 3.',
+              D: 'Entre la semana 3 y la semana 4.'
+            },
+            correct: 'A'
+          },
+          {
+            id: 'N2_Q4',
+            shortTitle: 'Existencia de raíces reales en funciones cuadráticas',
+            context: 'Para la implementación de un nuevo proceso industrial en una fábrica, se requiere verificar la existencia de raíces reales de funciones cuadráticas de la forma f(x) = x² + bx + c, cuyas gráficas son todas parábolas que abren hacia la parte positiva del eje y. Una manera de hacer esto es verificar si el número b² - 4c no es negativo. Sin embargo, no es posible programar el sistema computacional encargado para hacer este cálculo. En su lugar, se tienen las siguientes opciones:\n\n• Opción 1. Calcular la coordenada y del punto mínimo de la gráfica de la función y verificar si es cero o un número negativo.\n• Opción 2. Poner la ecuación de la función en la forma f(x) = (x + d)² - e y verificar si el número d es cero o positivo.\n• Opción 3. Poner la ecuación de la función en la forma f(x) = (x + d)² - e y verificar si el número e es cero o positivo.',
+            visual: null,
+            prompt: 'De las opciones 1, 2 y 3, ¿cuáles responden afirmativamente a la pregunta de si la función f(x) tiene raíces reales?',
+            options: {
+              A: 'Solamente las opciones 1 y 2.',
+              B: 'Solamente la opción 1.',
+              C: 'Solamente las opciones 1 y 3.',
+              D: 'Solamente la opción 3.'
+            },
+            correct: 'C'
+          },
+          {
+            id: 'N2_Q5',
+            shortTitle: 'Expresión de ingresos por venta de camisas y pantalones',
+            context: 'Un empleado de una tienda de ropa, durante un día, vendió cierta cantidad de camisas, con un precio de $40.000 cada una, y cierta cantidad de pantalones, con un precio de $80.000 cada uno.',
+            visual: null,
+            prompt: 'Si el vendedor quiere calcular los ingresos de dichas ventas, ¿con cuál de las siguientes expresiones debe hacerlo?',
+            options: {
+              A: '($40.000 + $80.000) × (número de camisas vendidas + número de pantalones vendidos).',
+              B: '$40.000 × número de camisas vendidas + $80.000 × número de pantalones vendidos.',
+              C: '($40.000 × $80.000) × (número de camisas vendidas × número de pantalones vendidos).',
+              D: '$40.000 × número de pantalones vendidos + $80.000 × número de camisas vendidas.'
+            },
+            correct: 'B'
+          },
+          {
+            id: 'N2_Q6',
+            shortTitle: 'Perímetro y alambre para lote trapecio isósceles',
+            context: 'Un campesino es dueño de un lote que tiene forma de trapecio isósceles y lo quiere cercar, utilizando tres cuerdas de alambre de púas. Por lo tanto, él quiere saber cuántos metros de alambre necesita para la cerca. La imagen muestra cómo va a quedar la cerca del lote.',
+            visual: SVG_TRAPECIO_CERCA,
+            prompt: 'Para hallar la cantidad de alambre que se necesita para la cerca, se puede usar el siguiente procedimiento:\n\nPaso 1. Utilizar el teorema de Pitágoras para encontrar un valor aproximado de x.\nPaso 2. Hallar el perímetro del lote.\nPaso 3. Multiplicar por 3 el perímetro del lote.\n\n¿Cuál es la cantidad aproximada de metros de alambre que se necesitan para construir la cerca del lote?',
+            options: {
+              A: '196 m',
+              B: '202 m',
+              C: '208 m',
+              D: '226 m'
+            },
+            correct: 'C'
+          },
+          {
+            id: 'N2_Q7',
+            shortTitle: 'Distancia horizontal L de rampa de camión (Trigonometría)',
+            context: 'Para descargar y pesar apropiadamente la mercancía en una fábrica de alimentos, un camión debe desplegar una rampa de 4 metros de largo, de manera que esta forme un ángulo de 30° con la superficie del suelo. Una bandera señala el punto en donde debe estar el extremo de la rampa, como se muestra en la figura.',
+            visual: SVG_CAMION_RAMPA,
+            prompt: '¿Cuál es la distancia L, en metros, que debe separar el camión de la bandera para realizar apropiadamente la descarga de mercancía en esta fábrica?',
+            options: {
+              A: '2 m.',
+              B: '1/8 m.',
+              C: '2√3 m.',
+              D: '√3/8 m.'
+            },
+            correct: 'C'
+          }
         ]
       };
 
-      let state = { studentName: '', gradeLevel: 'nivel1', currentIdx: 0, answers: Array(7).fill(null), startTime: null, resultsCache: [], adminFilter: 'all' };
+      // =========================================================================
+      // ESTADO DE LA APLICACIÓN
+      // =========================================================================
+      let state = {
+        currentView: 'start', // 'start' | 'exam' | 'submitted' | 'admin'
+        studentName: '',
+        gradeLevel: 'nivel1',
+        currentQuestionIdx: 0,
+        answers: Array(7).fill(null),
+        questionTimesMs: Array(7).fill(0),
+        examStartTime: null,
+        questionStartTime: null,
+        timerInterval: null,
+        adminFilter: 'all',
+        resultsCache: []
+      };
 
+      // =========================================================================
+      // UTILIDADES DE TIEMPO Y FORMATO
+      // =========================================================================
       function formatDuration(ms) {
-        const secs = Math.max(0, Math.round(ms / 1000));
-        return `${Math.floor(secs/60).toString().padStart(2,'0')}:${(secs%60).toString().padStart(2,'0')}`;
+        const totalSeconds = Math.max(0, Math.round(ms / 1000));
+        const mins = Math.floor(totalSeconds / 60);
+        const secs = totalSeconds % 60;
+        return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
       }
 
-      function getLocal() { try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.RESULTS) || '[]'); } catch(e){ return []; } }
-      function saveLocal(d) { localStorage.setItem(STORAGE_KEYS.RESULTS, JSON.stringify(d)); }
-      function getFb() { return (localStorage.getItem(STORAGE_KEYS.FIREBASE_URL) || '').trim().replace(/\/+$/, ''); }
-
-      async function pushCloud(rec) {
-        const url = getFb();
-        if (!url) return;
-        try { await fetch(`${url}/simulacro_icfes_resultados/${rec.id}.json`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(rec) }); } catch(e){}
+      function formatSecondsPrecise(ms) {
+        const secs = Math.max(0, ms / 1000);
+        return `${secs.toFixed(1)} s`;
       }
 
-      async function fetchAll() {
-        const local = getLocal();
-        const url = getFb();
-        if (!url) { state.resultsCache = local; return local; }
-        try {
-          const res = await fetch(`${url}/simulacro_icfes_resultados.json`);
-          const cloud = await res.json();
-          const list = cloud ? Object.values(cloud) : [];
-          const map = new Map();
-          local.forEach(x => map.set(x.id, x));
-          list.forEach(x => { if(x && x.id) map.set(x.id, x); });
-          const merged = Array.from(map.values());
-          saveLocal(merged);
-          state.resultsCache = merged;
-          return merged;
-        } catch(e) { state.resultsCache = local; return local; }
+      function getLevelLabel(levelKey) {
+        return levelKey === 'nivel1' ? 'Nivel 1: Sexto a Octavo' : 'Nivel 2: Noveno a Décimo';
       }
 
-      function switchView(v) {
-        ['viewStart', 'viewExam', 'viewSubmitted', 'viewAdmin'].forEach(id => document.getElementById(id).classList.add('hidden'));
-        document.getElementById(v).classList.remove('hidden');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+      function getLevelShortLabel(levelKey) {
+        return levelKey === 'nivel1' ? 'Nivel 1 (6°–8°)' : 'Nivel 2 (9°–10°)';
       }
 
-      function renderExam() {
-        const q = QUESTION_BANK[state.gradeLevel][state.currentIdx];
-        document.getElementById('questionNumberHeader').textContent = `Pregunta ${state.currentIdx + 1} de 7`;
-        document.getElementById('answeredCountDisplay').textContent = state.answers.filter(a => a !== null).length;
-        document.getElementById('questionContext').textContent = q.context;
-        
-        const vis = document.getElementById('questionVisualContainer');
-        if(q.visual) { vis.innerHTML = q.visual; vis.classList.remove('hidden'); } else { vis.innerHTML = ''; vis.classList.add('hidden'); }
-        document.getElementById('questionPrompt').textContent = q.prompt;
-        
-        const container = document.getElementById('optionsContainer');
-        container.innerHTML = '';
-        ['A', 'B', 'C', 'D'].forEach(letter => {
-          const isSel = state.answers[state.currentIdx] === letter;
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = `w-full text-left p-4 rounded-xl border-2 transition cursor-pointer ${isSel ? 'border-indigo-600 bg-indigo-50' : 'border-slate-200 bg-white hover:bg-slate-50'}`;
-          btn.innerHTML = `<span class="font-bold mr-2">${letter}.</span> ${q.options[letter]}`;
-          btn.onclick = () => { state.answers[state.currentIdx] = letter; renderExam(); };
-          container.appendChild(btn);
+      // =========================================================================
+      // DIÁLOGOS MODALES PERSONALIZADOS (REEMPLAZO DE alert / confirm)
+      // =========================================================================
+      function showDialog({ title, message, confirmText = 'Aceptar', cancelText = null, type = 'info' }) {
+        return new Promise((resolve) => {
+          const modal = document.getElementById('customDialogModal');
+          const titleEl = document.getElementById('dialogTitle');
+          const msgEl = document.getElementById('dialogMessage');
+          const confirmBtn = document.getElementById('dialogConfirmBtn');
+          const cancelBtn = document.getElementById('dialogCancelBtn');
+          const iconEl = document.getElementById('dialogIcon');
+
+          titleEl.textContent = title;
+          msgEl.textContent = message;
+          confirmBtn.textContent = confirmText;
+
+          if (type === 'danger') {
+            iconEl.className = 'w-10 h-10 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center shrink-0';
+            confirmBtn.className = 'px-4 py-2 rounded-xl bg-rose-600 text-white text-sm font-semibold hover:bg-rose-700 cursor-pointer';
+          } else if (type === 'success') {
+            iconEl.className = 'w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0';
+            confirmBtn.className = 'px-4 py-2 rounded-xl bg-emerald-600 text-white text-sm font-semibold hover:bg-emerald-700 cursor-pointer';
+          } else {
+            iconEl.className = 'w-10 h-10 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center shrink-0';
+            confirmBtn.className = 'px-4 py-2 rounded-xl bg-indigo-600 text-white text-sm font-semibold hover:bg-indigo-700 cursor-pointer';
+          }
+
+          if (cancelText) {
+            cancelBtn.textContent = cancelText;
+            cancelBtn.classList.remove('hidden');
+          } else {
+            cancelBtn.classList.add('hidden');
+          }
+
+          modal.classList.remove('hidden');
+
+          const cleanup = (result) => {
+            modal.classList.add('hidden');
+            confirmBtn.onclick = null;
+            cancelBtn.onclick = null;
+            resolve(result);
+          };
+
+          confirmBtn.onclick = () => cleanup(true);
+          cancelBtn.onclick = () => cleanup(false);
         });
+      }
 
-        const pills = document.getElementById('questionNavPills');
-        pills.innerHTML = '';
-        for(let i=0; i<7; i++) {
-          const p = document.createElement('button');
-          p.type = 'button';
-          p.textContent = i+1;
-          p.className = `w-8 h-8 rounded-lg text-xs font-bold ${i === state.currentIdx ? 'bg-indigo-600 text-white' : state.answers[i] ? 'bg-indigo-100 text-indigo-800' : 'bg-slate-100 text-slate-600'}`;
-          p.onclick = () => { state.currentIdx = i; renderExam(); };
-          pills.appendChild(p);
+      // =========================================================================
+      // PERSISTENCIA LOCAL Y SINCRONIZACIÓN FIREBASE REST API
+      // =========================================================================
+      function getLocalResults() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEYS.RESULTS);
+          return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+          console.error('Error leyendo localStorage:', e);
+          return [];
         }
       }
 
-      document.getElementById('startForm').onsubmit = (e) => {
-        e.preventDefault();
-        state.studentName = document.getElementById('studentNameInput').value.trim();
-        state.gradeLevel = document.querySelector('input[name="gradeLevel"]:checked').value;
-        state.currentIdx = 0;
+      function saveLocalResults(list) {
+        try {
+          localStorage.setItem(STORAGE_KEYS.RESULTS, JSON.stringify(list));
+          if (syncChannel) {
+            syncChannel.postMessage({ type: 'RESULTS_UPDATED' });
+          }
+        } catch (e) {
+          console.error('Error guardando en localStorage:', e);
+        }
+      }
+
+      function getFirebaseUrl() {
+        const savedUrl = localStorage.getItem(STORAGE_KEYS.FIREBASE_URL) || '';
+        const url = savedUrl.trim() || DEFAULT_FIREBASE_URL;
+        return url.replace(/\/+$/, '');
+      }
+
+      async function pushResultToCloud(record) {
+        const fbUrl = getFirebaseUrl();
+        try {
+          const response = await fetch(`${fbUrl}/simulacro_icfes_resultados/${encodeURIComponent(record.id)}.json`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(record)
+          });
+          if (!response.ok) {
+            const detail = await response.text().catch(() => '');
+            throw new Error(`Firebase HTTP ${response.status}${detail ? ': ' + detail : ''}`);
+          }
+          return true;
+        } catch (err) {
+          console.warn('No se pudo sincronizar con Firebase en este momento:', err);
+          return false;
+        }
+      }
+
+      // Escucha cambios de Firebase en vivo (Server-Sent Events).
+      // Solo permanece activa mientras el panel docente está abierto.
+      function stopFirebaseRealtimeListener() {
+        if (firebaseRealtimeStream) {
+          firebaseRealtimeStream.close();
+          firebaseRealtimeStream = null;
+        }
+      }
+
+      function startFirebaseRealtimeListener() {
+        stopFirebaseRealtimeListener();
+        if (!('EventSource' in window)) return;
+
+        const fbUrl = getFirebaseUrl();
+        const stream = new EventSource(`${fbUrl}/simulacro_icfes_resultados.json`);
+        firebaseRealtimeStream = stream;
+
+        stream.onopen = () => {
+          const pill = document.getElementById('syncStatusPill');
+          if (pill && state.currentView === 'admin') {
+            pill.textContent = 'Firebase • En vivo';
+            pill.className = 'px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-950 text-emerald-300 border border-emerald-700';
+          }
+        };
+
+        const handleCloudChange = () => {
+          if (state.currentView !== 'admin' || firebaseRefreshQueued) return;
+          firebaseRefreshQueued = true;
+          // Agrupa eventos consecutivos para evitar refrescos duplicados.
+          Promise.resolve().then(async () => {
+            firebaseRefreshQueued = false;
+            if (state.currentView === 'admin') await refreshAdminDashboard();
+          });
+        };
+
+        ['put', 'patch'].forEach(eventName => {
+          stream.addEventListener(eventName, handleCloudChange);
+        });
+
+        stream.addEventListener('cancel', () => {
+          const pill = document.getElementById('syncStatusPill');
+          if (pill) {
+            pill.textContent = 'Firebase • Acceso denegado';
+            pill.className = 'px-2.5 py-0.5 rounded-full text-xs font-medium bg-rose-950 text-rose-300 border border-rose-700';
+          }
+        });
+
+        stream.onerror = () => {
+          const pill = document.getElementById('syncStatusPill');
+          if (pill && state.currentView === 'admin') {
+            pill.textContent = 'Firebase • Reconectando…';
+            pill.className = 'px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-950 text-amber-300 border border-amber-700';
+          }
+          // EventSource intenta reconectarse automáticamente.
+        };
+      }
+
+      async function fetchAllResults() {
+        const localData = getLocalResults();
+        const fbUrl = getFirebaseUrl();
+        const statusPill = document.getElementById('syncStatusPill');
+
+        if (!fbUrl) {
+          if (statusPill) {
+            statusPill.textContent = 'Almacenamiento Local';
+            statusPill.className = 'px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700';
+          }
+          state.resultsCache = localData;
+          return localData;
+        }
+
+        try {
+          const res = await fetch(`${fbUrl}/simulacro_icfes_resultados.json`);
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          const cloudObj = await res.json();
+          const cloudList = cloudObj ? Object.values(cloudObj) : [];
+
+          // Fusionar registros locales y en la nube sin duplicados por id
+          const mapById = new Map();
+          localData.forEach(item => mapById.set(item.id, item));
+          cloudList.forEach(item => {
+            if (item && item.id) mapById.set(item.id, item);
+          });
+
+          const merged = Array.from(mapById.values());
+          saveLocalResults(merged);
+          state.resultsCache = merged;
+
+          if (statusPill) {
+            statusPill.textContent = 'Nube Firebase Activa';
+            statusPill.className = 'px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-950 text-emerald-300 border border-emerald-700';
+          }
+          return merged;
+        } catch (err) {
+          console.warn('Error obteniendo datos de Firebase, usando caché local:', err);
+          if (statusPill) {
+            statusPill.textContent = 'Nube Sin Conexión (Local)';
+            statusPill.className = 'px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-950 text-amber-300 border border-amber-700';
+          }
+          state.resultsCache = localData;
+          return localData;
+        }
+      }
+
+      // =========================================================================
+      // CONTROL DE VISTAS
+      // =========================================================================
+      function switchView(viewName) {
+        state.currentView = viewName;
+        ['viewStart', 'viewExam', 'viewSubmitted', 'viewAdmin'].forEach(id => {
+          document.getElementById(id).classList.add('hidden');
+        });
+
+        const headerArea = document.getElementById('headerStatusArea');
+        if (viewName === 'start') {
+          document.getElementById('viewStart').classList.remove('hidden');
+          headerArea.innerHTML = `
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Sesión Lista
+            </span>
+          `;
+        } else if (viewName === 'exam') {
+          document.getElementById('viewExam').classList.remove('hidden');
+          headerArea.innerHTML = `
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-900 text-white font-mono text-sm font-bold shadow-xs">
+              <svg class="w-4 h-4 text-amber-400 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span id="liveTimerDisplay">00:00</span>
+            </div>
+          `;
+        } else if (viewName === 'submitted') {
+          document.getElementById('viewSubmitted').classList.remove('hidden');
+          headerArea.innerHTML = `
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              Prueba Finalizada
+            </span>
+          `;
+        } else if (viewName === 'admin') {
+          document.getElementById('viewAdmin').classList.remove('hidden');
+          headerArea.innerHTML = `
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-700 border border-indigo-200">
+              Modo Docente
+            </span>
+          `;
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // =========================================================================
+      // LÓGICA DEL EXAMEN CIEGO (ESTUDIANTE)
+      // =========================================================================
+      function recordCurrentQuestionElapsed() {
+        if (state.questionStartTime !== null) {
+          const now = Date.now();
+          state.questionTimesMs[state.currentQuestionIdx] += (now - state.questionStartTime);
+          state.questionStartTime = now;
+        }
+      }
+
+      function startExam(name, level) {
+        state.studentName = name.trim();
+        state.gradeLevel = level;
+        state.currentQuestionIdx = 0;
         state.answers = Array(7).fill(null);
-        state.startTime = Date.now();
+        state.questionTimesMs = Array(7).fill(0);
+        state.examStartTime = Date.now();
+        state.questionStartTime = Date.now();
+
         document.getElementById('examStudentNameDisplay').textContent = state.studentName;
-        document.getElementById('examLevelBadge').textContent = state.gradeLevel.toUpperCase();
-        switchView('viewExam');
-        renderExam();
-      };
+        document.getElementById('examLevelBadge').textContent = getLevelShortLabel(level);
 
-      document.getElementById('btnPrevQuestion').onclick = () => { if(state.currentIdx > 0) { state.currentIdx--; renderExam(); } };
-      document.getElementById('btnNextQuestion').onclick = () => { if(state.currentIdx < 6) { state.currentIdx++; renderExam(); } };
+        switchView('exam');
+        renderExamQuestion();
 
-      document.getElementById('btnSubmitExam').onclick = async () => {
+        if (state.timerInterval) clearInterval(state.timerInterval);
+        state.timerInterval = setInterval(() => {
+          const elapsed = Date.now() - state.examStartTime;
+          const timerEl = document.getElementById('liveTimerDisplay');
+          if (timerEl) timerEl.textContent = formatDuration(elapsed);
+        }, 500);
+      }
+
+      function goToQuestion(newIdx) {
+        if (newIdx < 0 || newIdx >= 7) return;
+        recordCurrentQuestionElapsed();
+        state.currentQuestionIdx = newIdx;
+        renderExamQuestion();
+      }
+
+      function renderExamQuestion() {
         const questions = QUESTION_BANK[state.gradeLevel];
+        const idx = state.currentQuestionIdx;
+        const q = questions[idx];
+        const selectedOption = state.answers[idx];
+
+        // Actualizar contador de respondidas
+        const answeredCount = state.answers.filter(a => a !== null).length;
+        document.getElementById('answeredCountDisplay').textContent = answeredCount;
+
+        // Renderizar píldoras 1..7
+        const pillsContainer = document.getElementById('questionNavPills');
+        pillsContainer.innerHTML = '';
+        for (let i = 0; i < 7; i++) {
+          const isCurrent = i === idx;
+          const isAnswered = state.answers[i] !== null;
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.textContent = i + 1;
+          btn.className = `w-8 h-8 sm:w-9 sm:h-9 rounded-lg text-xs sm:text-sm font-bold transition flex items-center justify-center cursor-pointer ${
+            isCurrent
+              ? 'bg-indigo-600 text-white ring-2 ring-indigo-300 shadow-xs'
+              : isAnswered
+              ? 'bg-indigo-100 text-indigo-800 border border-indigo-300 hover:bg-indigo-200'
+              : 'bg-slate-100 text-slate-600 border border-slate-200 hover:bg-slate-200'
+          }`;
+          btn.onclick = () => goToQuestion(i);
+          pillsContainer.appendChild(btn);
+        }
+
+        // Cabecera de pregunta
+        document.getElementById('questionNumberHeader').textContent = `Pregunta ${idx + 1} de 7`;
+        const statusBadge = document.getElementById('questionSelectionStatus');
+        if (selectedOption) {
+          statusBadge.textContent = `Opción ${selectedOption} seleccionada`;
+          statusBadge.className = 'text-xs font-semibold px-2.5 py-1 rounded-full bg-indigo-100 text-indigo-800';
+        } else {
+          statusBadge.textContent = 'Sin responder';
+          statusBadge.className = 'text-xs font-medium px-2.5 py-1 rounded-full bg-slate-200/70 text-slate-600';
+        }
+
+        // Contexto, visual y enunciado
+        document.getElementById('questionContext').textContent = q.context;
+        const visualContainer = document.getElementById('questionVisualContainer');
+        if (q.visual) {
+          visualContainer.innerHTML = q.visual;
+          visualContainer.classList.remove('hidden');
+        } else {
+          visualContainer.innerHTML = '';
+          visualContainer.classList.add('hidden');
+        }
+        document.getElementById('questionPrompt').textContent = q.prompt;
+
+        // Opciones A, B, C, D (neutras, sin revelar acierto/error)
+        const optionsContainer = document.getElementById('optionsContainer');
+        optionsContainer.innerHTML = '';
+        ['A', 'B', 'C', 'D'].forEach((letter) => {
+          const isSelected = selectedOption === letter;
+          const optionBtn = document.createElement('button');
+          optionBtn.type = 'button';
+          optionBtn.className = `w-full text-left p-4 rounded-xl border-2 transition-all flex items-start gap-3.5 cursor-pointer ${
+            isSelected
+              ? 'border-indigo-600 bg-indigo-50/70 shadow-2xs'
+              : 'border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50/80'
+          }`;
+
+          optionBtn.innerHTML = `
+            <span class="w-8 h-8 rounded-lg shrink-0 flex items-center justify-center font-extrabold text-sm transition ${
+              isSelected
+                ? 'bg-indigo-600 text-white'
+                : 'bg-slate-100 text-slate-700 border border-slate-300'
+            }">
+              ${letter}
+            </span>
+            <span class="text-sm sm:text-base text-slate-800 pt-1 leading-relaxed font-medium">
+              ${q.options[letter]}
+            </span>
+          `;
+
+          optionBtn.onclick = () => {
+            state.answers[idx] = letter;
+            renderExamQuestion();
+          };
+          optionsContainer.appendChild(optionBtn);
+        });
+
+        // Botones Anterior / Siguiente / Enviar
+        document.getElementById('btnPrevQuestion').disabled = idx === 0;
+        const nextBtn = document.getElementById('btnNextQuestion');
+        if (idx === 6) {
+          nextBtn.classList.add('hidden');
+        } else {
+          nextBtn.classList.remove('hidden');
+        }
+      }
+
+      async function handleFinishExam() {
+        recordCurrentQuestionElapsed();
+        const unanswered = state.answers.filter(a => a === null).length;
+
+        const msg = unanswered > 0
+          ? `Aún tienes ${unanswered} pregunta(s) sin responder. ¿Estás seguro de que deseas enviar tu examen ahora?`
+          : 'Has respondido las 7 preguntas. ¿Deseas enviar definitivamente tu examen?';
+
+        const confirmed = await showDialog({
+          title: 'Enviar Examen',
+          message: msg,
+          confirmText: 'Sí, Enviar Examen',
+          cancelText: 'Revisar Respuestas',
+          type: 'info'
+        });
+
+        if (!confirmed) {
+          state.questionStartTime = Date.now();
+          return;
+        }
+
+        if (state.timerInterval) {
+          clearInterval(state.timerInterval);
+          state.timerInterval = null;
+        }
+
+        const totalTimeMs = Date.now() - state.examStartTime;
+        const questions = QUESTION_BANK[state.gradeLevel];
+
         let correctCount = 0;
         const breakdown = questions.map((q, i) => {
           const chosen = state.answers[i];
           const isCorrect = chosen === q.correct;
-          if(isCorrect) correctCount++;
-          return { questionNumber: i+1, shortTitle: q.shortTitle, chosenOption: chosen, correctOption: q.correct, isCorrect };
+          if (isCorrect) correctCount++;
+          return {
+            questionNumber: i + 1,
+            questionId: q.id,
+            shortTitle: q.shortTitle,
+            chosenOption: chosen,
+            correctOption: q.correct,
+            isCorrect,
+            timeMs: Math.round(state.questionTimesMs[i])
+          };
         });
 
         const record = {
-          id: 'sub_' + Date.now(),
+          id: 'sub_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
           studentName: state.studentName,
           gradeLevel: state.gradeLevel,
           correctCount,
           wrongCount: 7 - correctCount,
           scorePercent: Math.round((correctCount / 7) * 100),
-          totalTimeMs: Date.now() - state.startTime,
+          totalTimeMs,
+          avgTimePerQuestionMs: Math.round(totalTimeMs / 7),
+          submittedAt: new Date().toISOString(),
           breakdown
         };
 
-        const existing = getLocal();
+        const existing = getLocalResults();
         existing.push(record);
-        saveLocal(existing);
-        await pushCloud(record);
+        saveLocalResults(existing);
+        const cloudSaved = await pushResultToCloud(record);
+        if (!cloudSaved) {
+          await showDialog({
+            title: 'Resultado guardado sin conexión',
+            message: 'El examen quedó guardado en este dispositivo, pero Firebase no confirmó la recepción. Informa al docente para revisar la conexión antes de cerrar esta página.',
+            type: 'danger'
+          });
+        }
 
+        // Pantalla final del estudiante (ESTRICTO: solo confirmación, nombre, grado y tiempo)
         document.getElementById('finalStudentName').textContent = record.studentName;
-        document.getElementById('finalStudentLevel').textContent = record.gradeLevel.toUpperCase();
+        document.getElementById('finalStudentLevel').textContent = getLevelLabel(record.gradeLevel);
         document.getElementById('finalTotalTime').textContent = formatDuration(record.totalTimeMs);
-        switchView('viewSubmitted');
-      };
 
-      document.getElementById('btnNewAttempt').onclick = () => switchView('viewStart');
-      
-      const openAdmin = () => {
-        const pin = prompt('Ingrese clave docente:');
-        if (pin === DEFAULT_ADMIN_KEY) { switchView('viewAdmin'); cargarPanel(); }
-      };
-      document.getElementById('secretAdminTrigger').onclick = openAdmin;
-      document.getElementById('appLogoTrigger').onclick = openAdmin;
-
-      if (new URLSearchParams(window.location.search).get('admin') === '1') {
-        setTimeout(openAdmin, 300);
+        switchView('submitted');
       }
 
-      document.getElementById('btnExitAdmin').onclick = () => switchView('viewStart');
-      document.getElementById('btnToggleFirebaseConfig').onclick = () => {
-        document.getElementById('firebaseConfigPanel').classList.toggle('hidden');
-      };
+      // =========================================================================
+      // ACCESO PRIVADO Y RENDERIZADO DEL PANEL DOCENTE
+      // =========================================================================
+      function getStoredAdminPin() {
+        return localStorage.getItem(STORAGE_KEYS.ADMIN_PIN) || DEFAULT_ADMIN_KEY;
+      }
 
-      document.getElementById('btnSaveFirebaseUrl').onclick = async () => {
-        const u = document.getElementById('firebaseUrlInput').value.trim().replace(/\/+$/, '');
-        if(!u) return;
-        localStorage.setItem(STORAGE_KEYS.FIREBASE_URL, u);
-        alert('¡Conectado a Firebase correctamente!');
-        cargarPanel();
-      };
+      function openAdminLoginModal() {
+        const modal = document.getElementById('adminLoginModal');
+        const input = document.getElementById('adminPasswordInput');
+        const err = document.getElementById('adminLoginError');
+        input.value = '';
+        err.classList.add('hidden');
+        modal.classList.remove('hidden');
+        setTimeout(() => input.focus(), 50);
+      }
 
-      async function cargarPanel() {
-        document.getElementById('firebaseUrlInput').value = getFb();
-        const data = await fetchAll();
-        document.getElementById('countAll').textContent = data.length;
-        document.getElementById('countN1').textContent = data.filter(r => r.gradeLevel === 'nivel1').length;
-        document.getElementById('countN2').textContent = data.filter(r => r.gradeLevel === 'nivel2').length;
+      async function enterAdminPanel() {
+        document.getElementById('adminLoginModal').classList.add('hidden');
+        document.getElementById('firebaseUrlInput').value = getFirebaseUrl();
+        switchView('admin');
+        await refreshAdminDashboard();
+        startFirebaseRealtimeListener();
+      }
 
-        const filtered = state.adminFilter === 'all' ? data : data.filter(r => r.gradeLevel === state.adminFilter);
-        const ranked = filtered.sort((a, b) => b.correctCount !== a.correctCount ? b.correctCount - a.correctCount : a.totalTimeMs - b.totalTimeMs);
+      function sortStudentsForRanking(list) {
+        return [...list].sort((a, b) => {
+          // 1. Mayor cantidad de aciertos primero
+          if (b.correctCount !== a.correctCount) {
+            return b.correctCount - a.correctCount;
+          }
+          // 2. Desempate estricto: MENOR tiempo total empleado
+          return a.totalTimeMs - b.totalTimeMs;
+        });
+      }
 
-        // Podio Top 3
+      async function refreshAdminDashboard() {
+        const allResults = await fetchAllResults();
+
+        // Actualizar contadores de filtros
+        document.getElementById('countAll').textContent = allResults.length;
+        document.getElementById('countN1').textContent = allResults.filter(r => r.gradeLevel === 'nivel1').length;
+        document.getElementById('countN2').textContent = allResults.filter(r => r.gradeLevel === 'nivel2').length;
+
+        // Filtrar según pestaña seleccionada
+        const filtered = state.adminFilter === 'all'
+          ? allResults
+          : allResults.filter(r => r.gradeLevel === state.adminFilter);
+
+        const ranked = sortStudentsForRanking(filtered);
+        renderPodium(ranked);
+        renderLeaderboardTable(ranked);
+      }
+
+      function renderPodium(ranked) {
         const podiumGrid = document.getElementById('podiumGrid');
-        const medals = ['🥇 Oro', '🥈 Plata', '🥉 Bronce'];
-        podiumGrid.innerHTML = medals.map((m, idx) => {
-          const s = ranked[idx];
-          if(!s) return `<div class="rounded-xl border border-dashed p-4 text-center text-xs text-slate-400">${m}: Vacante</div>`;
-          return `<div class="rounded-xl border bg-white p-4 shadow-xs"><span class="text-xs font-bold">${m}</span><h4 class="font-extrabold text-slate-900 mt-1">${s.studentName}</h4><p class="text-xs text-emerald-600 font-bold mt-2">Aciertos: ${s.correctCount}/7 (${s.scorePercent}%)</p><p class="text-xs font-mono text-slate-500">Tiempo: ${formatDuration(s.totalTimeMs)}</p></div>`;
-        }).join('');
+        if (ranked.length === 0) {
+          podiumGrid.innerHTML = `
+            <div class="col-span-full bg-white rounded-2xl border border-dashed border-slate-300 p-8 text-center text-slate-400 text-sm">
+              Aún no hay evaluaciones registradas en este filtro para mostrar el podio.
+            </div>
+          `;
+          return;
+        }
 
-        const tbody = document.getElementById('leaderboardBody');
-        tbody.innerHTML = ranked.length ? ranked.map((s, i) => `
-          <tr class="hover:bg-slate-50 cursor-pointer" onclick="window.__verDetalle('${s.id}')">
-            <td class="py-3 px-4 text-center font-bold">#${i+1}</td>
-            <td class="py-3 px-4 font-bold">${s.studentName}</td>
-            <td class="py-3 px-4">${s.gradeLevel}</td>
-            <td class="py-3 px-4 text-center font-bold text-emerald-600">${s.correctCount}/7</td>
-            <td class="py-3 px-4 text-center font-semibold">${s.scorePercent}%</td>
-            <td class="py-3 px-4 text-right font-mono">${formatDuration(s.totalTimeMs)}</td>
-            <td class="py-3 px-4 text-center"><button type="button" class="px-2.5 py-1 bg-slate-100 rounded text-xs font-semibold">Ver</button></td>
-          </tr>
-        `).join('') : `<tr><td colspan="7" class="py-6 text-center text-slate-400">Sin resultados todavía.</td></tr>`;
+        const medals = [
+          {
+            rank: 1,
+            label: '1° Lugar • Oro',
+            bg: 'bg-gradient-to-br from-amber-50 to-yellow-100/70 border-amber-300',
+            badge: 'bg-amber-500 text-white',
+            medalIcon: '🥇'
+          },
+          {
+            rank: 2,
+            label: '2° Lugar • Plata',
+            bg: 'bg-gradient-to-br from-slate-50 to-slate-200/60 border-slate-300',
+            badge: 'bg-slate-600 text-white',
+            medalIcon: '🥈'
+          },
+          {
+            rank: 3,
+            label: '3° Lugar • Bronce',
+            bg: 'bg-gradient-to-br from-orange-50 to-amber-100/50 border-orange-300',
+            badge: 'bg-orange-600 text-white',
+            medalIcon: '🥉'
+          }
+        ];
+
+        podiumGrid.innerHTML = medals.map((m, idx) => {
+          const student = ranked[idx];
+          if (!student) {
+            return `
+              <div class="rounded-2xl border border-dashed border-slate-200 bg-white/60 p-5 flex flex-col items-center justify-center text-slate-400 text-xs">
+                <span class="text-2xl mb-1 opacity-40">${m.medalIcon}</span>
+                <span>Puesto ${m.rank} vacante</span>
+              </div>
+            `;
+          }
+
+          return `
+            <div class="rounded-2xl border-2 ${m.bg} p-5 shadow-2xs flex flex-col justify-between transition hover:shadow-md cursor-pointer" onclick="window.__openStudentDetail('${student.id}')">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <span class="px-2.5 py-1 rounded-lg text-xs font-extrabold ${m.badge}">${m.label}</span>
+                  <span class="text-2xl">${m.medalIcon}</span>
+                </div>
+                <h4 class="text-base font-extrabold text-slate-900 truncate" title="${student.studentName}">
+                  ${student.studentName}
+                </h4>
+                <p class="text-xs font-medium text-slate-600 mt-0.5">${getLevelShortLabel(student.gradeLevel)}</p>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-slate-900/10 flex items-center justify-between text-xs">
+                <div>
+                  <span class="text-slate-500 block">Aciertos</span>
+                  <strong class="text-sm font-extrabold text-emerald-700">${student.correctCount}/7 (${student.scorePercent}%)</strong>
+                </div>
+                <div class="text-right">
+                  <span class="text-slate-500 block">Tiempo Total</span>
+                  <strong class="text-sm font-extrabold font-mono text-slate-900">${formatDuration(student.totalTimeMs)}</strong>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
       }
 
-      window.__verDetalle = function(id) {
-        const s = state.resultsCache.find(x => x.id === id);
-        if(!s) return;
-        document.getElementById('detailStudentName').textContent = s.studentName;
-        document.getElementById('detailStudentMeta').textContent = `Nivel: ${s.gradeLevel.toUpperCase()} • Aciertos: ${s.correctCount}/7 • Tiempo: ${formatDuration(s.totalTimeMs)}`;
-        const list = document.getElementById('detailQuestionsList');
-        const qs = QUESTION_BANK[s.gradeLevel];
-        list.innerHTML = (s.breakdown || []).map((b, i) => {
-          const q = qs[i] || {};
-          return `<div class="bg-white p-3 rounded-xl border ${b.isCorrect ? 'border-emerald-200' : 'border-rose-200'} text-xs space-y-1"><div class="font-bold">Pregunta ${b.questionNumber}: ${b.shortTitle}</div><div>Respuesta estudiante: <strong class="${b.isCorrect ? 'text-emerald-600':'text-rose-600'}">${b.chosenOption || 'Ninguna'}</strong> | Correcta: <strong>${b.correctOption}</strong></div></div>`;
+      function renderLeaderboardTable(ranked) {
+        const tbody = document.getElementById('leaderboardBody');
+        if (ranked.length === 0) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="9" class="py-10 px-4 text-center text-slate-400 text-sm">
+                No se encontraron registros de estudiantes.
+              </td>
+            </tr>
+          `;
+          return;
+        }
+
+        tbody.innerHTML = ranked.map((s, idx) => {
+          const pos = idx + 1;
+          const posBadge = pos === 1 ? '🥇 1' : pos === 2 ? '🥈 2' : pos === 3 ? '🥉 3' : `#${pos}`;
+          return `
+            <tr class="hover:bg-indigo-50/50 transition cursor-pointer" onclick="window.__openStudentDetail('${s.id}')">
+              <td class="py-3.5 px-4 text-center font-extrabold text-slate-700">${posBadge}</td>
+              <td class="py-3.5 px-4 font-bold text-slate-900">${s.studentName}</td>
+              <td class="py-3.5 px-4">
+                <span class="px-2.5 py-1 rounded-md text-xs font-semibold ${
+                  s.gradeLevel === 'nivel1' ? 'bg-indigo-50 text-indigo-700' : 'bg-blue-50 text-blue-700'
+                }">
+                  ${getLevelShortLabel(s.gradeLevel)}
+                </span>
+              </td>
+              <td class="py-3.5 px-4 text-center font-extrabold text-emerald-600">${s.correctCount}/7</td>
+              <td class="py-3.5 px-4 text-center font-semibold text-rose-600">${s.wrongCount}/7</td>
+              <td class="py-3.5 px-4 text-center">
+                <span class="px-2 py-0.5 rounded-full text-xs font-bold ${
+                  s.scorePercent >= 70 ? 'bg-emerald-100 text-emerald-800' : s.scorePercent >= 40 ? 'bg-amber-100 text-amber-800' : 'bg-rose-100 text-rose-800'
+                }">
+                  ${s.scorePercent}%
+                </span>
+              </td>
+              <td class="py-3.5 px-4 text-right font-mono font-bold text-slate-900">${formatDuration(s.totalTimeMs)}</td>
+              <td class="py-3.5 px-4 text-right font-mono text-xs text-slate-600">${formatSecondsPrecise(s.avgTimePerQuestionMs)}</td>
+              <td class="py-3.5 px-4 text-center">
+                <button type="button" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-indigo-600 hover:text-white text-slate-700 text-xs font-semibold transition">
+                  Ver 1–7
+                </button>
+              </td>
+            </tr>
+          `;
         }).join('');
+      }
+
+      // Exponer apertura del modal de desglose individual
+      window.__openStudentDetail = function (studentId) {
+        const student = state.resultsCache.find(r => r.id === studentId);
+        if (!student) return;
+
+        document.getElementById('detailLevelBadge').textContent = getLevelLabel(student.gradeLevel);
+        document.getElementById('detailStudentName').textContent = student.studentName;
+        document.getElementById('detailStudentMeta').textContent =
+          `Aciertos: ${student.correctCount}/7 (${student.scorePercent}%) • Tiempo Total: ${formatDuration(student.totalTimeMs)} • Promedio: ${formatSecondsPrecise(student.avgTimePerQuestionMs)}/pregunta`;
+
+        const listEl = document.getElementById('detailQuestionsList');
+        const questions = QUESTION_BANK[student.gradeLevel] || [];
+
+        listEl.innerHTML = (student.breakdown || []).map((item, idx) => {
+          const qObj = questions[idx] || {};
+          const chosenText = item.chosenOption ? `${item.chosenOption}. ${qObj.options ? qObj.options[item.chosenOption] : ''}` : 'Sin responder';
+          const correctText = `${item.correctOption}. ${qObj.options ? qObj.options[item.correctOption] : ''}`;
+
+          return `
+            <div class="bg-white rounded-xl p-4 border ${item.isCorrect ? 'border-emerald-200' : 'border-rose-200'} shadow-2xs space-y-2.5">
+              <div class="flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-7 h-7 rounded-lg font-extrabold text-xs flex items-center justify-center ${
+                    item.isCorrect ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'
+                  }">
+                    ${item.questionNumber}
+                  </span>
+                  <span class="text-sm font-bold text-slate-900">${item.shortTitle || qObj.shortTitle || 'Pregunta ' + item.questionNumber}</span>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-mono font-semibold px-2.5 py-1 rounded-md bg-slate-100 text-slate-700">
+                    ⏱ ${formatSecondsPrecise(item.timeMs)}
+                  </span>
+                  <span class="text-xs font-bold px-2.5 py-1 rounded-full ${
+                    item.isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
+                  }">
+                    ${item.isCorrect ? '✓ Acierto' : '✕ Error'}
+                  </span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-xs">
+                <div class="p-2.5 rounded-lg ${item.isCorrect ? 'bg-emerald-50/70 text-emerald-900' : 'bg-rose-50/70 text-rose-900'}">
+                  <span class="block font-bold uppercase text-[10px] opacity-75 mb-0.5">Respuesta del Estudiante:</span>
+                  <span class="font-medium">${chosenText}</span>
+                </div>
+                <div class="p-2.5 rounded-lg bg-slate-50 text-slate-800 border border-slate-200/70">
+                  <span class="block font-bold uppercase text-[10px] text-slate-500 mb-0.5">Clave Correcta ICFES:</span>
+                  <span class="font-semibold text-emerald-700">${correctText}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
         document.getElementById('studentDetailModal').classList.remove('hidden');
       };
 
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.onclick = () => {
-          document.querySelectorAll('.filter-btn').forEach(b => b.className = 'filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 cursor-pointer');
-          btn.className = 'filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white cursor-pointer';
-          state.adminFilter = btn.dataset.filter;
-          cargarPanel();
-        };
-      });
+      // Exportar resultados a CSV compatible con Excel (UTF-8 con BOM)
+      function exportResultsToCsv() {
+        const ranked = sortStudentsForRanking(
+          state.adminFilter === 'all'
+            ? state.resultsCache
+            : state.resultsCache.filter(r => r.gradeLevel === state.adminFilter)
+        );
 
-      document.getElementById('closeDetailModalBtn').onclick = () => document.getElementById('studentDetailModal').classList.add('hidden');
-      document.getElementById('closeDetailModalFooterBtn').onclick = () => document.getElementById('studentDetailModal').classList.add('hidden');
+        if (ranked.length === 0) {
+          showDialog({
+            title: 'Sin datos para exportar',
+            message: 'No hay resultados de estudiantes registrados para generar el archivo CSV.',
+            type: 'info'
+          });
+          return;
+        }
 
-      document.getElementById('btnLoadDemoData').onclick = async () => {
-        const demo = { id:'demo_'+Date.now(), studentName:'Estudiante Demo', gradeLevel:'nivel1', correctCount:7, wrongCount:0, scorePercent:100, totalTimeMs:30000, breakdown: QUESTION_BANK.nivel1.map((q,i)=>({questionNumber:i+1, shortTitle:q.shortTitle, chosenOption:q.correct, correctOption:q.correct, isCorrect:true})) };
-        const d = getLocal(); d.push(demo); saveLocal(d); await pushCloud(demo); cargarPanel();
-      };
+        const headers = [
+          'Posicion',
+          'Nombre Completo',
+          'Nivel / Grado',
+          'Aciertos (de 7)',
+          'Errores (de 7)',
+          'Puntaje (%)',
+          'Tiempo Total (mm:ss)',
+          'Tiempo Total (segundos)',
+          'Tiempo Promedio por Pregunta (s)',
+          'P1', 'P2', 'P3', 'P4', 'P5', 'P6', 'P7',
+          'Fecha Envio'
+        ];
 
-      document.getElementById('btnClearAllData').onclick = async () => {
-        if(confirm('¿Borrar todo?')) { saveLocal([]); cargarPanel(); }
-      };
+        const rows = ranked.map((s, idx) => {
+          const pCols = Array.from({ length: 7 }, (_, i) => {
+            const b = s.breakdown && s.breakdown[i];
+            if (!b) return '-';
+            return `${b.chosenOption || 'N/R'} (${b.isCorrect ? 'OK' : 'X'} - ${(b.timeMs / 1000).toFixed(1)}s)`;
+          });
 
-      document.getElementById('btnExportCsv').onclick = () => {
-        const data = state.resultsCache;
-        if(!data.length) return alert('Sin datos');
-        let csv = '\uFEFFNombre,Nivel,Aciertos,Puntaje,Tiempo\n' + data.map(s => `"${s.studentName}","${s.gradeLevel}",${s.correctCount},${s.scorePercent}%,${formatDuration(s.totalTimeMs)}`).join('\n');
-        const blob = new Blob([csv], {type: 'text/csv;charset=utf-8;'});
+          return [
+            idx + 1,
+            `"${(s.studentName || '').replace(/"/g, '""')}"`,
+            `"${getLevelLabel(s.gradeLevel)}"`,
+            s.correctCount,
+            s.wrongCount,
+            `${s.scorePercent}%`,
+            formatDuration(s.totalTimeMs),
+            (s.totalTimeMs / 1000).toFixed(1),
+            (s.avgTimePerQuestionMs / 1000).toFixed(1),
+            ...pCols,
+            `"${new Date(s.submittedAt).toLocaleString('es-CO')}"`
+          ].join(',');
+        });
+
+        const csvContent = '\uFEFF' + [headers.join(','), ...rows].join('\n');
+        const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
         const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'resultados_icfes.csv';
+        link.href = url;
+        link.download = `Resultados_Simulacro_ICFES_${new Date().toISOString().slice(0, 10)}.csv`;
+        document.body.appendChild(link);
         link.click();
-      };
+        document.body.removeChild(link);
+        URL.revokeObjectURL(url);
+      }
+
+      // Generar datos de demostración realistas para pruebas del docente
+      async function loadDemoStudents() {
+        const demos = [
+          {
+            name: 'Valentina Torres Mendoza',
+            level: 'nivel2',
+            choices: ['D', 'A', 'A', 'C', 'B', 'C', 'C'], // 7/7
+            times: [38000, 31000, 19000, 52000, 16000, 64000, 45000]
+          },
+          {
+            name: 'Santiago Morales Rojas',
+            level: 'nivel2',
+            choices: ['D', 'A', 'A', 'C', 'B', 'C', 'C'], // 7/7 (más lento que Valentina -> desempate)
+            times: [44000, 39000, 22000, 61000, 20000, 75000, 55000]
+          },
+          {
+            name: 'Camila Andrea Castro',
+            level: 'nivel1',
+            choices: ['A', 'D', 'B', 'C', 'A', 'D', 'B'], // 7/7
+            times: [34000, 41000, 18000, 36000, 15000, 33000, 42000]
+          },
+          {
+            name: 'Juan Sebastián Herrera',
+            level: 'nivel1',
+            choices: ['A', 'D', 'B', 'A', 'A', 'D', 'B'], // 6/7
+            times: [29000, 35000, 14000, 40000, 17000, 30000, 38000]
+          },
+          {
+            name: 'Sofía Alejandra Díaz',
+            level: 'nivel2',
+            choices: ['D', 'A', 'A', 'B', 'B', 'C', 'A'], // 5/7
+            times: [32000, 28000, 15000, 48000, 18000, 59000, 41000]
+          }
+        ];
+
+        const existing = getLocalResults();
+        for (const d of demos) {
+          const qs = QUESTION_BANK[d.level];
+          let correctCount = 0;
+          const breakdown = qs.map((q, i) => {
+            const chosen = d.choices[i];
+            const isCorrect = chosen === q.correct;
+            if (isCorrect) correctCount++;
+            return {
+              questionNumber: i + 1,
+              questionId: q.id,
+              shortTitle: q.shortTitle,
+              chosenOption: chosen,
+              correctOption: q.correct,
+              isCorrect,
+              timeMs: d.times[i]
+            };
+          });
+          const totalTimeMs = d.times.reduce((acc, v) => acc + v, 0);
+          const rec = {
+            id: 'demo_' + Date.now() + '_' + Math.random().toString(36).substring(2, 7),
+            studentName: d.name,
+            gradeLevel: d.level,
+            correctCount,
+            wrongCount: 7 - correctCount,
+            scorePercent: Math.round((correctCount / 7) * 100),
+            totalTimeMs,
+            avgTimePerQuestionMs: Math.round(totalTimeMs / 7),
+            submittedAt: new Date().toISOString(),
+            breakdown
+          };
+          existing.push(rec);
+          await pushResultToCloud(rec);
+        }
+
+        saveLocalResults(existing);
+        await refreshAdminDashboard();
+      }
+
+      // =========================================================================
+      // INICIALIZACIÓN DE EVENTOS
+      // =========================================================================
+      document.addEventListener('DOMContentLoaded', () => {
+        // 1. Formulario de Inicio (Estudiante)
+        document.getElementById('startForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const name = document.getElementById('studentNameInput').value.trim();
+          const selectedRadio = document.querySelector('input[name="gradeLevel"]:checked');
+          if (!name || !selectedRadio) return;
+          startExam(name, selectedRadio.value);
+        });
+
+        // 2. Navegación del Examen
+        document.getElementById('btnPrevQuestion').addEventListener('click', () => {
+          goToQuestion(state.currentQuestionIdx - 1);
+        });
+        document.getElementById('btnNextQuestion').addEventListener('click', () => {
+          goToQuestion(state.currentQuestionIdx + 1);
+        });
+        document.getElementById('btnSubmitExam').addEventListener('click', handleFinishExam);
+
+        // 3. Volver al inicio desde pantalla final
+        document.getElementById('btnNewAttempt').addEventListener('click', () => {
+          document.getElementById('startForm').reset();
+          switchView('start');
+        });
+
+        // 4. Disparadores Discretos del Panel Docente
+        // 4a. Ícono discreto en el pie de página
+        document.getElementById('secretAdminTrigger').addEventListener('click', openAdminLoginModal);
+
+        // 4b. Triple clic rápido en el logo ∑ de la barra superior
+        let logoClicks = 0;
+        let logoClickTimer = null;
+        document.getElementById('appLogoTrigger').addEventListener('click', () => {
+          logoClicks++;
+          clearTimeout(logoClickTimer);
+          if (logoClicks >= 3) {
+            logoClicks = 0;
+            openAdminLoginModal();
+          } else {
+            logoClickTimer = setTimeout(() => { logoClicks = 0; }, 700);
+          }
+        });
+
+        // 4c. Parámetro URL ?admin=1
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('admin') === '1') {
+          openAdminLoginModal();
+        }
+
+        // 5. Modal de Login Docente
+        document.getElementById('closeAdminLoginBtn').addEventListener('click', () => {
+          document.getElementById('adminLoginModal').classList.add('hidden');
+        });
+
+        document.getElementById('adminLoginForm').addEventListener('submit', (e) => {
+          e.preventDefault();
+          const entered = document.getElementById('adminPasswordInput').value;
+          const validPin = getStoredAdminPin();
+          if (entered === validPin) {
+            enterAdminPanel();
+          } else {
+            const err = document.getElementById('adminLoginError');
+            err.classList.remove('hidden');
+            document.getElementById('adminPasswordInput').select();
+          }
+        });
+
+        // 6. Controles del Panel Docente
+        document.getElementById('btnExitAdmin').addEventListener('click', () => {
+          stopFirebaseRealtimeListener();
+          switchView('start');
+        });
+
+        document.getElementById('btnToggleFirebaseConfig').addEventListener('click', () => {
+          document.getElementById('firebaseConfigPanel').classList.toggle('hidden');
+        });
+
+        document.getElementById('btnCloseFirebasePanel').addEventListener('click', () => {
+          document.getElementById('firebaseConfigPanel').classList.add('hidden');
+        });
+
+        document.getElementById('btnSaveFirebaseUrl').addEventListener('click', async () => {
+          const url = document.getElementById('firebaseUrlInput').value.trim().replace(/\/+$/, '');
+          if (!url || !url.startsWith('https://')) {
+            await showDialog({
+              title: 'URL Inválida',
+              message: 'Por favor ingresa una URL válida de Firebase Realtime Database que comience con https://',
+              type: 'danger'
+            });
+            return;
+          }
+          localStorage.setItem(STORAGE_KEYS.FIREBASE_URL, url);
+          await refreshAdminDashboard();
+          await showDialog({
+            title: 'Sincronización Configurada',
+            message: 'La conexión con Firebase Realtime Database ha sido guardada y sincronizada.',
+            type: 'success'
+          });
+        });
+
+        document.getElementById('btnDisconnectFirebase').addEventListener('click', async () => {
+          localStorage.removeItem(STORAGE_KEYS.FIREBASE_URL);
+          document.getElementById('firebaseUrlInput').value = '';
+          await refreshAdminDashboard();
+        });
+
+        document.getElementById('btnUpdateAdminPin').addEventListener('click', async () => {
+          const newPin = document.getElementById('newAdminPinInput').value.trim();
+          if (newPin.length < 4) {
+            await showDialog({
+              title: 'Clave muy corta',
+              message: 'La nueva clave docente debe tener al menos 4 caracteres.',
+              type: 'danger'
+            });
+            return;
+          }
+          localStorage.setItem(STORAGE_KEYS.ADMIN_PIN, newPin);
+          document.getElementById('newAdminPinInput').value = '';
+          await showDialog({
+            title: 'Clave Actualizada',
+            message: 'La nueva clave de acceso docente ha sido guardada en este navegador.',
+            type: 'success'
+          });
+        });
+
+        // Filtros por nivel en Panel Docente
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+              b.className = 'filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200 transition cursor-pointer';
+            });
+            btn.className = 'filter-btn px-3.5 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white transition cursor-pointer';
+            state.adminFilter = btn.dataset.filter;
+            refreshAdminDashboard();
+          });
+        });
+
+        document.getElementById('btnRefreshAdmin').addEventListener('click', refreshAdminDashboard);
+        document.getElementById('btnExportCsv').addEventListener('click', exportResultsToCsv);
+        document.getElementById('btnLoadDemoData').addEventListener('click', loadDemoStudents);
+
+        document.getElementById('btnClearAllData').addEventListener('click', async () => {
+          const ok = await showDialog({
+            title: 'Limpiar Todos los Registros',
+            message: '¿Estás seguro de eliminar todos los resultados almacenados? Esta acción no se puede deshacer.',
+            confirmText: 'Sí, Eliminar Todo',
+            cancelText: 'Cancelar',
+            type: 'danger'
+          });
+          if (!ok) return;
+
+          saveLocalResults([]);
+          const fbUrl = getFirebaseUrl();
+          if (fbUrl) {
+            try {
+              await fetch(`${fbUrl}/simulacro_icfes_resultados.json`, { method: 'DELETE' });
+            } catch (e) {
+              console.warn('Error borrando nube:', e);
+            }
+          }
+          await refreshAdminDashboard();
+        });
+
+        // Cerrar modal de detalle individual
+        document.getElementById('closeDetailModalBtn').addEventListener('click', () => {
+          document.getElementById('studentDetailModal').classList.add('hidden');
+        });
+        document.getElementById('closeDetailModalFooterBtn').addEventListener('click', () => {
+          document.getElementById('studentDetailModal').classList.add('hidden');
+        });
+
+        // Escuchar actualizaciones en tiempo real desde otras pestañas
+        if (syncChannel) {
+          syncChannel.onmessage = (event) => {
+            if (event.data && event.data.type === 'RESULTS_UPDATED' && state.currentView === 'admin') {
+              refreshAdminDashboard();
+            }
+          };
+        }
+      });
     })();
   </script>
 </body>
