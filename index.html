@@ -4,12 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Minisistema de Simulacro Matemático ICFES</title>
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Firebase SDKs Oficiales -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-  <!-- Google Fonts: Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -17,7 +12,10 @@
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#eef2ff', 100: '#e0e7ff', 200: '#c7d2fe', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' }
+          }
         }
       }
     };
@@ -30,7 +28,6 @@
 </head>
 <body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
 
-  <!-- BARRA SUPERIOR -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3 select-none">
@@ -43,18 +40,17 @@
         </div>
       </div>
       <div id="headerStatusArea" class="flex items-center gap-2">
-        <span id="headerBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          Conectado a la Nube
+        <span id="headerBadge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600 border border-slate-200">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          Sesión Lista
         </span>
       </div>
     </div>
   </header>
 
-  <!-- CONTENEDOR PRINCIPAL -->
   <main class="flex-1 w-full max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
 
-    <!-- 1. VISTA INICIO (ESTUDIANTE) -->
+    <!-- VISTA INICIO -->
     <section id="viewStart" class="fade-in max-w-2xl mx-auto">
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="bg-gradient-to-r from-indigo-600 via-indigo-700 to-blue-700 px-6 py-8 text-white">
@@ -63,7 +59,7 @@
           </span>
           <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Bienvenido al Simulacro ICFES</h2>
           <p class="mt-2 text-indigo-100 text-sm sm:text-base leading-relaxed">
-            Completa tus datos y selecciona tu nivel escolar para iniciar la prueba de 7 preguntas. Lee cuidadosamente cada enunciado, tabla o gráfica antes de responder.
+            Completa tus datos y selecciona tu nivel escolar para iniciar la prueba de 7 preguntas.
           </p>
         </div>
 
@@ -91,11 +87,9 @@
                 <input type="radio" name="gradeLevel" value="nivel1" class="peer sr-only" required />
                 <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50/50 hover:bg-white hover:border-indigo-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/60 transition-all h-full flex flex-col justify-between">
                   <div>
-                    <div class="flex items-center justify-between mb-2">
-                      <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-100 text-indigo-700">NIVEL 1</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Sexto a Octavo</h3>
-                    <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Grados 6°, 7° y 8° • 7 preguntas adaptadas.</p>
+                    <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-indigo-100 text-indigo-700">NIVEL 1</span>
+                    <h3 class="text-lg font-bold text-slate-900 mt-2">Sexto a Octavo</h3>
+                    <p class="text-xs text-slate-600 mt-1.5">Grados 6°, 7° y 8° • 7 preguntas.</p>
                   </div>
                 </div>
               </label>
@@ -104,11 +98,9 @@
                 <input type="radio" name="gradeLevel" value="nivel2" class="peer sr-only" required />
                 <div class="p-5 rounded-2xl border-2 border-slate-200 bg-slate-50/50 hover:bg-white hover:border-indigo-300 peer-checked:border-indigo-600 peer-checked:bg-indigo-50/60 transition-all h-full flex flex-col justify-between">
                   <div>
-                    <div class="flex items-center justify-between mb-2">
-                      <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-100 text-blue-700">NIVEL 2</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-slate-900">Noveno a Décimo</h3>
-                    <p class="text-xs text-slate-600 mt-1.5 leading-relaxed">Grados 9° y 10° • 7 preguntas tipo Saber 11°.</p>
+                    <span class="px-2.5 py-1 rounded-lg text-xs font-bold bg-blue-100 text-blue-700">NIVEL 2</span>
+                    <h3 class="text-lg font-bold text-slate-900 mt-2">Noveno a Décimo</h3>
+                    <p class="text-xs text-slate-600 mt-1.5">Grados 9° y 10° • 7 preguntas.</p>
                   </div>
                 </div>
               </label>
@@ -125,7 +117,7 @@
       </div>
     </section>
 
-    <!-- 2. VISTA EXAMEN -->
+    <!-- VISTA EXAMEN -->
     <section id="viewExam" class="hidden fade-in space-y-5">
       <div class="bg-white rounded-2xl p-4 sm:px-6 shadow-sm border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
@@ -144,56 +136,72 @@
           <span id="questionNumberHeader" class="text-sm font-extrabold text-indigo-700 uppercase tracking-wider">Pregunta 1 de 7</span>
           <span id="questionSelectionStatus" class="text-xs font-medium px-2.5 py-1 rounded-full bg-slate-200/70 text-slate-600">Sin responder</span>
         </div>
-
         <div class="p-5 sm:p-8 space-y-6">
-          <div id="questionContext" class="text-slate-800 text-base sm:text-[17px] leading-relaxed whitespace-pre-line"></div>
+          <div id="questionContext" class="text-slate-800 text-base leading-relaxed whitespace-pre-line"></div>
           <div id="questionVisualContainer" class="hidden my-4 flex justify-center"></div>
-          <div id="questionPrompt" class="text-slate-900 font-semibold text-base sm:text-[17px] leading-relaxed bg-slate-50/80 p-4 rounded-xl border border-slate-200"></div>
+          <div id="questionPrompt" class="text-slate-900 font-semibold text-base bg-slate-50/80 p-4 rounded-xl border border-slate-200"></div>
           <div id="optionsContainer" class="space-y-3 pt-1"></div>
         </div>
-
         <div class="px-5 sm:px-8 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between gap-3">
           <button type="button" id="btnPrevQuestion" class="px-4 py-2.5 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-semibold text-sm cursor-pointer">Anterior</button>
           <div class="flex items-center gap-2.5">
-            <button type="button" id="btnNextQuestion" class="px-5 py-2.5 rounded-xl bg-slate-800 text-white font-semibold text-sm cursor-pointer">Siguiente</button>
+            <button type="button" id="btnNextQuestion" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm cursor-pointer">Siguiente</button>
             <button type="button" id="btnSubmitExam" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm cursor-pointer">Enviar Examen</button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 3. VISTA FINAL -->
+    <!-- VISTA FINAL -->
     <section id="viewSubmitted" class="hidden fade-in max-w-xl mx-auto">
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-10 text-center space-y-6">
-        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">¡Examen enviado exitosamente!</h2>
-        <p class="text-slate-500 text-sm sm:text-base">Tus respuestas han sido registradas en la base de datos en línea correctamente.</p>
+        <h2 class="text-2xl font-extrabold text-slate-900">¡Examen enviado exitosamente!</h2>
+        <p class="text-slate-500 text-sm">Tus respuestas han sido registradas correctamente.</p>
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 text-left space-y-2">
+          <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Estudiante</span><span id="finalStudentName" class="font-bold text-sm">—</span></div>
+          <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Nivel</span><span id="finalStudentLevel" class="font-bold text-indigo-700 text-sm">—</span></div>
+          <div class="flex justify-between items-center"><span class="text-xs text-slate-500">Tiempo</span><span id="finalTotalTime" class="font-bold font-mono text-sm">—</span></div>
+        </div>
         <button type="button" id="btnNewAttempt" class="px-6 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm cursor-pointer">Volver al inicio</button>
       </div>
     </section>
 
-    <!-- 4. PANEL DOCENTE -->
+    <!-- PANEL DOCENTE -->
     <section id="viewAdmin" class="hidden fade-in space-y-6">
-      <div class="bg-slate-900 text-white rounded-2xl p-6 sm:p-8 shadow-md flex justify-between items-center">
+      <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-md flex justify-between items-center">
         <div>
-          <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-950 text-emerald-300 border border-emerald-700">Firebase SDK Activo</span>
-          <h2 class="text-2xl sm:text-3xl font-extrabold mt-2">Panel Docente - Resultados en Vivo</h2>
+          <span id="syncStatusPill" class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300">Panel Docente</span>
+          <h2 class="text-2xl font-extrabold mt-2">Resultados y Clasificación ICFES</h2>
         </div>
         <button type="button" id="btnExitAdmin" class="px-4 py-2.5 rounded-xl bg-rose-600 text-white text-xs font-semibold cursor-pointer">Cerrar Panel</button>
       </div>
 
-      <div class="bg-white rounded-2xl p-4 sm:px-6 border border-slate-200 shadow-sm flex justify-between items-center">
-        <span class="text-xs font-bold uppercase text-slate-500">Total Evaluaciones: <span id="countAll" class="text-indigo-600 text-base">0</span></span>
-        <button type="button" id="btnRefreshAdmin" class="px-4 py-2 rounded-xl bg-indigo-600 text-white text-xs font-semibold cursor-pointer">Actualizar Tabla</button>
+      <div class="bg-white rounded-2xl p-6 border border-indigo-200 shadow-sm space-y-4">
+        <h3 class="text-base font-bold text-slate-900">Configuración de Nube (Firebase)</h3>
+        <div class="flex flex-col sm:flex-row gap-3">
+          <input type="url" id="firebaseUrlInput" placeholder="https://tu-proyecto-default-rtdb.firebaseio.com" class="flex-1 px-4 py-2.5 rounded-xl border border-slate-300 text-sm" />
+          <button type="button" id="btnSaveFirebaseUrl" class="px-5 py-2.5 rounded-xl bg-indigo-600 text-white text-sm font-semibold cursor-pointer">Conectar y Sincronizar</button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-4 border border-slate-200 shadow-sm flex justify-between items-center">
+        <div class="flex gap-2">
+          <button type="button" data-filter="all" class="filter-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-indigo-600 text-white cursor-pointer">Todos (<span id="countAll">0</span>)</button>
+        </div>
+        <div class="flex gap-2">
+          <button type="button" id="btnLoadDemoData" class="px-3 py-2 border rounded-xl text-xs font-semibold cursor-pointer">+ Datos Demo</button>
+          <button type="button" id="btnClearAllData" class="px-3 py-2 bg-rose-50 text-rose-700 border border-rose-200 rounded-xl text-xs font-semibold cursor-pointer">Limpiar Todo</button>
+        </div>
       </div>
 
       <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <table class="w-full text-left border-collapse">
           <thead>
             <tr class="bg-slate-50 border-b border-slate-200 text-[11px] font-bold uppercase text-slate-500">
-              <th class="py-3.5 px-4">Estudiante</th>
-              <th class="py-3.5 px-4">Nivel</th>
-              <th class="py-3.5 px-4 text-center">Aciertos</th>
-              <th class="py-3.5 px-4 text-right">Tiempo</th>
+              <th class="py-3 px-4">Estudiante</th>
+              <th class="py-3 px-4">Nivel</th>
+              <th class="py-3 px-4 text-center">Aciertos</th>
+              <th class="py-3 px-4 text-right">Tiempo Total</th>
             </tr>
           </thead>
           <tbody id="leaderboardBody" class="divide-y divide-slate-100 text-sm"></tbody>
@@ -207,55 +215,71 @@
     <button type="button" id="secretAdminTrigger" class="underline cursor-pointer">Acceso Panel Docente</button>
   </footer>
 
-  <!-- SCRIPT CON TODAS LAS PREGUNTAS Y FIREBASE OFICIAL -->
   <script>
     (function () {
       'use strict';
       const DEFAULT_ADMIN_KEY = 'PROFESOR2026';
+      const STORAGE_KEYS = { RESULTS: 'icfes_results', FIREBASE_URL: 'icfes_fb_url' };
 
-      // Configuración de Firebase Oficial
-      const firebaseConfig = {
-        databaseURL: "https://sebastianxabiergarciaforero-default-rtdb.firebaseio.com"
-      };
-      if (!firebase.apps.length) {
-        firebase.initializeApp(firebaseConfig);
-      }
-      const db = firebase.database();
+      const SVG_REGIONES_AUTOS = `<div class="w-full max-w-lg bg-white border rounded-xl p-3"><svg viewBox="0 0 520 270" class="w-full h-auto"><rect width="520" height="270" rx="12" fill="#f8fafc" /><path d="M 25 25 L 250 25 L 240 130 L 35 125 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/><text x="59" y="53" fill="#2563eb" font-size="13" font-weight="800">R1: 15.000 hab (12 autos)</text><path d="M 260 25 L 495 30 L 485 135 L 250 130 Z" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="291" y="53" fill="#16a34a" font-size="13" font-weight="800">R2: 20.000 hab (20 autos)</text><path d="M 35 135 L 240 140 L 235 245 L 28 240 Z" fill="#fefce8" stroke="#ca8a04" stroke-width="2.5"/><text x="64" y="165" fill="#ca8a04" font-size="13" font-weight="800">R3: 10.000 hab (30 autos)</text><path d="M 250 140 L 485 145 L 492 245 L 245 245 Z" fill="#fdf2f8" stroke="#db2777" stroke-width="2.5"/><text x="289" y="165" fill="#db2777" font-size="13" font-weight="800">R4: 10.000 hab (44 autos)</text></svg></div>`;
+      const SVG_CAJA_REGALO = `<div class="w-full max-w-md bg-white border rounded-xl p-4 text-center text-xs font-bold">[Esquema Caja de Regalo: Base cuadrada 30x30 cm, Altura 20 cm]</div>`;
+      const TABLE_DETERGENTE = `<div class="w-full max-w-xl bg-white border rounded-xl p-3 text-center text-xs">[Tabla Modo de Empleo - Detergente Z]</div>`;
+      const TABLE_PLANTAS = `<div class="w-full max-w-xl bg-white border rounded-xl p-3 text-center text-xs">[Tabla Crecimiento de Plantas]</div>`;
+      const TABLE_TRABAJADORES = `<div class="w-full max-w-lg bg-white border rounded-xl p-3 text-center text-xs">[Tabla Descarga de Camión]</div>`;
+      const TABLE_NEUMATICOS = `<div class="w-full max-w-xl bg-white border rounded-xl p-3 text-center text-xs">[Tabla Utilidad Neumáticos]</div>`;
+      const SVG_TRAPECIO_CERCA = `<div class="w-full max-w-lg bg-white border rounded-xl p-4 text-center text-xs font-bold">[Esquema Trapecio Isósceles]</div>`;
+      const SVG_CAMION_RAMPA = `<div class="w-full max-w-2xl bg-white border rounded-xl p-4 text-center text-xs font-bold">[Esquema Rampa de Camión]</div>`;
 
-      // RECURSOS SVG Y TABLAS ORIGINALES
-      const SVG_REGIONES_AUTOS = `<div class="w-full max-w-lg bg-white border border-slate-200 rounded-xl p-3"><svg viewBox="0 0 520 270" class="w-full h-auto"><rect width="520" height="270" rx="12" fill="#f8fafc" /><path d="M 25 25 L 250 25 L 240 130 L 35 125 Z" fill="#eff6ff" stroke="#2563eb" stroke-width="2.5"/><text x="59" y="53" fill="#2563eb" font-size="13" font-weight="800">R1: 15.000 hab (12 autos)</text><path d="M 260 25 L 495 30 L 485 135 L 250 130 Z" fill="#f0fdf4" stroke="#16a34a" stroke-width="2.5"/><text x="291" y="53" fill="#16a34a" font-size="13" font-weight="800">R2: 20.000 hab (20 autos)</text><path d="M 35 135 L 240 140 L 235 245 L 28 240 Z" fill="#fefce8" stroke="#ca8a04" stroke-width="2.5"/><text x="64" y="165" fill="#ca8a04" font-size="13" font-weight="800">R3: 10.000 hab (30 autos)</text><path d="M 250 140 L 485 145 L 492 245 L 245 245 Z" fill="#fdf2f8" stroke="#db2777" stroke-width="2.5"/><text x="289" y="165" fill="#db2777" font-size="13" font-weight="800">R4: 10.000 hab (44 autos)</text></svg></div>`;
-      
-      const SVG_CAJA_REGALO = `<div class="w-full max-w-md bg-white border border-slate-200 rounded-xl p-4 text-center text-xs font-bold text-slate-700">[Esquema Caja de Regalo: Base cuadrada 30x30 cm, Altura 20 cm]</div>`;
-      const TABLE_DETERGENTE = `<div class="w-full max-w-xl bg-white border border-slate-300 rounded-xl p-3 text-center text-xs">[Tabla Modo de Empleo - Detergente Z]</div>`;
-      const TABLE_PLANTAS = `<div class="w-full max-w-xl bg-white border border-slate-300 rounded-xl p-3 text-center text-xs">[Tabla Crecimiento de Plantas - Alturas Semanales]</div>`;
-      const TABLE_TRABAJADORES = `<div class="w-full max-w-lg bg-white border border-slate-300 rounded-xl p-3 text-center text-xs">[Tabla Descarga de Camión - Trabajadores y Costos]</div>`;
-      const TABLE_NEUMATICOS = `<div class="w-full max-w-xl bg-white border border-slate-300 rounded-xl p-3 text-center text-xs">[Tabla Utilidad Neumáticos]</div>`;
-      const SVG_TRAPECIO_CERCA = `<div class="w-full max-w-lg bg-white border border-slate-200 rounded-xl p-4 text-center text-xs font-bold text-slate-700">[Esquema Trapecio Isósceles - Lote y Cerca]</div>`;
-      const SVG_CAMION_RAMPA = `<div class="w-full max-w-2xl bg-white border border-slate-200 rounded-xl p-4 text-center text-xs font-bold text-slate-700">[Esquema Rampa de Camión 4m a 30°]</div>`;
-
-      // BANCO COMPLETO DE 7 PREGUNTAS POR NIVEL
       const QUESTION_BANK = {
         nivel1: [
-          { id: 'N1_Q1', shortTitle: 'Mediana autos deportivos', context: 'La figura muestra el número de habitantes y la cantidad de personas que tienen un auto deportivo, en cuatro regiones de un mismo país.', visual: SVG_REGIONES_AUTOS, prompt: 'Un estudiante hizo una lista con los 4 números correspondientes a la cantidad de personas con un auto deportivo. Sobre la mediana de esos 4 números, ¿cuál de las siguientes afirmaciones es correcta?', options: { A: 'La mediana está más cerca de R1 que de R4.', B: 'La mediana está más lejos de R2 que de R3.', C: 'La mediana está más lejos de R3 que de R4.', D: 'La mediana está más cerca de R1 que de R2.' }, correct: 'A' },
-          { id: 'N1_Q2', shortTitle: 'Área superficial caja', context: 'Isabel vende cajas de cartón con base cuadrada de 30 cm de lado y altura de 20 cm, unidas con cinta sin pestañas.', visual: SVG_CAJA_REGALO, prompt: '¿Cuáles procedimientos permiten hallar el área superficial de la caja?\n• 1: 2×(30×30) + 4×(30×20)\n• 2: (30²) + 4×(30×20)\n• 3: 2×(30×30) + [(4×30)×(4×20)]\n• 4: [(30²)×2] + 30×20×4', options: { A: '1 y 2', B: '3 y 4', C: '2 y 3', D: '1 y 4' }, correct: 'D' },
-          { id: 'N1_Q3', shortTitle: 'Ingresos camisas y pantalones', context: 'Un empleado vendió camisas a $40.000 y pantalones a $80.000.', visual: null, prompt: '¿Con cuál expresión calcula los ingresos totales?', options: { A: '($40.000 + $80.000) × (suma de prendas)', B: '$40.000 × camisas + $80.000 × pantalones', C: '($40.000 × $80.000) × (multiplicación de prendas)', D: '$40.000 × pantalones + $80.000 × camisas' }, correct: 'B' },
-          { id: 'N1_Q4', shortTitle: 'Detergente Z', context: 'Tabla de instrucciones de uso de detergente Z.', visual: TABLE_DETERGENTE, prompt: 'Tras 15 días usando una bolsa (1 lavado a mano, 3 en lavadora), ¿qué valor se puede hallar?', options: { A: 'Volumen total de bolsas compradas', B: 'Peso total de bolsas compradas', C: 'Los mililitros que contiene una bolsa', D: 'Los gramos que contiene una bolsa' }, correct: 'C' },
-          { id: 'N1_Q5', shortTitle: 'Crecimiento plantas', context: 'Estudio de crecimiento de plantas medido semanalmente.', visual: TABLE_PLANTAS, prompt: '¿En qué momento se observó el mayor incremento de altura?', options: { A: 'Entre semana 1 y semana 2', B: 'Entre inicio y semana 1', C: 'Entre semana 2 y semana 3', D: 'Entre semana 3 y semana 4' }, correct: 'A' },
-          { id: 'N1_Q6', shortTitle: 'Descarga camión', context: 'Tabla de horas y costos según número de trabajadores.', visual: TABLE_TRABAJADORES, prompt: '¿Cuál afirmación es verdadera sobre proporcionalidad?', options: { A: 'Horas y costo son directamente proporcionales', B: 'Horas y costo son inversamente proporcionales', C: 'Horas directas y costo inverso', D: 'Horas inversas y costo directo al número de trabajadores' }, correct: 'D' },
-          { id: 'N1_Q7', shortTitle: 'Utilidad neumáticos', context: 'Tabla de utilidad según neumáticos vendidos.', visual: TABLE_NEUMATICOS, prompt: '¿Es correcto afirmar que la relación entre utilidad y ventas es creciente?', options: { A: 'No, pendiente positiva 400/3', B: 'Sí, pendiente positiva equivalente a 2.000', C: 'No, pendiente negativa -2.000', D: 'Sí, pendiente negativa 400/3' }, correct: 'B' }
+          { id: 'N1_Q1', shortTitle: 'Mediana autos', context: 'La figura muestra el número de habitantes y la cantidad de personas que tienen un auto deportivo en cuatro regiones.', visual: SVG_REGIONES_AUTOS, prompt: 'Sobre la mediana de esos 4 números, ¿cuál de las siguientes afirmaciones es correcta?', options: { A: 'La mediana está más cerca de R1 que de R4.', B: 'La mediana está más lejos de R2 que de R3.', C: 'La mediana está más lejos de R3 que de R4.', D: 'La mediana está más cerca de R1 que de R2.' }, correct: 'A' },
+          { id: 'N1_Q2', shortTitle: 'Caja cartón', context: 'Isabel vende cajas de cartón con base cuadrada de 30 cm de lado y altura de 20 cm.', visual: SVG_CAJA_REGALO, prompt: '¿Cuáles procedimientos permiten hallar el área superficial?', options: { A: '1 y 2', B: '3 y 4', C: '2 y 3', D: '1 y 4' }, correct: 'D' },
+          { id: 'N1_Q3', shortTitle: 'Ingresos ropa', context: 'Un empleado vendió camisas a $40.000 y pantalones a $80.000.', visual: null, prompt: '¿Con cuál expresión calcula los ingresos?', options: { A: 'Suma y suma', B: '$40.000 × camisas + $80.000 × pantalones', C: 'Multiplicación total', D: 'Inversa' }, correct: 'B' },
+          { id: 'N1_Q4', shortTitle: 'Detergente Z', context: 'Tabla de instrucciones de uso de detergente Z.', visual: TABLE_DETERGENTE, prompt: '¿Qué valor se puede hallar tras 15 días?', options: { A: 'Volumen total', B: 'Peso total', C: 'Los mililitros que contiene una bolsa', D: 'Los gramos' }, correct: 'C' },
+          { id: 'N1_Q5', shortTitle: 'Plantas', context: 'Estudio de crecimiento de plantas medido semanalmente.', visual: TABLE_PLANTAS, prompt: '¿En qué momento se observó el mayor incremento?', options: { A: 'Entre semana 1 y semana 2', B: 'Entre inicio y semana 1', C: 'Entre semana 2 y semana 3', D: 'Entre semana 3 y semana 4' }, correct: 'A' },
+          { id: 'N1_Q6', shortTitle: 'Camión', context: 'Tabla de horas y costos según número de trabajadores.', visual: TABLE_TRABAJADORES, prompt: '¿Cuál afirmación es verdadera?', options: { A: 'Directa y directa', B: 'Inversa e inversa', C: 'Directa e inversa', D: 'La cantidad de horas es inversamente proporcional y el costo directamente proporcional' }, correct: 'D' },
+          { id: 'N1_Q7', shortTitle: 'Neumáticos', context: 'Tabla de utilidad según neumáticos vendidos.', visual: TABLE_NEUMATICOS, prompt: '¿Es correcto afirmar que la relación es creciente?', options: { A: 'No', B: 'Sí, porque la pendiente es positiva y equivalente a 2.000', C: 'No, negativa', D: 'Sí' }, correct: 'B' }
         ],
         nivel2: [
-          { id: 'N2_Q1', shortTitle: 'Área superficial caja', context: 'Isabel vende cajas de cartón con base cuadrada de 30 cm de lado y altura de 20 cm.', visual: SVG_CAJA_REGALO, prompt: '¿Cuáles procedimientos permiten hallar el área superficial?\n• 1: 2×(30×30) + 4×(30×20)\n• 2: (30²) + 4×(30×20)\n• 3: 2×(30×30) + [(4×30)×(4×20)]\n• 4: [(30²)×2] + 30×20×4', options: { A: '1 y 2', B: '3 y 4', C: '2 y 3', D: '1 y 4' }, correct: 'D' },
-          { id: 'N2_Q2', shortTitle: 'Promedio edades torneo', context: 'Edades del equipo: 19, 28, 32, 19, 17, 28, 23, 28, 24, 15, 17. Norma: promedio > 25 años.', visual: null, prompt: '¿Cuál procedimiento permite establecer si participan?', options: { A: 'Sumar edades, dividir entre número de integrantes y comparar con 25', B: 'Sumar edades, multiplicar y comparar con 25', C: 'Ordenar y hallar la mediana', D: 'Hallar la moda' }, correct: 'A' },
-          { id: 'N2_Q3', shortTitle: 'Crecimiento plantas', context: 'Estudio de crecimiento de plantas medido semanalmente.', visual: TABLE_PLANTAS, prompt: '¿En qué momento se observó el mayor incremento de altura?', options: { A: 'Entre semana 1 y semana 2', B: 'Entre inicio y semana 1', C: 'Entre semana 2 y semana 3', D: 'Entre semana 3 y semana 4' }, correct: 'A' },
-          { id: 'N2_Q4', shortTitle: 'Raíces reales cuadráticas', context: 'Verificar raíces reales de f(x) = x² + bx + c sin calcular b² - 4c directamente.', visual: null, prompt: '¿Cuáles opciones responden afirmativamente?\n• 1: Evaluar coordenada y del vértice.\n• 2: Forma f(x)=(x+d)²-e verificando d ≥ 0.\n• 3: Forma f(x)=(x+d)²-e verificando e ≥ 0.', options: { A: '1 y 2', B: 'Solo 1', C: '1 y 3', D: 'Solo 3' }, correct: 'C' },
-          { id: 'N2_Q5', shortTitle: 'Ingresos ropa', context: 'Venta de camisas a $40.000 y pantalones a $80.000.', visual: null, prompt: '¿Con cuál expresión se calculan los ingresos?', options: { A: 'Suma de precios por suma de cantidades', B: '$40.000 × camisas + $80.000 × pantalones', C: 'Multiplicación total', D: 'Inversa' }, correct: 'B' },
-          { id: 'N2_Q6', shortTitle: 'Lote trapecio isósceles', context: 'Cercar lote con trapecio isósceles con 3 hileras de alambre.', visual: SVG_TRAPECIO_CERCA, prompt: 'Usando Pitágoras y perímetro, ¿cuántos metros de alambre se necesitan?', options: { A: '196 m', B: '202 m', C: '208 m', D: '226 m' }, correct: 'C' },
-          { id: 'N2_Q7', shortTitle: 'Trigonometría rampa', context: 'Rampa de camión de 4 m con ángulo de 30° respecto al suelo.', visual: SVG_CAMION_RAMPA, prompt: '¿Cuál es la distancia horizontal L?', options: { A: '2 m', B: '1/8 m', C: '2√3 m', D: '√3/8 m' }, correct: 'C' }
+          { id: 'N2_Q1', shortTitle: 'Caja cartón', context: 'Isabel vende cajas de cartón con base cuadrada de 30 cm de lado y altura de 20 cm.', visual: SVG_CAJA_REGALO, prompt: '¿Cuáles procedimientos permiten hallar el área superficial?', options: { A: '1 y 2', B: '3 y 4', C: '2 y 3', D: '1 y 4' }, correct: 'D' },
+          { id: 'N2_Q2', shortTitle: 'Promedio edades', context: 'Edades: 19, 28, 32, 19, 17, 28, 23, 28, 24, 15, 17. Norma: promedio > 25.', visual: null, prompt: '¿Cuál procedimiento permite establecer si participan?', options: { A: 'Sumar edades, dividir entre número de integrantes y comparar con 25', B: 'Multiplicar', C: 'Mediana', D: 'Moda' }, correct: 'A' },
+          { id: 'N2_Q3', shortTitle: 'Plantas', context: 'Estudio de crecimiento de plantas medido semanalmente.', visual: TABLE_PLANTAS, prompt: '¿En qué momento se observó el mayor incremento?', options: { A: 'Entre semana 1 y semana 2', B: 'Inicio', C: 'Semana 3', D: 'Semana 4' }, correct: 'A' },
+          { id: 'N2_Q4', shortTitle: 'Funciones', context: 'Verificar raíces reales de f(x) = x² + bx + c.', visual: null, prompt: '¿Cuáles opciones responden afirmativamente?', options: { A: '1 y 2', B: 'Solo 1', C: '1 y 3', D: 'Solo 3' }, correct: 'C' },
+          { id: 'N2_Q5', shortTitle: 'Ingresos ropa', context: 'Venta de camisas a $40.000 y pantalones a $80.000.', visual: null, prompt: '¿Con cuál expresión se calculan?', options: { A: 'Suma', B: '$40.000 × camisas + $80.000 × pantalones', C: 'Multiplicación', D: 'Inversa' }, correct: 'B' },
+          { id: 'N2_Q6', shortTitle: 'Trapecio', context: 'Cercar lote con trapecio isósceles con 3 hileras de alambre.', visual: SVG_TRAPECIO_CERCA, prompt: '¿Cuántos metros de alambre se necesitan?', options: { A: '196 m', B: '202 m', C: '208 m', D: '226 m' }, correct: 'C' },
+          { id: 'N2_Q7', shortTitle: 'Trigonometría', context: 'Rampa de camión de 4 m con ángulo de 30°.', visual: SVG_CAMION_RAMPA, prompt: '¿Cuál es la distancia horizontal L?', options: { A: '2 m', B: '1/8 m', C: '2√3 m', D: '√3/8 m' }, correct: 'C' }
         ]
       };
 
-      let state = { studentName: '', gradeLevel: 'nivel1', currentIdx: 0, answers: Array(7).fill(null), startTime: null };
+      let state = { studentName: '', gradeLevel: 'nivel1', currentIdx: 0, answers: Array(7).fill(null), startTime: null, resultsCache: [] };
+
+      function getLocal() { try { return JSON.parse(localStorage.getItem(STORAGE_KEYS.RESULTS) || '[]'); } catch(e){ return []; } }
+      function saveLocal(d) { localStorage.setItem(STORAGE_KEYS.RESULTS, JSON.stringify(d)); }
+      function getFb() { return (localStorage.getItem(STORAGE_KEYS.FIREBASE_URL) || '').trim().replace(/\/+$/, ''); }
+
+      async function pushCloud(rec) {
+        const url = getFb();
+        if (!url) return;
+        try { await fetch(`${url}/simulacro_icfes_resultados/${rec.id}.json`, { method: 'PUT', headers: {'Content-Type':'application/json'}, body: JSON.stringify(rec) }); } catch(e){}
+      }
+
+      async function fetchAll() {
+        const local = getLocal();
+        const url = getFb();
+        if (!url) { state.resultsCache = local; return local; }
+        try {
+          const res = await fetch(`${url}/simulacro_icfes_resultados.json`);
+          const cloud = await res.json();
+          const list = cloud ? Object.values(cloud) : [];
+          const map = new Map();
+          local.forEach(x => map.set(x.id, x));
+          list.forEach(x => { if(x && x.id) map.set(x.id, x); });
+          const merged = Array.from(map.values());
+          saveLocal(merged);
+          state.resultsCache = merged;
+          return merged;
+        } catch(e) { state.resultsCache = local; return local; }
+      }
 
       function switchView(v) {
         ['viewStart', 'viewExam', 'viewSubmitted', 'viewAdmin'].forEach(id => document.getElementById(id).classList.add('hidden'));
@@ -264,39 +288,36 @@
       }
 
       function renderExam() {
-        const questions = QUESTION_BANK[state.gradeLevel];
-        const q = questions[state.currentIdx];
+        const q = QUESTION_BANK[state.gradeLevel][state.currentIdx];
         document.getElementById('questionNumberHeader').textContent = `Pregunta ${state.currentIdx + 1} de 7`;
         document.getElementById('answeredCountDisplay').textContent = state.answers.filter(a => a !== null).length;
         document.getElementById('questionContext').textContent = q.context;
         
-        const visualEl = document.getElementById('questionVisualContainer');
-        if (q.visual) { visualEl.innerHTML = q.visual; visualEl.classList.remove('hidden'); } else { visualEl.innerHTML = ''; visualEl.classList.add('hidden'); }
-        
+        const vis = document.getElementById('questionVisualContainer');
+        if(q.visual) { vis.innerHTML = q.visual; vis.classList.remove('hidden'); } else { vis.innerHTML = ''; vis.classList.add('hidden'); }
         document.getElementById('questionPrompt').textContent = q.prompt;
         
         const container = document.getElementById('optionsContainer');
         container.innerHTML = '';
         ['A', 'B', 'C', 'D'].forEach(letter => {
-          const isSelected = state.answers[state.currentIdx] === letter;
+          const isSel = state.answers[state.currentIdx] === letter;
           const btn = document.createElement('button');
           btn.type = 'button';
-          btn.className = `w-full text-left p-4 rounded-xl border-2 transition cursor-pointer ${isSelected ? 'border-indigo-600 bg-indigo-50 shadow-xs' : 'border-slate-200 bg-white hover:bg-slate-50'}`;
+          btn.className = `w-full text-left p-4 rounded-xl border-2 transition cursor-pointer ${isSel ? 'border-indigo-600 bg-indigo-50' : 'border-slate-200 bg-white hover:bg-slate-50'}`;
           btn.innerHTML = `<span class="font-bold mr-2">${letter}.</span> ${q.options[letter]}`;
           btn.onclick = () => { state.answers[state.currentIdx] = letter; renderExam(); };
           container.appendChild(btn);
         });
 
-        // Píldoras de navegación superior
         const pills = document.getElementById('questionNavPills');
         pills.innerHTML = '';
-        for (let i = 0; i < 7; i++) {
-          const pBtn = document.createElement('button');
-          pBtn.type = 'button';
-          pBtn.textContent = i + 1;
-          pBtn.className = `w-8 h-8 rounded-lg text-xs font-bold ${i === state.currentIdx ? 'bg-indigo-600 text-white' : state.answers[i] ? 'bg-indigo-100 text-indigo-800' : 'bg-slate-100 text-slate-600'}`;
-          pBtn.onclick = () => { state.currentIdx = i; renderExam(); };
-          pills.appendChild(pBtn);
+        for(let i=0; i<7; i++) {
+          const p = document.createElement('button');
+          p.type = 'button';
+          p.textContent = i+1;
+          p.className = `w-8 h-8 rounded-lg text-xs font-bold ${i === state.currentIdx ? 'bg-indigo-600 text-white' : state.answers[i] ? 'bg-indigo-100 text-indigo-800' : 'bg-slate-100 text-slate-600'}`;
+          p.onclick = () => { state.currentIdx = i; renderExam(); };
+          pills.appendChild(p);
         }
       }
 
@@ -313,8 +334,8 @@
         renderExam();
       };
 
-      document.getElementById('btnPrevQuestion').onclick = () => { if (state.currentIdx > 0) { state.currentIdx--; renderExam(); } };
-      document.getElementById('btnNextQuestion').onclick = () => { if (state.currentIdx < 6) { state.currentIdx++; renderExam(); } };
+      document.getElementById('btnPrevQuestion').onclick = () => { if(state.currentIdx > 0) { state.currentIdx--; renderExam(); } };
+      document.getElementById('btnNextQuestion').onclick = () => { if(state.currentIdx < 6) { state.currentIdx++; renderExam(); } };
 
       document.getElementById('btnSubmitExam').onclick = async () => {
         const questions = QUESTION_BANK[state.gradeLevel];
@@ -322,8 +343,8 @@
         const breakdown = questions.map((q, i) => {
           const chosen = state.answers[i];
           const isCorrect = chosen === q.correct;
-          if (isCorrect) correctCount++;
-          return { questionNumber: i + 1, chosenOption: chosen, isCorrect };
+          if(isCorrect) correctCount++;
+          return { questionNumber: i+1, chosenOption: chosen, isCorrect };
         });
 
         const record = {
@@ -335,9 +356,15 @@
           breakdown
         };
 
-        db.ref('simulacro_icfes_resultados/' + record.id).set(record)
-          .then(() => { switchView('viewSubmitted'); })
-          .catch((err) => { alert('Error al enviar: ' + err.message); });
+        const existing = getLocal();
+        existing.push(record);
+        saveLocal(existing);
+        await pushCloud(record);
+
+        document.getElementById('finalStudentName').textContent = record.studentName;
+        document.getElementById('finalStudentLevel').textContent = record.gradeLevel.toUpperCase();
+        document.getElementById('finalTotalTime').textContent = Math.round(record.totalTimeMs/1000) + 's';
+        switchView('viewSubmitted');
       };
 
       document.getElementById('btnNewAttempt').onclick = () => switchView('viewStart');
@@ -346,25 +373,38 @@
         if (pin === DEFAULT_ADMIN_KEY) { switchView('viewAdmin'); cargarPanel(); }
       };
       document.getElementById('btnExitAdmin').onclick = () => switchView('viewStart');
-      document.getElementById('btnRefreshAdmin').onclick = cargarPanel;
 
-      function cargarPanel() {
-        db.ref('simulacro_icfes_resultados').once('value')
-          .then((snapshot) => {
-            const dataObj = snapshot.val();
-            const data = dataObj ? Object.values(dataObj) : [];
-            document.getElementById('countAll').textContent = data.length;
-            const tbody = document.getElementById('leaderboardBody');
-            tbody.innerHTML = data.length ? data.map(s => `
-              <tr class="hover:bg-slate-50">
-                <td class="py-3.5 px-4 font-bold">${s.studentName}</td>
-                <td class="py-3.5 px-4">${s.gradeLevel}</td>
-                <td class="py-3.5 px-4 text-center font-bold text-emerald-600">${s.correctCount}/7</td>
-                <td class="py-3.5 px-4 text-right font-mono">${Math.round(s.totalTimeMs/1000)}s</td>
-              </tr>
-            `).join('') : `<tr><td colspan="4" class="py-6 text-center text-slate-400">Sin resultados en la nube todavía.</td></tr>`;
-          });
+      document.getElementById('btnSaveFirebaseUrl').onclick = async () => {
+        const u = document.getElementById('firebaseUrlInput').value.trim().replace(/\/+$/, '');
+        if(!u) return;
+        localStorage.setItem(STORAGE_KEYS.FIREBASE_URL, u);
+        alert('¡Conectado a Firebase correctamente!');
+        cargarPanel();
+      };
+
+      async function cargarPanel() {
+        document.getElementById('firebaseUrlInput').value = getFb();
+        const data = await fetchAll();
+        document.getElementById('countAll').textContent = data.length;
+        const tbody = document.getElementById('leaderboardBody');
+        tbody.innerHTML = data.length ? data.map(s => `
+          <tr class="hover:bg-slate-50">
+            <td class="py-3 px-4 font-bold">${s.studentName}</td>
+            <td class="py-3 px-4">${s.gradeLevel}</td>
+            <td class="py-3 px-4 text-center font-bold text-emerald-600">${s.correctCount}/7</td>
+            <td class="py-3 px-4 text-right font-mono">${Math.round(s.totalTimeMs/1000)}s</td>
+          </tr>
+        `).join('') : `<tr><td colspan="4" class="py-6 text-center text-slate-400">Sin resultados todavía.</td></tr>`;
       }
+
+      document.getElementById('btnLoadDemoData').onclick = async () => {
+        const demo = { id:'demo_'+Date.now(), studentName:'Estudiante Demo', gradeLevel:'nivel1', correctCount:7, totalTimeMs:30000 };
+        const d = getLocal(); d.push(demo); saveLocal(d); await pushCloud(demo); cargarPanel();
+      };
+
+      document.getElementById('btnClearAllData').onclick = async () => {
+        if(confirm('¿Borrar todo?')) { saveLocal([]); cargarPanel(); }
+      };
     })();
   </script>
 </body>
