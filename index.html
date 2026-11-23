@@ -1,283 +1,181 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Evaluación Académica | Teorías del Ambiente y Enfoque Ecológico</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
-        }
-        /* Animaciones suaves */
-        .fade-in {
-            animation: fadeIn 0.25s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        /* Personalización de scrollbar */
-        ::-webkit-scrollbar { width: 8px; height: 8px; }
-        ::-webkit-scrollbar-track { background: #f1f5f9; }
-        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Evaluación: Teorías del Ambiente y Enfoque Ecológico</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+body{font-family:'Inter',sans-serif}.fade-in{animation:fadeIn .25s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+</style>
 </head>
-<body class="min-h-screen flex flex-col bg-slate-50 text-slate-900 selection:bg-indigo-100 selection:text-indigo-900">
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col">
+<header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-30">
+ <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+  <div class="flex items-center gap-3"><div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center font-extrabold">EE</div><div><h1 class="text-sm sm:text-base font-bold">Evaluaciones Académicas</h1><p class="text-xs text-slate-400">Ambiente y Enfoque Ecológico</p></div></div>
+  <div class="flex items-center gap-2"><div id="headerTimerBox" class="hidden items-center gap-2 bg-slate-800 border border-slate-700 px-3 py-1.5 rounded-lg"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span><span id="headerTimer" class="font-mono text-sm font-bold text-emerald-300">00:00</span></div><button id="btnOpenTeacherAuth" class="text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-lg bg-slate-800 border border-slate-700">Panel Docente</button></div>
+ </div>
+</header>
+<main class="flex-1 max-w-5xl w-full mx-auto px-4 py-8">
+<section id="viewStudentHome" class="max-w-xl mx-auto fade-in">
+ <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl">
+  <div class="mb-6"><span class="inline-block text-xs font-semibold uppercase tracking-wider text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2.5 py-1 rounded-md mb-2">Evaluación a ciegas</span><h2 class="text-2xl font-extrabold">Ingreso del Estudiante</h2><p class="text-sm text-slate-400 mt-1">Escribe tu nombre completo y selecciona el examen asignado. El tiempo comenzará al iniciar.</p></div>
+  <div class="space-y-5"><div><label for="studentNameInput" class="block text-sm font-medium text-slate-300 mb-1.5">Nombre completo del estudiante</label><input id="studentNameInput" type="text" placeholder="Ej. María Camila Pérez" class="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-700 text-white"><p id="nameError" class="hidden text-xs text-rose-400 mt-1.5">Por favor escribe tu nombre antes de iniciar.</p></div>
+  <div class="pt-2"><p class="text-sm font-medium text-slate-300 mb-3">Selecciona la sesión de examen:</p><div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+   <button type="button" data-exam="exam1" class="btn-start-exam text-left group p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-indigo-500 transition"><span class="text-xs font-bold text-indigo-400 uppercase">Sesión 1</span><h3 class="text-base font-bold mt-1">Examen 1</h3><p class="text-xs text-slate-400 mt-1">Teorías centradas en el ambiente (5 preguntas)</p><span class="mt-4 inline-flex text-xs font-semibold text-indigo-400">Comenzar Examen 1 →</span></button>
+   <button type="button" data-exam="exam2" class="btn-start-exam text-left group p-5 rounded-xl bg-slate-950 border border-slate-800 hover:border-emerald-500 transition"><span class="text-xs font-bold text-emerald-400 uppercase">Sesión 2</span><h3 class="text-base font-bold mt-1">Examen 2</h3><p class="text-xs text-slate-400 mt-1">Entorno familiar y enfoque ecológico (5 preguntas)</p><span class="mt-4 inline-flex text-xs font-semibold text-emerald-400">Comenzar Examen 2 →</span></button>
+  </div></div></div>
+ </div>
+</section>
+<section id="viewExam" class="hidden max-w-3xl mx-auto fade-in"><div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl">
+ <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-5 border-b border-slate-800"><div><span id="examBadge" class="text-xs font-bold uppercase text-indigo-400">Sesión</span><h2 id="examTitle" class="text-xl font-extrabold mt-0.5"></h2><p class="text-xs text-slate-400 mt-1">Estudiante: <span id="examStudentDisplay" class="text-slate-200 font-semibold"></span></p></div><div class="text-xs text-slate-400 bg-slate-950 border border-slate-800 px-3 py-2 rounded-lg">Modo a ciegas activo • Cada pregunta vale 1 punto</div></div>
+ <form id="examForm" class="mt-6 space-y-6"><div id="questionsContainer" class="space-y-6"></div><div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4"><p id="examProgressText" class="text-xs text-slate-400">Respondidas: 0 de 5</p><button type="button" id="btnPreSubmit" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm">Finalizar y enviar respuestas</button></div></form>
+</div></section>
+<section id="viewSubmitted" class="hidden max-w-lg mx-auto fade-in"><div class="bg-slate-900 border border-slate-800 rounded-2xl p-8 text-center shadow-xl"><div class="w-14 h-14 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center mx-auto mb-4 text-2xl font-bold">✓</div><h2 class="text-2xl font-extrabold">¡Respuestas enviadas!</h2><p class="text-sm text-slate-300 mt-2">Gracias, <span id="submittedStudentName" class="font-bold text-white"></span>. Tus respuestas de <span id="submittedExamName" class="font-semibold text-indigo-300"></span> fueron registradas.</p><div class="mt-5 inline-block bg-slate-950 border border-slate-800 rounded-xl px-5 py-3"><p class="text-xs text-slate-400">Tiempo total registrado</p><p id="submittedTime" class="text-xl font-mono font-extrabold text-emerald-400 mt-0.5">00:00</p></div><p class="text-xs text-slate-400 mt-5">Los resultados y calificaciones son visibles únicamente para el docente.</p><button type="button" id="btnBackHome" class="mt-6 w-full py-3 rounded-xl bg-slate-800 text-white font-semibold text-sm">Volver al inicio</button></div></section>
+<section id="viewTeacherPanel" class="hidden fade-in space-y-6">
+ <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4"><div><div class="flex items-center gap-2 flex-wrap"><h2 class="text-2xl font-extrabold">Panel de Docente</h2><span id="storageBadge" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">Conectando…</span></div><p id="syncStatus" class="text-xs text-slate-400 mt-1">Los resultados se sincronizan con Firebase Realtime Database.</p><p class="text-xs text-slate-400 mt-1">Orden: mayor puntaje y menor tiempo. Podio: Oro, Plata y Bronce.</p></div><div class="flex flex-wrap items-center gap-2"><button type="button" id="btnSyncFirebase" class="px-3.5 py-2 rounded-lg bg-indigo-600 text-white text-xs font-bold">⟳ Sincronizar ahora</button><button type="button" id="btnClearResults" class="px-3.5 py-2 rounded-lg bg-rose-950/60 border border-rose-800/60 text-rose-300 text-xs font-semibold">Borrar registros locales</button><button type="button" id="btnExitTeacher" class="px-3.5 py-2 rounded-lg bg-slate-800 text-slate-200 text-xs font-semibold">Salir del panel</button></div></div>
+ <div class="flex flex-wrap items-center gap-2"><button type="button" data-filter="all" class="teacher-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 text-white">Todos los exámenes</button><button type="button" data-filter="exam1" class="teacher-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300">Solo Examen 1</button><button type="button" data-filter="exam2" class="teacher-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300">Solo Examen 2</button></div>
+ <div id="podiumGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+ <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl"><div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between"><h3 class="text-sm font-bold">Listado General de Estudiantes</h3><span id="totalSubmissionsCount" class="text-xs text-slate-400">0 registros</span></div><div class="overflow-x-auto"><table class="w-full text-left border-collapse"><thead><tr class="border-b border-slate-800 text-xs uppercase text-slate-400 bg-slate-950/60"><th class="py-3 px-4">Puesto</th><th class="py-3 px-4">Estudiante</th><th class="py-3 px-4">Examen</th><th class="py-3 px-4 text-center">Nota</th><th class="py-3 px-4 text-center">Buenas</th><th class="py-3 px-4 text-center">Malas</th><th class="py-3 px-4 text-right">Tiempo</th></tr></thead><tbody id="resultsTableBody" class="divide-y divide-slate-800 text-sm"></tbody></table></div></div>
+</section>
+</main>
+<div id="confirmModal" class="hidden fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4"><div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6"><h3 class="text-lg font-extrabold">¿Ya respondiste todo y estás seguro?</h3><p class="text-sm text-slate-300 mt-2">Una vez envíes tus respuestas no podrás modificarlas en este intento.</p><div id="unansweredAlert" class="hidden mt-3 p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-xs text-amber-300">Tienes preguntas sin responder. Si envías ahora, contarán como incorrectas.</div><div class="mt-6 flex justify-end gap-3"><button type="button" id="btnCancelSubmit" class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-200 text-xs font-semibold">Revisar respuestas</button><button type="button" id="btnConfirmSubmit" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold">Sí, enviar examen</button></div></div></div>
+<div id="teacherAuthModal" class="hidden fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4"><div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-sm w-full p-6"><h3 class="text-lg font-extrabold">Acceso Panel Docente</h3><p class="text-xs text-slate-400 mt-1">Ingresa la clave del profesor.</p><input id="teacherPinInput" type="password" placeholder="Clave docente" class="mt-4 w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm"><p id="teacherPinError" class="hidden text-xs text-rose-400 mt-1.5">Clave incorrecta.</p><div class="mt-5 flex justify-end gap-2"><button type="button" id="btnCloseTeacherAuth" class="px-4 py-2 rounded-lg bg-slate-800 text-xs text-slate-300 font-semibold">Cancelar</button><button type="button" id="btnVerifyTeacherPin" class="px-4 py-2 rounded-lg bg-indigo-600 text-xs text-white font-bold">Entrar</button></div></div></div>
 
-    <!-- ===================================================================== -->
-    <!-- BARRA SUPERIOR DE NAVEGACIÓN                                          -->
-    <!-- ===================================================================== -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-            <!-- Logo / Título -->
-            <div class="flex items-center gap-3 cursor-pointer" onclick="app.goHome()">
-                <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white font-bold shadow-sm">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-                    </svg>
-                </div>
-                <div>
-                    <h1 class="font-bold text-slate-900 text-sm sm:text-base leading-tight">Aula de Evaluación</h1>
-                    <p class="text-xs text-slate-500 hidden sm:block">Psicología del Aprendizaje y Desarrollo</p>
-                </div>
-            </div>
+<script>
+// Firebase Realtime Database: misma base de datos del proyecto anterior.
+const DEFAULT_FIREBASE_URL = "https://sebastianxaviergarciaforero-default-rtdb.firebaseio.com";
+const DATABASE_PATH = "evaluaciones_ecologico_resultados";
+const TEACHER_PIN = "1111";
+const LOCAL_STORAGE_KEY = "evaluaciones_ecologico_resultados_v2";
 
-            <!-- Estado de conexión + Botón Panel Docente -->
-            <div class="flex items-center gap-2 sm:gap-3">
-                <div id="connection-badge" class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">
-                    <span class="w-2 h-2 rounded-full bg-amber-500"></span>
-                    <span id="connection-text">Modo Local</span>
-                </div>
+const EXAMS_DATA = {
+ exam1:{id:"exam1",badge:"Sesión 1",title:"Examen 1: Teorías centradas en el ambiente",questions:[
+ {id:"e1_q1",type:"single",text:"1. ¿Cuál es la idea principal de las teorías centradas en el ambiente?",options:[{key:"A",label:"A. El aprendizaje depende exclusivamente de la genética."},{key:"B",label:"B. El contexto escolar, familiar y sociocultural influye en el aprendizaje."},{key:"C",label:"C. Las dificultades de aprendizaje siempre son permanentes."},{key:"D",label:"D. El docente no influye en el aprendizaje."}],correct:["B"]},
+ {id:"e1_q2",type:"single",text:"2. Según Miranda (1994), ¿qué condiciones escolares pueden obstaculizar el aprendizaje?",options:[{key:"A",label:"A. La buena iluminación y los materiales suficientes."},{key:"B",label:"B. La participación activa de los estudiantes."},{key:"C",label:"C. Aulas incómodas, ruidosas y sin recursos."},{key:"D",label:"D. La comunicación constante entre docentes y estudiantes."}],correct:["C"]},
+ {id:"e1_q3",type:"single",text:"3. ¿Qué aspecto relacionan Bradley y Bryant (1983) con el aprendizaje de la lectura?",options:[{key:"A",label:"A. La conciencia de los sonidos del lenguaje, como las rimas."},{key:"B",label:"B. La cantidad de estudiantes por salón."},{key:"C",label:"C. El uso de uniformes escolares."},{key:"D",label:"D. La edad del docente."}],correct:["A"]},
+ {id:"e1_q4",type:"single",text:"4. Según Bernstein, el código elaborado se caracteriza por utilizar explicaciones más explícitas y variadas.",options:[{key:"Verdadero",label:"Verdadero"},{key:"Falso",label:"Falso"}],correct:["Verdadero"]},
+ {id:"e1_q5",type:"single",text:"5. Un docente divide una lectura en partes, explica palabras desconocidas y comprueba si todos comprendieron. ¿Qué demuestra este ejemplo?",options:[{key:"A",label:"A. Que las dificultades dependen únicamente del estudiante."},{key:"B",label:"B. Que el ambiente familiar no tiene importancia."},{key:"C",label:"C. Que todos los estudiantes aprenden de la misma manera."},{key:"D",label:"D. Que la planificación y las estrategias docentes pueden reducir barreras para el aprendizaje."}],correct:["D"]}
+ ]},
+ exam2:{id:"exam2",badge:"Sesión 2",title:"Examen 2: Entorno familiar y enfoque ecológico",questions:[
+ {id:"e2_q1",type:"single",text:"1. Según Bronfenbrenner, ¿cómo ocurre el desarrollo humano?",options:[{key:"A",label:"A. Solamente por la maduración biológica."},{key:"B",label:"B. Por la interacción entre la persona y los ambientes en los que participa."},{key:"C",label:"C. Únicamente dentro de la escuela."},{key:"D",label:"D. Sin influencia de la familia ni de la sociedad."}],correct:["B"]},
+ {id:"e2_q2",type:"single",text:"2. La comunicación entre la familia y la escuela corresponde a cuál sistema del enfoque ecológico?",options:[{key:"A",label:"A. Microsistema."},{key:"B",label:"B. Exosistema."},{key:"C",label:"C. Mesosistema."},{key:"D",label:"D. Macrosistema."}],correct:["C"]},
+ {id:"e2_q3",type:"single",text:"3. Si cambia el horario laboral de los padres y tienen menos tiempo para acompañar las tareas del niño, ¿qué sistema se ve reflejado?",options:[{key:"A",label:"A. Exosistema."},{key:"B",label:"B. Microsistema."},{key:"C",label:"C. Macrosistema."},{key:"D",label:"D. Mesosistema."}],correct:["A"]},
+ {id:"e2_q4",type:"single",text:"4. Para Bruner, el andamiaje consiste en ofrecer apoyos temporales para que el estudiante pueda avanzar en su aprendizaje.",options:[{key:"Verdadero",label:"Verdadero"},{key:"Falso",label:"Falso"}],correct:["Verdadero"]},
+ {id:"e2_q5",type:"multiple",text:"5. ¿Cuáles de los siguientes son factores familiares o socioculturales que pueden influir en el aprendizaje? (Selecciona todas las respuestas correctas)",options:[{key:"A",label:"A. La nutrición y las experiencias tempranas."},{key:"B",label:"B. El clima familiar y las formas de comunicación."},{key:"C",label:"C. Las experiencias sensoriales y motoras."},{key:"D",label:"D. El color favorito del estudiante."}],correct:["A","B","C"]}
+ ]}
+};
 
-                <button id="btn-teacher-access" onclick="app.openTeacherLogin()" class="flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-700 bg-slate-100 hover:bg-slate-200 transition active:scale-95">
-                    <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
-                    </svg>
-                    <span>Panel Docente</span>
-                </button>
-            </div>
-        </div>
-    </header>
+let currentStudent="",currentExamKey=null,startTimeMs=0,timerInterval=null,elapsedSeconds=0,currentTeacherFilter="all",allSubmissionsCache=[],eventSource=null;
+const dbUrl=DEFAULT_FIREBASE_URL.replace(/\/+$/,"")+"/"+DATABASE_PATH+".json";
+function formatTime(s){return `${String(Math.floor(s/60)).padStart(2,"0")}:${String(s%60).padStart(2,"0")}`;}
+function showView(id){["viewStudentHome","viewExam","viewSubmitted","viewTeacherPanel"].forEach(x=>document.getElementById(x).classList.add("hidden"));document.getElementById(id).classList.remove("hidden");}
+function startTimer(){stopTimer();startTimeMs=Date.now();document.getElementById("headerTimer").textContent="00:00";document.getElementById("headerTimerBox").classList.remove("hidden");document.getElementById("headerTimerBox").classList.add("flex");timerInterval=setInterval(()=>{elapsedSeconds=Math.floor((Date.now()-startTimeMs)/1000);document.getElementById("headerTimer").textContent=formatTime(elapsedSeconds);},500);}
+function stopTimer(){if(timerInterval){clearInterval(timerInterval);timerInterval=null;}document.getElementById("headerTimerBox").classList.add("hidden");document.getElementById("headerTimerBox").classList.remove("flex");}
+function updateStorageBadge(ok){const b=document.getElementById("storageBadge");if(!b)return;b.textContent=ok?"Firebase conectado":"Sin conexión con Firebase";b.className="text-xs font-semibold px-2.5 py-0.5 rounded-full "+(ok?"bg-emerald-500/15 text-emerald-300 border border-emerald-500/30":"bg-amber-500/15 text-amber-300 border border-amber-500/30");}
+function getLocal(){try{return JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)||"[]");}catch{return[];}}
+function saveLocal(record){const a=getLocal();a.push(record);localStorage.setItem(LOCAL_STORAGE_KEY,JSON.stringify(a));}
 
-    <!-- ===================================================================== -->
-    <!-- CONTENEDOR PRINCIPAL DE VISTAS                                        -->
-    <!-- ===================================================================== -->
-    <main class="flex-1 max-w-5xl w-full mx-auto px-4 sm:px-6 py-6 sm:py-10">
+// Envía cada resultado a Firebase. El método POST crea un registro nuevo con ID único.
+async function pushResultToCloud(record){
+ const response=await fetch(dbUrl,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(record)});
+ if(!response.ok)throw new Error("Firebase respondió "+response.status);
+ return await response.json();
+}
+async function fetchAllResults(){
+ const response=await fetch(dbUrl,{cache:"no-store"});
+ if(!response.ok)throw new Error("Firebase respondió "+response.status);
+ const data=await response.json();
+ if(!data){allSubmissionsCache=[];return[];}
+ allSubmissionsCache=Object.entries(data).map(([id,value])=>({...value,cloudId:id}));
+ return allSubmissionsCache;
+}
+async function saveSubmission(record){
+ saveLocal(record);
+ try{await pushResultToCloud(record);document.getElementById("syncStatus").textContent="Resultado guardado en Firebase correctamente.";return true;}
+ catch(err){console.error("No se pudo guardar en Firebase:",err);document.getElementById("syncStatus").textContent="No hubo conexión: el resultado quedó guardado solo en este dispositivo.";return false;}
+}
+function startRealtimeListener(){
+ if(eventSource){eventSource.close();eventSource=null;}
+ const streamUrl=DEFAULT_FIREBASE_URL.replace(/\/+$/,"")+"/"+DATABASE_PATH+".json";
+ try{
+  eventSource=new EventSource(streamUrl);
+  eventSource.addEventListener("put",()=>refreshCloudResults());
+  eventSource.addEventListener("patch",()=>refreshCloudResults());
+  eventSource.onerror=()=>{updateStorageBadge(false);};
+ }catch(e){console.warn("No fue posible iniciar actualizaciones en tiempo real.",e);}
+}
+let refreshTimer=null;
+function refreshCloudResults(){
+ clearTimeout(refreshTimer);
+ refreshTimer=setTimeout(async()=>{try{await fetchAllResults();updateStorageBadge(true);if(!document.getElementById("viewTeacherPanel").classList.contains("hidden"))renderTeacherData();}catch(e){console.warn(e);}},250);
+}
+async function syncNow(){
+ const status=document.getElementById("syncStatus");status.textContent="Sincronizando resultados…";
+ try{await fetchAllResults();updateStorageBadge(true);status.textContent=`Sincronización completada: ${allSubmissionsCache.length} resultado(s) en la base de datos.`;renderTeacherData();startRealtimeListener();}
+ catch(e){updateStorageBadge(false);status.textContent="No se pudo conectar. Comprueba tu conexión a internet y las reglas de Firebase.";allSubmissionsCache=getLocal();renderTeacherData();}
+}
 
-        <!-- ================================================================= -->
-        <!-- VISTA 1: REGISTRO DEL ESTUDIANTE Y SELECCIÓN DE EXAMEN            -->
-        <!-- ================================================================= -->
-        <section id="view-home" class="fade-in max-w-2xl mx-auto">
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-8">
-                <div class="text-center mb-8">
-                    <span class="inline-block px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold tracking-wide uppercase mb-3">
-                        Evaluación en Línea
-                    </span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
-                        Registro del Estudiante
-                    </h2>
-                    <p class="text-slate-500 text-sm sm:text-base mt-2">
-                        Escribe tu nombre completo y selecciona la sesión de examen que vas a presentar.
-                    </p>
-                </div>
-
-                <!-- Campo Nombre -->
-                <div class="mb-8">
-                    <label for="student-name" class="block text-sm font-bold text-slate-700 mb-2">
-                        Nombre completo del estudiante <span class="text-rose-500">*</span>
-                    </label>
-                    <input 
-                        type="text" 
-                        id="student-name" 
-                        placeholder="Ej. María Fernanda Gómez" 
-                        autocomplete="off"
-                        class="w-full px-4 py-3.5 rounded-2xl border border-slate-300 bg-slate-50 focus:bg-white text-slate-900 font-medium placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-base"
-                    >
-                    <p id="name-error" class="hidden text-rose-600 text-xs font-semibold mt-2 flex items-center gap-1">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
-                        Por favor, escribe tu nombre antes de iniciar el examen.
-                    </p>
-                </div>
-
-                <!-- Selección de Examen -->
-                <div>
-                    <h3 class="text-sm font-bold text-slate-700 mb-3">Selecciona la sesión de examen:</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Tarjeta Examen 1 -->
-                        <button onclick="app.startExam('exam1')" class="group text-left p-5 rounded-2xl border-2 border-slate-200 hover:border-indigo-600 bg-white hover:bg-indigo-50/40 transition-all shadow-sm hover:shadow flex flex-col justify-between active:scale-[0.99]">
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="px-2.5 py-1 rounded-lg bg-indigo-100 text-indigo-700 text-xs font-bold">
-                                        SESIÓN 1
-                                    </span>
-                                    <span class="text-xs font-semibold text-slate-400 group-hover:text-indigo-600">5 preguntas</span>
-                                </div>
-                                <h4 class="font-bold text-slate-900 text-base sm:text-lg group-hover:text-indigo-900 leading-snug">
-                                    Examen 1: Teorías centradas en el ambiente
-                                </h4>
-                                <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-                                    Contexto escolar, condiciones de aprendizaje (Miranda, Bradley &amp; Bryant, Bernstein).
-                                </p>
-                            </div>
-                            <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-indigo-600 font-bold text-sm">
-                                <span>Iniciar Examen 1</span>
-                                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                            </div>
-                        </button>
-
-                        <!-- Tarjeta Examen 2 -->
-                        <button onclick="app.startExam('exam2')" class="group text-left p-5 rounded-2xl border-2 border-slate-200 hover:border-emerald-600 bg-white hover:bg-emerald-50/40 transition-all shadow-sm hover:shadow flex flex-col justify-between active:scale-[0.99]">
-                            <div>
-                                <div class="flex items-center justify-between mb-3">
-                                    <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-700 text-xs font-bold">
-                                        SESIÓN 2
-                                    </span>
-                                    <span class="text-xs font-semibold text-slate-400 group-hover:text-emerald-600">5 preguntas</span>
-                                </div>
-                                <h4 class="font-bold text-slate-900 text-base sm:text-lg group-hover:text-emerald-900 leading-snug">
-                                    Examen 2: Entorno familiar y enfoque ecológico
-                                </h4>
-                                <p class="text-xs text-slate-500 mt-2 leading-relaxed">
-                                    Sistemas de Bronfenbrenner, andamiaje de Bruner y factores socioculturales.
-                                </p>
-                            </div>
-                            <div class="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between text-emerald-600 font-bold text-sm">
-                                <span>Iniciar Examen 2</span>
-                                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-                            </div>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Aviso informativo -->
-                <div class="mt-6 p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3">
-                    <svg class="w-5 h-5 text-indigo-600 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <p class="text-xs text-slate-600 leading-relaxed">
-                        <strong>Nota importante:</strong> Al iniciar, el cronómetro comenzará a medir tu tiempo. Esta evaluación se realiza <strong>a ciegas</strong>; tus respuestas y calificación serán enviadas directamente al docente al finalizar.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- VISTA 2: DESARROLLO DEL EXAMEN (A CIEGAS + CRONÓMETRO)            -->
-        <!-- ================================================================= -->
-        <section id="view-exam" class="hidden fade-in max-w-3xl mx-auto">
-            <!-- Barra superior fija del examen (Alumno + Cronómetro) -->
-            <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-4 sm:px-6 mb-6 flex flex-wrap items-center justify-between gap-4 sticky top-20 z-20">
-                <div>
-                    <span id="exam-badge" class="inline-block px-2.5 py-0.5 rounded-md bg-indigo-100 text-indigo-700 text-xs font-bold mb-1">
-                        SESIÓN 1
-                    </span>
-                    <h2 id="exam-title" class="font-bold text-slate-900 text-base sm:text-lg leading-tight">
-                        Examen 1
-                    </h2>
-                    <p class="text-xs text-slate-500 mt-0.5">
-                        Estudiante: <strong id="exam-student-display" class="text-slate-800"></strong>
-                    </p>
-                </div>
-
-                <!-- Cronómetro en tiempo real -->
-                <div class="flex items-center gap-3 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-inner">
-                    <div class="w-2.5 h-2.5 rounded-full bg-rose-500 animate-pulse"></div>
-                    <div>
-                        <span class="block text-[10px] uppercase tracking-wider text-slate-400 font-semibold leading-none">Tiempo</span>
-                        <span id="exam-timer" class="font-mono text-lg sm:text-xl font-bold tracking-wider">00:00</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Instrucciones -->
-            <div class="bg-indigo-50/70 border border-indigo-100 rounded-2xl p-4 mb-6 text-xs sm:text-sm text-indigo-900">
-                <strong>Instrucciones:</strong> Lee cuidadosamente cada pregunta y selecciona la respuesta correcta. Cada pregunta vale <strong>1 punto</strong>.
-            </div>
-
-            <!-- Contenedor de Preguntas -->
-            <div id="questions-container" class="space-y-5">
-                <!-- Se renderiza dinámicamente con JS -->
-            </div>
-
-            <!-- Botón Finalizar -->
-            <div class="mt-8 bg-white rounded-2xl border border-slate-200 p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-sm">
-                <div class="text-sm text-slate-600">
-                    Respondidas: <strong id="answered-count" class="text-slate-900">0</strong> de <strong id="total-questions-count" class="text-slate-900">5</strong> preguntas
-                </div>
-                <button onclick="app.promptSubmitExam()" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm sm:text-base shadow-md shadow-indigo-200 transition active:scale-95 flex items-center justify-center gap-2">
-                    <span>Finalizar y Enviar Respuestas</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-                </button>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- VISTA 3: CONFIRMACIÓN DE ENVÍO AL ESTUDIANTE (SIN NOTA)           -->
-        <!-- ================================================================= -->
-        <section id="view-submitted" class="hidden fade-in max-w-lg mx-auto text-center">
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 sm:p-10">
-                <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto mb-6">
-                    <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
-                    </svg>
-                </div>
-                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 mb-3">
-                    ¡Examen enviado con éxito!
-                </h2>
-                <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                    Tus respuestas y tu tiempo de realización han sido registrados y enviados de forma segura al <strong>Panel del Docente</strong>.
-                </p>
-
-                <div class="bg-slate-50 rounded-2xl p-4 border border-slate-200/80 mb-8 text-left space-y-2 text-sm">
-                    <div class="flex justify-between">
-                        <span class="text-slate-500">Estudiante:</span>
-                        <span id="submitted-name" class="font-bold text-slate-900"></span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-slate-500">Evaluación:</span>
-                        <span id="submitted-exam" class="font-bold text-slate-900"></span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-slate-500">Tiempo registrado:</span>
-                        <span id="submitted-time" class="font-mono font-bold text-indigo-600"></span>
-                    </div>
-                </div>
-
-                <button onclick="app.goHome()" class="w-full py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition active:scale-95">
-                    Volver al inicio
-                </button>
-            </div>
-        </section>
-
-        <!-- ================================================================= -->
-        <!-- VISTA 4: PANEL DE DOCENTE (PODIO ORO/PLATA/BRONCE + RESULTADOS)   -->
-        <!-- ================================================================= -->
-        <section id="view-teacher" class="hidden fade-in space-y-6">
-            <!-- Encabezado del Panel Docente -->
-            <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
-                    <div class="flex items-center gap-2">
-                        <span class="px-2.5 py-0.5 rounded-md bg-indigo-100 text-indigo-700 text-xs font-bold uppercase">Control Docente</span>
-                        <span id="teacher-db-status" class="px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-800 text-xs font-semibold">Almacenamiento Local</span>
-                    </div>
-                    <h2 class="text-2xl font-extrabold text-slate-900 mt-1">Resultados y Cuadro de Honor</h2>
-                    <p class="text-xs sm:text-sm text-slate-500">Clasificación automática por mayor puntaje y menor tiempo empleado.</p>
-                </div>
-
-                <div class="flex flex-wrap items-center gap-2">
-                    <button onclick="app.openFirebaseModal()" class="px-3.5 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 text-xs sm:text-sm font-bold flex items-center gap-1.5 transition">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                        <span>Conectar Firebase</span>
-                    </button>
-                    <button onclick="app.exportCSV()" class="px-3.5 py-2 rounded-xl bg-e
+document.querySelectorAll(".btn-start-exam").forEach(btn=>btn.addEventListener("click",()=>{
+ const name=document.getElementById("studentNameInput").value.trim();
+ if(!name){document.getElementById("nameError").classList.remove("hidden");document.getElementById("studentNameInput").focus();return;}
+ document.getElementById("nameError").classList.add("hidden");currentStudent=name;currentExamKey=btn.dataset.exam;renderExam(currentExamKey);showView("viewExam");startTimer();
+}));
+function renderExam(key){
+ const exam=EXAMS_DATA[key];document.getElementById("examBadge").textContent=exam.badge;document.getElementById("examTitle").textContent=exam.title;document.getElementById("examStudentDisplay").textContent=currentStudent;
+ const container=document.getElementById("questionsContainer");container.innerHTML="";
+ exam.questions.forEach(q=>{
+  const card=document.createElement("div");card.className="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-3";
+  const title=document.createElement("p");title.className="text-sm sm:text-base font-semibold text-white";title.textContent=q.text;card.appendChild(title);
+  const list=document.createElement("div");list.className="space-y-2 pt-1";const inputType=q.type==="multiple"?"checkbox":"radio";
+  q.options.forEach(opt=>{const label=document.createElement("label");label.className="flex items-start gap-3 p-3 rounded-lg border border-slate-800 bg-slate-900/60 hover:bg-slate-900 cursor-pointer";const input=document.createElement("input");input.type=inputType;input.name=q.id;input.value=opt.key;input.className="mt-0.5 accent-indigo-500 w-4 h-4 shrink-0";input.addEventListener("change",updateExamProgress);const span=document.createElement("span");span.className="text-sm text-slate-200";span.textContent=opt.label;label.append(input,span);list.appendChild(label);});
+  card.appendChild(list);container.appendChild(card);
+ });updateExamProgress();
+}
+function getStudentAnswers(){const answers={};EXAMS_DATA[currentExamKey].questions.forEach(q=>answers[q.id]=Array.from(document.querySelectorAll(`input[name="${q.id}"]:checked`)).map(x=>x.value));return answers;}
+function updateExamProgress(){if(!currentExamKey)return;const exam=EXAMS_DATA[currentExamKey],a=getStudentAnswers();const count=exam.questions.filter(q=>a[q.id]?.length).length;document.getElementById("examProgressText").textContent=`Respondidas: ${count} de ${exam.questions.length}`;}
+document.getElementById("btnPreSubmit").addEventListener("click",()=>{const exam=EXAMS_DATA[currentExamKey],a=getStudentAnswers(),missing=exam.questions.some(q=>!a[q.id]?.length);document.getElementById("unansweredAlert").classList.toggle("hidden",!missing);document.getElementById("confirmModal").classList.remove("hidden");});
+document.getElementById("btnCancelSubmit").addEventListener("click",()=>document.getElementById("confirmModal").classList.add("hidden"));
+document.getElementById("btnConfirmSubmit").addEventListener("click",async()=>{
+ document.getElementById("confirmModal").classList.add("hidden");const seconds=Math.max(1,Math.floor((Date.now()-startTimeMs)/1000));stopTimer();
+ const exam=EXAMS_DATA[currentExamKey],answers=getStudentAnswers();let correct=0;
+ exam.questions.forEach(q=>{const user=[...(answers[q.id]||[])].sort(),right=[...q.correct].sort();if(user.length===right.length&&user.every((v,i)=>v===right[i]))correct++;});
+ const record={studentName:currentStudent,examId:exam.id,examTitle:exam.title,score:correct,totalQuestions:exam.questions.length,correctCount:correct,wrongCount:exam.questions.length-correct,timeSeconds:seconds,timeFormatted:formatTime(seconds),createdAt:new Date().toISOString()};
+ await saveSubmission(record);document.getElementById("submittedStudentName").textContent=currentStudent;document.getElementById("submittedExamName").textContent=exam.title;document.getElementById("submittedTime").textContent=formatTime(seconds);showView("viewSubmitted");
+});
+document.getElementById("btnBackHome").addEventListener("click",()=>{document.getElementById("studentNameInput").value="";currentStudent="";currentExamKey=null;showView("viewStudentHome");});
+document.getElementById("btnOpenTeacherAuth").addEventListener("click",()=>{document.getElementById("teacherPinInput").value="";document.getElementById("teacherPinError").classList.add("hidden");document.getElementById("teacherAuthModal").classList.remove("hidden");document.getElementById("teacherPinInput").focus();});
+document.getElementById("btnCloseTeacherAuth").addEventListener("click",()=>document.getElementById("teacherAuthModal").classList.add("hidden"));
+function attemptTeacherLogin(){if(document.getElementById("teacherPinInput").value.trim()===TEACHER_PIN){document.getElementById("teacherAuthModal").classList.add("hidden");openTeacherDashboard();}else document.getElementById("teacherPinError").classList.remove("hidden");}
+document.getElementById("btnVerifyTeacherPin").addEventListener("click",attemptTeacherLogin);
+document.getElementById("teacherPinInput").addEventListener("keydown",e=>{if(e.key==="Enter")attemptTeacherLogin();});
+document.getElementById("btnExitTeacher").addEventListener("click",()=>{if(eventSource){eventSource.close();eventSource=null;}showView("viewStudentHome");});
+async function openTeacherDashboard(){stopTimer();showView("viewTeacherPanel");await syncNow();}
+document.getElementById("btnSyncFirebase").addEventListener("click",syncNow);
+document.querySelectorAll(".teacher-filter-btn").forEach(btn=>btn.addEventListener("click",()=>{currentTeacherFilter=btn.dataset.filter;document.querySelectorAll(".teacher-filter-btn").forEach(b=>b.className="teacher-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-slate-800 text-slate-300");btn.className="teacher-filter-btn px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 text-white";renderTeacherData();}));
+function escapeHtml(s){return String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;");}
+function renderTeacherData(){
+ let list=[...allSubmissionsCache];if(currentTeacherFilter!=="all")list=list.filter(x=>x.examId===currentTeacherFilter);
+ list.sort((a,b)=>(b.correctCount-a.correctCount)||(a.timeSeconds-b.timeSeconds));renderPodium(list);renderTable(list);
+}
+function renderPodium(list){
+ const grid=document.getElementById("podiumGrid");grid.innerHTML="";
+ const medals=[{title:"1er Puesto • ORO",emoji:"🥇",border:"border-amber-400/50",bg:"bg-gradient-to-b from-amber-500/15 to-slate-900",color:"text-amber-300"},{title:"2do Puesto • PLATA",emoji:"🥈",border:"border-slate-300/40",bg:"bg-gradient-to-b from-slate-400/15 to-slate-900",color:"text-slate-200"},{title:"3er Puesto • BRONCE",emoji:"🥉",border:"border-orange-500/40",bg:"bg-gradient-to-b from-orange-500/15 to-slate-900",color:"text-orange-300"}];
+ medals.forEach((m,i)=>{const s=list[i],card=document.createElement("div");card.className=`rounded-2xl border ${m.border} ${m.bg} p-5 shadow-lg`;card.innerHTML=`<div class="flex items-center justify-between"><span class="text-xs font-extrabold uppercase ${m.color}">${m.title}</span><span class="text-2xl">${m.emoji}</span></div>${s?`<h4 class="text-lg font-extrabold text-white mt-2 truncate">${escapeHtml(s.studentName)}</h4><p class="text-xs text-slate-400 mt-0.5">${escapeHtml(s.examTitle)}</p><div class="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-xs"><span class="text-emerald-300 font-bold">${s.correctCount}/${s.totalQuestions} buenas</span><span class="font-mono font-bold">⏱ ${escapeHtml(s.timeFormatted||formatTime(s.timeSeconds))}</span></div>`:'<p class="text-sm text-slate-500 mt-4">Sin participante aún</p>'}`;grid.appendChild(card);});
+}
+function renderTable(list){
+ const body=document.getElementById("resultsTableBody");document.getElementById("totalSubmissionsCount").textContent=`${list.length} registros`;body.innerHTML="";
+ if(!list.length){body.innerHTML='<tr><td colspan="7" class="py-8 text-center text-sm text-slate-500">Aún no hay exámenes enviados en esta categoría.</td></tr>';return;}
+ list.forEach((x,i)=>{const rank=i===0?"🥇 1° Oro":i===1?"🥈 2° Plata":i===2?"🥉 3° Bronce":`#${i+1}`;const tr=document.createElement("tr");tr.className="hover:bg-slate-800/40";tr.innerHTML=`<td class="py-3.5 px-4 font-bold text-xs whitespace-nowrap">${rank}</td><td class="py-3.5 px-4 font-semibold text-white">${escapeHtml(x.studentName)}</td><td class="py-3.5 px-4 text-xs text-slate-300">${escapeHtml(x.examTitle)}</td><td class="py-3.5 px-4 text-center font-extrabold text-indigo-300">${x.score} / ${x.totalQuestions}</td><td class="py-3.5 px-4 text-center font-bold text-emerald-400">${x.correctCount}</td><td class="py-3.5 px-4 text-center font-bold text-rose-400">${x.wrongCount}</td><td class="py-3.5 px-4 text-right font-mono text-xs">${escapeHtml(x.timeFormatted||formatTime(x.timeSeconds))}</td>`;body.appendChild(tr);});
+}
+document.getElementById("btnClearResults").addEventListener("click",()=>{if(!confirm("¿Seguro que deseas borrar los registros guardados localmente en este navegador? Los registros de Firebase no se borrarán."))return;localStorage.removeItem(LOCAL_STORAGE_KEY);if(!isFirebaseDataLoaded)allSubmissionsCache=[];renderTeacherData();});
+let isFirebaseDataLoaded=false;
+const originalFetchAllResults=fetchAllResults;
+fetchAllResults=async function(){const result=await originalFetchAllResults();isFirebaseDataLoaded=true;return result;};
+// Comprueba la conexión al abrir la página; los estudiantes no necesitan configurar nada.
+(async()=>{try{await fetchAllResults();updateStorageBadge(true);}catch(e){updateStorageBadge(false);} })();
+</script>
+</body>
+</html>
