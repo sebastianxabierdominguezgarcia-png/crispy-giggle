@@ -41,6 +41,30 @@ body{font-family:'Inter',sans-serif}.fade-in{animation:fadeIn .25s ease-out}
  <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden shadow-xl"><div class="px-6 py-4 border-b border-slate-800 flex items-center justify-between"><h3 class="text-sm font-bold">Listado General de Estudiantes</h3><span id="totalSubmissionsCount" class="text-xs text-slate-400">0 registros</span></div><div class="overflow-x-auto"><table class="w-full text-left border-collapse"><thead><tr class="border-b border-slate-800 text-xs uppercase text-slate-400 bg-slate-950/60"><th class="py-3 px-4">Puesto</th><th class="py-3 px-4">Estudiante</th><th class="py-3 px-4">Examen</th><th class="py-3 px-4 text-center">Nota</th><th class="py-3 px-4 text-center">Buenas</th><th class="py-3 px-4 text-center">Malas</th><th class="py-3 px-4 text-right">Tiempo</th></tr></thead><tbody id="resultsTableBody" class="divide-y divide-slate-800 text-sm"></tbody></table></div></div>
 </section>
 </main>
+<footer class="w-full max-w-5xl mx-auto px-4 pb-6 pt-2">
+ <div class="max-w-xl mx-auto rounded-xl border border-slate-800 bg-slate-900/60 px-4 py-4 text-center shadow-sm">
+  <p class="text-[11px] sm:text-xs text-slate-400">Página desarrollada por</p>
+  <p class="mt-1 text-sm sm:text-base font-semibold tracking-wide text-slate-300">Sebastián Xavier García Forero</p>
+  <div class="mt-3 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-xs text-slate-400">
+   <a href="mailto:sebastianxabierdominguezgarcia@gmail.com" class="inline-flex items-center gap-1.5 transition hover:text-slate-200" aria-label="Enviar correo electrónico">
+    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+    <span>Correo electrónico</span>
+   </a>
+   <a href="https://wa.me/573225192042" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 transition hover:text-emerald-400" aria-label="Contactar por WhatsApp">
+    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.52 3.48A11.86 11.86 0 0 0 12.08 0C5.5 0 .15 5.34.15 11.92c0 2.1.55 4.15 1.6 5.96L.05 24l6.27-1.64a11.9 11.9 0 0 0 5.75 1.47h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.19-1.24-6.19-3.48-8.43ZM12.08 21.8h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.72.98.99-3.63-.24-.37a9.86 9.86 0 0 1-1.52-5.27c0-5.45 4.44-9.89 9.9-9.89a9.82 9.82 0 0 1 7 2.9 9.82 9.82 0 0 1 2.9 7c0 5.46-4.44 9.9-9.9 9.9Zm5.43-7.41c-.3-.15-1.77-.87-2.05-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.2 5.08 4.49.71.31 1.27.5 1.7.64.72.23 1.37.2 1.88.12.57-.08 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/></svg>
+    <span>WhatsApp</span>
+   </a>
+   <a href="https://www.instagram.com/sebastian_xabier?hvrq=cXd3dTBodWIwdWo0" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 transition hover:text-pink-300" aria-label="Visitar Instagram @sebastian_xabier">
+    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/></svg>
+    <span>@sebastian_xabier</span>
+   </a>
+   <a href="https://www.facebook.com/share/1YvWYmttay/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 transition hover:text-blue-300" aria-label="Visitar Facebook Sebastián Xavier">
+    <svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8.2h2.76l.41-3.2H13.5V7.56c0-.93.26-1.56 1.6-1.56h1.7V3.14c-.3-.04-1.34-.14-2.55-.14-2.52 0-4.25 1.54-4.25 4.37V9.6H7.14v3.2H10V21h3.5Z"/></svg>
+    <span>Sebastián Xavier</span>
+   </a>
+  </div>
+ </div>
+</footer>
 <div id="confirmModal" class="hidden fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4"><div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6"><h3 class="text-lg font-extrabold">¿Ya respondiste todo y estás seguro?</h3><p class="text-sm text-slate-300 mt-2">Una vez envíes tus respuestas no podrás modificarlas en este intento.</p><div id="unansweredAlert" class="hidden mt-3 p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-xs text-amber-300">Tienes preguntas sin responder. Si envías ahora, contarán como incorrectas.</div><div class="mt-6 flex justify-end gap-3"><button type="button" id="btnCancelSubmit" class="px-4 py-2.5 rounded-xl bg-slate-800 text-slate-200 text-xs font-semibold">Revisar respuestas</button><button type="button" id="btnConfirmSubmit" class="px-5 py-2.5 rounded-xl bg-emerald-600 text-white text-xs font-bold">Sí, enviar examen</button></div></div></div>
 <div id="teacherAuthModal" class="hidden fixed inset-0 z-50 bg-black/75 flex items-center justify-center p-4"><div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-sm w-full p-6"><h3 class="text-lg font-extrabold">Acceso Panel Docente</h3><p class="text-xs text-slate-400 mt-1">Ingresa la clave del profesor.</p><input id="teacherPinInput" type="password" placeholder="Clave docente" class="mt-4 w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm"><p id="teacherPinError" class="hidden text-xs text-rose-400 mt-1.5">Clave incorrecta.</p><div class="mt-5 flex justify-end gap-2"><button type="button" id="btnCloseTeacherAuth" class="px-4 py-2 rounded-lg bg-slate-800 text-xs text-slate-300 font-semibold">Cancelar</button><button type="button" id="btnVerifyTeacherPin" class="px-4 py-2 rounded-lg bg-indigo-600 text-xs text-white font-bold">Entrar</button></div></div></div>
 
